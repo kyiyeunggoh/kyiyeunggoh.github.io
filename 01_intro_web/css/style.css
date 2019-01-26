@@ -1,0 +1,22 @@
+body{
+    padding:20px;
+}
+#title{
+    font-family:georgia;
+    font-size:40px;
+    color:#cc4400;
+}
+#subtitle{
+    font-family:georgia;
+    font-size:15px;
+    color:#ff8000;
+}
+li{
+    padding-bottom:20px;
+}
+#content{
+    padding:15px;
+    font-family:georgia;
+    font-size:22px;
+    color:#ff751a;
+}
