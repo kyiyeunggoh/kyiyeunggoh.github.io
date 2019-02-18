@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>D3: Drawing divs with data</title>
+		<script type="text/javascript" src="d3.js"></script>
+		<style type="text/css">
+		    #button1{
+		        font-family:helvetica;
+                font-size:18px;
+                color:#ffffff;
+                text-align:center;
+                padding:15px;
+                background-color:#ca5670;
+                width:90px;
+                height:20px;
+                border-radius:40px;
+                letter-spacing:2px;
+                cursor:pointer;
+		    }
+		</style>
+	</head>
+	<body>
+        <div id="button1">Button 1</div>
+        
+        
+		<script type="text/javascript">
+	        
+        //Imports a dataset from the file 
+		d3.csv("data.csv", function(data) {
+            //within this data context, call the function that draws the circles and pass those circles your data
+		    drawCircles(data)//here you are passing the dataset from data.csv into your function
+        });
+        
+        
+        //here is the function draw circles which you called above
+        function drawCircles(inputData){
+            //the inputData is the data you are passing into this function, in this case it is data.csv
+            
+            
+            //here we have the setup of the svg, and things done in class.
+            var width = 800
+            var height = 600
+            var radius = 10
+        
+            var svg = d3.select("body")
+                        .append("svg")
+                        .attr("width",width)
+                        .attr("height",height)
+            
+            //when we draw the dataset though, we are using inputData, which is in this case data.csv
+            svg.selectAll("circle")
+                .data(inputData)
+                .enter()
+                .append("circle")
+                .attr("cx",function(d,i){
+                    //if you console.log(d) here, you will see that each d, a datapoint, has x, y, and r. what the file gave us.
+                    //so for cx, we are using x column from the dataset, we call this x column by using x as the key
+                    //you can also write return d["x"] instead of d.x 
+                    return d.x*5//multiplied by 5 here, a way to scale the numbers - 
+                    //we will be implementing a real d3 scale in chapter 7.
+                })
+                .attr("cy",function(d,i){
+                    //same as x, but using y
+                    return d.y*5//multiplied by 5 here as well
+                })
+                .attr("r", function(d,i){
+                    //same as x, but using r
+                    return d.r
+                })
+                .attr("opacity",.5)
+                .attr("fill",function(d,i){
+                    //this if else statement was from class, but now we are using r from the dataset to set the color
+                    if(d.r>5){
+                        return "#c57c3c"
+                    }else{
+                        return "#72a555"
+                    }
+                })
+              
+            //YOUR ASSIGNMENT!!!!!!!!!!!!!!!!!!!!
+            
+            //below in this commented out block of code is what we did in class to make the x and y labels.
+            //this code will not work now, because our data variable is different.
+            //change this code below so that each dot is labeled with x, y, r to reflect the circles.
+                
+            //To reiterate: things you need to change are: 1. the what is in data(), 2.the x, y position, and 3.the text content
+            
+                svg.selectAll("text")
+                   .data(inputData)
+                   .enter()
+                   .append("text")
+                   .text(function(d,i){
+                       return d.x+","+d.y+","+d.r;
+                   })
+                   .attr("x",function(d,i){
+                       return d.x*5
+                   })
+                   .attr("y",function(d,i){
+                       return d.y*5
+                   })
+           
+        //when this is working(make sure it is working)...
+        //save it to your github homepage's folder, add, commit, push it to your home page repo online
+        //submit the link online, if you didn't change your filename, it would be like this: yourusername.github.io/25_inclass.html
+        //DON'T forget the d3.js and data.csv files need to be there online too
+        //and the path to link them need to be correct for them to work
+        //END OF ASSIGNMENT
+                    
+                     
+        //up to here is all you needed for chapter 6, below is a button interaction just for fun
+        //this changes the circles according to random data. we will cover changing between dataset in chapter 9.
+        //the button stuff here is in chapter 10 - this is just preview
+        //the move will make the labels look wierd because we are only moving the circles, you can leave them for now.
+            d3.select("#button1")
+                .on("mouseover",function(){
+                    //this means the button itself, changes its background color to red
+                    d3.select(this)
+                    .transition()
+                    .duration(1000)
+                    .style("background-color","#638ccc")
+                    
+                    //this part changes the circles
+                    d3.selectAll("circle")
+                    .transition()
+                    .duration(500)
+                    .attr("cx",function(){
+                        return Math.random()*width
+                    })
+                    .attr("cy",function(){
+                        return Math.random()*width
+                    })
+                })
+                .on("mouseout",function(){
+                    //changes the color of the button itself back
+                    d3.select(this)
+                    .transition()
+                    .duration(500)
+                    .style("background-color","#ca5670")
+                })
+           //end of button code     
+                
+        }//this closing curley brace is important, it is the end of your whole function
+        
+            
+        
+
+		</script>
+	</body>
+</html>
