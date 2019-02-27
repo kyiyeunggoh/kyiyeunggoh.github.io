@@ -2,6 +2,7 @@ body{
     padding:20px;
 	background-image: url("flatiron.jpg");
 }
+
 #title{
     font-family:Optima;
     font-size:60px;
@@ -17,7 +18,7 @@ li{
 }
 #content{
     padding:15px;
-    font-family:Optima;
+    font-family:Geneva;
     font-size:22px;
     color:#3e4444;
 }
