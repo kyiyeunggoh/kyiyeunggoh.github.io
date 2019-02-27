@@ -1,22 +1,23 @@
 body{
     padding:20px;
+	background-image: url("flatiron.jpg");
 }
 #title{
-    font-family:georgia;
-    font-size:40px;
-    color:#cc4400;
+    font-family:Optima;
+    font-size:60px;
+    color:#3e4444;
 }
 #subtitle{
-    font-family:georgia;
-    font-size:15px;
-    color:#ff8000;
+    font-family:Optima;
+    font-size:20px;
+    color:#3e4444;
 }
 li{
     padding-bottom:20px;
 }
 #content{
     padding:15px;
-    font-family:georgia;
+    font-family:Optima;
     font-size:22px;
-    color:#ff751a;
+    color:#3e4444;
 }
