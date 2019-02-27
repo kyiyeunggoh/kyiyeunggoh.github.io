@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>D3: Test of formatted axis values</title>
+		<script type="text/javascript" src="https://d3js.org/d3.v5.min.js"></script>
+		<style type="text/css">
+			/* No style rules here yet */
+		</style>
+	</head>
+	<body>
+        <div id="commuting"></div>
+        
+		<script type="text/javascript">
+    
+    d3.csv("inClassSurveyData.csv")
+    .then(function(data) {
+        drawCommute(data)
+    })
+    .catch(function(error){
+    })
+            
+    //drawing the circles
+    function drawCommute(data){
+    
+        var w = 800
+        var h = 420
+        var padding = 30
+        var r = 5
+        var svg = d3.select("#commuting")
+            .append("svg")
+            .attr("width",w)
+            .attr("height",h)
+    
+        //the linear scale declaration
+        var xScale = d3.scaleLinear()
+        .domain([0,90])  
+        .range([0,w-padding])
+		var cScale = d3.scaleLinear()
+		.domain([0,15,30,45,90])
+		.range(['green','yellow','orange','red'])
+		      
+		var xAxis = d3.axisBottom()
+				  	.scale(xScale);
+		             
+        svg.selectAll("circle")
+            .data(data)
+            .enter()
+            .append("circle")
+            .attr("cx",function(d,i){
+                //then we apply the scale 
+                //we apply the x scale to the commute value and return it
+                return  xScale(d.commute)
+            })
+            .attr("cy",h/2)//set y of circles at half of height
+            .attr("r",r)
+            .style("fill", function(d){
+					return cScale(d.commute)
+				})
+			.style("opacity",.3)	
+				
+			//Create X axis
+		svg.append("g")
+			.attr("class", "axis")
+			.attr("transform", "translate(0," + (h - padding) + ")")
+			.call(xAxis);	
+        
+    }
+       
+            
+          
+		</script>
+	</body>
+</html>
