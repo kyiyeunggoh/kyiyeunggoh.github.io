@@ -1,0 +1,104 @@
+---
+title: "Data Vis Project 2 Update: Animal abuse in NYC"
+author: "Kyi Yeung Goh"
+date: "07/03/2019"
+output: html_document
+---
+![Rabbit meme](rabbitmeme.jpg)
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(readr)
+library(tidyverse)
+library(DT)
+library(choroplethr)
+library(choroplethrMaps)
+library(tigris)
+library(dplyr)
+library(leaflet)
+library(sp)
+library(ggmap)
+library(maptools)
+library(broom)
+library(httr)
+library(rgdal)
+animalabuse<-read_csv('animalabuse.csv')
+```
+
+### Questions I asked
+1. What patterns can we discern from the data with regards to animal abuse?
+2. Has there been a shift over time? 
+
+### Data dimensions(filters, columns) you are using to answer it
+Latitude, longitude, neighborhood, boroughs, address, complaint type, complaint description, date reported. 
+
+### The type of story you will follow - comparison, interaction, change, factoid, personal. You can write a short paragraph, 3 - 5 sentences by filling in the blanks in the story worksheets for your story type. https://datatherapy.files.wordpress.com/2014/07/finding-a-story-worksheets-v1-1.pdf (Links to an external site.)Links to an external site.
+
+One factoid	is	that: Brooklyn appears to have a disproportionate amount of reported cases of animal abuse per resident. 
+
+This stands out because: It would be interesting to look at the change over time by cleaning the time stamps and zoom in on problematic areas of recurrent cases (there are many).
+
+We	want	to	tell	this	story	because: Animal abuse is actually a crime under state law. New laws have been passed and it would be interesting to see change in reports. At the same time, it would also be useful to isolate problematic hotspots or even look at the peak times at which crimes are committed. 
+
+
+## Use the websites found here to help you design the visualization. Making a quick sketch on paper will suffice.
+
+### Borough counts 
+First began by trying to understand the data
+```{r}
+datatable(animalabuse%>%
+  group_by(Borough)%>%
+  summarise(borocount = length(Borough)))
+```
+
+Descriptor changes
+```{r}
+datatable(animalabuse%>%
+  group_by(Descriptor)%>%
+  summarise(borocount = length(Descriptor)))
+```
+
+### Interactive chloropleths of points for tortured animals
+Shortened data with only points for tortured animals 
+```{r}
+points<-animalabuse%>%
+  filter(Descriptor=="Tortured")%>%
+  select("lat"=Latitude, "lng"=Longitude, "boro"=Borough)%>%
+  filter(complete.cases(lat,lng))
+points<-na.omit(points)
+```
+
+```{r include=FALSE}
+nyc_tracts <- tracts(state = '36', county = c('061','047','081','005','085'))
+r <- GET('http://data.beta.nyc//dataset/0ff93d2d-90ba-457c-9f7e-39e47bf2ac5f/resource/35dd04fb-81b3-479b-a074-a27a37888ce7/download/d085e2f8d0b54d4590b1e7d1f35594c1pediacitiesnycneighborhoods.geojson')
+nyc_neighborhoods <- readOGR(content(r,'text'), 'OGRGeoJSON', verbose = F)
+```
+
+```{r}
+points_spdf <- points
+coordinates(points_spdf) <- ~lng + lat
+proj4string(points_spdf) <- proj4string(nyc_neighborhoods)
+matches <- over(points_spdf, nyc_neighborhoods)
+points <- cbind(points, matches)
+datatable(points)
+```
+
+### Interactive leaflet map based off cartoDB showing all cases of tortured animal reports over time
+```{r}
+leaflet(nyc_neighborhoods) %>%
+  addTiles() %>% 
+  addPolygons(popup = ~neighborhood) %>% 
+  addMarkers(~lng, ~lat, popup = ~neighborhood, data = points) %>%
+  addProviderTiles("CartoDB.Positron") %>%
+  setView(-73.98, 40.75, zoom = 13)
+```
+
+
+
+### Think about the interactions you will use - rollovers, highlights, annotations etc. are all acceptable. Think about interactions as useful for your audience, not just to make something look complicated. Write what you will use. Example: I will use rollovers to annotate the description of the complaints I have selected.
+
+I am thinking of creating density circles by census district which would then allow users to interact with more granular data through clicking the circle much like the website about refugees that was shown in lecture. With thism I can show neighborhoods that are 'problem areas', allowing public services to respond with greater enforcement. 
+
+I also intend to provide transition charts plotting abuse cases over times (perhaps stacked according to type and boro) for each year. I might also stratify the sample based on time of day and months. I would also like to try one with a circle or a nightingale-style pie chart. 
+
+
