@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>data manipulation</title><!-- make your own with https://www.favicon.cc/-->
+        <link href="../favicon.ico" rel="shortcut icon" type="image/x-icon" />
+		<script type="text/javascript" src="https://d3js.org/d3.v5.min.js"></script>
+		<style type="text/css">
+            body{font-family:helvetica;}
+            #button1{border:2px solid #000; border-radius:5px;padding:5px;width:100px;}
+			#button2{border:2px solid #000; border-radius:5px;padding:5px;width:100px;}
+			#button3{border:2px solid #000; border-radius:5px;padding:5px;width:100px;}
+			#button4{border:2px solid #000; border-radius:5px;padding:5px;width:100px;}
+			#button5{border:2px solid #000; border-radius:5px;padding:5px;width:100px;}
+            #chart1{padding:10px;}
+		</style>
+	</head>
+    <div id="button1">button</div>
+	<div id="button2">button</div>
+	<div id="button3">button</div>
+	<div id="button4">button</div>
+	<div id="button5">button</div>
+    <div id="chart1"></div>
+	<body>
+		<script type="text/javascript"> 
+            //added a button above in the html
+            //already had some css in the head section to style button
+            //SCROLL TO THE BOTTOM FOR YOUR HOMEWORK
+            d3.csv("transform_dataset.csv")
+            .then(function(data){
+                
+                //below we call the chart 5 times, each with a different column, and we will see 5 charts, 1 for each column
+                drawChart(data,"c1")
+				
+                //here we select the button
+                d3.select("#button1")
+                .on("click",function(){//when it is clicked
+                    updateChart(data,"c2",'red')//we update the data in the chart to column c2
+                })
+				
+                d3.select("#button2")
+                .on("click",function(){//when it is clicked
+                    updateChart(data,"c3",'blue')//we update the data in the chart to column c2
+                })
+				
+                d3.select("#button3")
+                .on("click",function(){//when it is clicked
+                    updateChart(data,"c4",'green')//we update the data in the chart to column c2
+                })
+				
+                d3.select("#button4")
+                .on("click",function(){//when it is clicked
+                    updateChart(data,"c5",'pink')//we update the data in the chart to column c2
+                })
+				
+                d3.select("#button5")
+                .on("click",function(){//when it is clicked
+                    updateChart(data,"c1",'orange')//we update the data in the chart to column c2
+                })	
+            })
+            .catch(function(error){ console.log("error")})
+            
+            //this function with drawing code is the same all the way through
+            function drawChart(data,column){
+                var w = 300
+                var h = 300
+                var padding = 20
+                
+                var svg = d3.select("#chart1")
+                            .append("svg")
+                            .attr("width",w+padding*2)
+                            .attr("height",h+padding*2)
+                
+                var xScale = d3.scaleBand().domain(["brooklyn","manhattan","bronx","queens","staten_island"]).range([0,w])
+                var xAxis = d3.axisBottom()
+                    .scale(xScale)
+                svg.append("g")
+    				.attr("class", "axis")
+                    .attr("transform", "translate("+padding+"," + (h) + ")")
+                    .call(xAxis);
+                var yScale = d3.scaleLinear().domain([0,90]).range([h,0])
+                var yAxis = d3.axisLeft()
+                    .scale(yScale)    
+                svg.append("g")
+                    .attr("class", "axis")
+    				.attr("transform", "translate("+padding+",0)")
+    				.call(yAxis);   
+                svg.selectAll("circle")
+                    .data(data)
+                    .enter()
+                    .append("circle")
+                    .attr("cy",function(d){
+                        return yScale(d[column])
+                    })
+                    .attr("cx",function(d,i){
+                        return xScale(d.borough)+padding*3
+                    })
+                    .attr("r",5)
+                
+                svg.selectAll(".label")
+                    .data(data)
+                    .enter()
+                    .append("text")
+                    .attr("class","label")
+                    .text(function(d){
+                        return d[column]})
+                    .attr("y",function(d){
+                        return yScale(d[column])-10
+                    })
+                    .attr("x",function(d,i){
+                        return xScale(d.borough)+padding*3
+                    })
+                }
+                
+                
+                //START PAYING ATTENTION HERE
+                //new function for updating the data column
+                //a second function updating the data, the same as above making the circles 
+                //but instead of appending new bars, we select the existing and transform those.    
+                function updateChart(data,column,color){
+                    var w = 300
+                    var h = 300
+                    var padding = 20
+                    var yScale = d3.scaleLinear().domain([0,90]).range([h,0])
+                    var xScale = d3.scaleBand().domain(["brooklyn","manhattan","bronx","queens","staten_island"]).range([0,w])
+                
+                    d3.selectAll("circle")
+                            .data(data)//data
+                            .transition()//transition, starting it here
+							.style('fill',color)
+							.delay(1000)
+                            .duration(1000)//we are changing the circles over 1 second.
+							.attr("cy",function(d){
+                                return yScale(d[column])//we are using a new column dictated by what you pass in when you call the function
+                            })
+                            .attr("cx",function(d,i){
+                                return xScale(d.borough)+padding*3;//still catagorized by borough
+
+                            })
+							
+
+                        
+                    d3.selectAll(".label")
+                        .data(data)
+                            .transition()
+							.delay(1000)
+                            .duration(1000)
+                            .text(function(d){
+                                return d[column]})
+                            .attr("y",function(d){
+                                return yScale(d[column])-10
+                            })
+                            .attr("x",function(d,i){
+                                return xScale(d.borough)+padding*3
+                            })
+                    }
+
+        
+        </script>
+	</body>
+</html>
