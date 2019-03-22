@@ -1,0 +1,39 @@
+Timestamp,school,commute,birthmonth,coffeeTea,commandLine,bikes,git,cats,strangers,htmlcss,javascript,python,r,d3,processing
+2/1/19 8:29,GSAPP,45,2-Feb,both,5,1,4,1,0,daily,daily,daily,occasionally,daily,occasionally
+2/1/19 8:37,none,10,12-Dec,tea,1,4,0,4,4,never,never,never,never,never,never
+2/1/19 8:39,GSAPP,20,3-Mar,both,2,2,2,2,2,weekly,weekly,weekly,weekly,weekly,weekly
+2/1/19 9:58,GSAS,11,7-Jul,coffee,1,5,4,5,3,have at least once,have at least once,weekly,daily,never,never
+2/1/19 9:58,GSAPP,17,4-Apr,both,2,4,0,4,2,have at least once,never,never,have at least once,never,never
+2/1/19 9:58,GSAPP,25,5-May,neither,4,5,2,1,,occasionally,weekly,weekly,never,never,occasionally
+2/1/19 9:58,Mailman School of Public Health,40,9-Sep,coffee,0,5,0,5,4,never,never,never,weekly,never,never
+2/1/19 9:58,GSAPP,10,4-Apr,tea,2,0,2,5,2,have at least once,never,never,never,never,never
+2/1/19 9:58,GSAPP,10,1-Jan,tea,0,5,1,4,3,never,never,never,have at least once,never,never
+2/1/19 9:59,GSAPP,60,2-Feb,both,0,2,0,0,0,never,never,never,never,never,have at least once
+2/1/19 9:59,GSAPP,10,6-Jun,both,4,3,5,5,2,have at least once,have at least once,have at least once,never,never,never
+2/1/19 9:59,Columbia College,60,6-Jun,tea,5,5,5,5,4,weekly,weekly,occasionally,never,occasionally,never
+2/1/19 9:59,Journalism School,25,2-Feb,neither,4,4,3,1,2,weekly,weekly,weekly,weekly,weekly,weekly
+2/1/19 9:59,GSAPP,10,6-Jun,neither,4,3,3,3,3,weekly,weekly,have at least once,have at least once,weekly,have at least once
+2/1/19 9:59,Columbia College,15,9-Sep,coffee,3,4,4,0,3,never,have at least once,have at least once,never,never,never
+2/1/19 9:59,GSAPP,10,4-Apr,coffee,2,5,2,5,3,have at least once,have at least once,occasionally,never,never,occasionally
+2/1/19 9:59,GSAPP,15,1-Jan,both,4,5,4,5,2,never,have at least once,never,never,never,never
+2/1/19 9:59,GSAPP,15,1-Jan,both,2,5,2,3,3,have at least once,never,have at least once,never,never,never
+2/1/19 9:59,GSAPP,3,2-Feb,both,3,4,0,5,2,have at least once,never,never,never,never,never
+2/1/19 9:59,GSAPP,5,3-Mar,both,3,5,2,5,1,have at least once,have at least once,occasionally,never,never,occasionally
+2/1/19 9:59,GSAPP,15,12-Dec,tea,1,5,1,2,2,have at least once,have at least once,occasionally,have at least once,have at least once,never
+2/1/19 10:00,Columbia College,15,4-Apr,both,3,3,3,3,3,never,never,never,never,never,never
+2/1/19 10:00,Columbia College,60,5-May,coffee,1,5,1,5,1,never,never,never,never,never,never
+2/1/19 10:00,GSAPP,10,10-Oct,tea,3,0,0,0,2,have at least once,never,never,never,never,never
+2/1/19 10:00,Columbia College,15,4-Apr,both,3,3,3,3,3,never,never,never,never,never,never
+2/1/19 10:00,Columbia College,12,11-Nov,tea,1,3,1,3,4,never,never,never,never,never,never
+2/1/19 10:00,GSAPP,5,6-Jun,tea,,5,4,3,1,never,never,have at least once,never,never,have at least once
+2/1/19 10:00,Engineering,15,12-Dec,both,0,4,0,3,5,never,never,never,never,never,never
+2/1/19 10:00,Columbia College,10,2-Feb,both,1,5,1,4,4,have at least once,have at least once,have at least once,never,never,never
+2/1/19 10:01,GSAPP,15,6-Jun,tea,3,5,1,3,1,have at least once,occasionally,weekly,never,never,weekly
+2/1/19 10:01,GSAPP,10,1-Jan,both,2,5,0,2,3,have at least once,have at least once,have at least once,never,never,occasionally
+2/1/19 10:01,Teachers College,90,6-Jun,coffee,3,5,3,3,1,never,have at least once,have at least once,weekly,never,have at least once
+2/1/19 10:02,GSAPP,15,5-May,both,4,1,2,3,1,occasionally,never,never,never,never,never
+2/1/19 10:03,GSAPP,15,1-Jan,coffee,4,4,4,5,0,never,never,never,never,never,never
+2/1/19 10:03,GSAPP,15,12-Dec,neither,3,5,5,5,1,have at least once,have at least once,occasionally,never,never,occasionally
+2/1/19 10:03,GSAPP,15,5-May,tea,4,4,3,3,2,occasionally,never,never,never,never,never
+2/1/19 10:05,GSAPP,20,10-Oct,both,1,4,2,5,2,daily,occasionally,have at least once,never,never,never
+2/1/19 10:06,GSAPP,10,12-Dec,tea,2,4,1,1,1,have at least once,have at least once,have at least once,have at least once,have at least once,have at least once

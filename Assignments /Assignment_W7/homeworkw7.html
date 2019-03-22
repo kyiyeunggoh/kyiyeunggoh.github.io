@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>svg tooltip</title><!-- make your own with https://www.favicon.cc/-->
+        <link href="../favicon.ico" rel="shortcut icon" type="image/x-icon" />
+		<script type="text/javascript" src="https://d3js.org/d3.v5.min.js"></script>
+		<style type="text/css">
+            body{font-family:helvetica;}
+            #button1{border:2px solid #000; border-radius:5px;padding:5px;width:100px;}
+            #chart1{padding:10px;}
+			rect:hover {
+				fill: orange;
+			}
+			
+			#tooltip {
+				position: absolute;
+				width: 200px;
+				height: auto;
+				padding: 10px;
+				background-color: white;
+				-webkit-border-radius: 10px;
+				-moz-border-radius: 10px;
+				border-radius: 10px;
+				-webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+				-moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+				box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+				pointer-events: none;
+			}
+			
+			#tooltip.hidden {
+				display: none;
+			}
+			
+			#tooltip p {
+				margin: 0;
+				font-family: sans-serif;
+				font-size: 16px;
+				line-height: 20px;
+			}
+			
+			rect:hover {
+				fill: orange;
+			}
+			
+			#moreInfo {
+				position: absolute;
+				width: 200px;
+				height: auto;
+				padding: 10px;
+				background-color: white;
+				-webkit-border-radius: 10px;
+				-moz-border-radius: 10px;
+				border-radius: 10px;
+				-webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+				-moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+				box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+				pointer-events: none;
+			}
+			
+			#moreInfo.hidden {
+				display: none;
+			}
+			
+			#moreInfo p {
+				margin: 0;
+				font-family: sans-serif;
+				font-size: 16px;
+				line-height: 20px;
+			}			
+			
+			
+		</style>
+	</head>
+    <div id="button1">SORT</div>
+    <div id="chart1"></div>
+    <div id="moreInfo" class="hidden">
+		<p><strong>Other information List</strong></p>
+		<p><span id="value">100</span></p>
+		<p><span id="value1">100</span></p>
+		<p><span id="value2">100</span> coffeeortea</p>
+		<p><span id="value3">100</span> ridebikecomfortlevel</p>
+		<p><span id="value4">100</span> cats</p>
+		<p><span id="value5"></span> commandLineexperience</p>
+		<p><span id="value6"></span> gitexperience</p>
+		<p><span id="value7"></span> strangerscomfortlevel</p>
+		<p><span id="value8"></span> htmlexperience</p>
+		<p><span id="value9"></span> javascriptexperience</p>
+		<p><span id="value10"></span> pythonexperience</p>
+		<p><span id="value11"></span> d3experience</p>
+		<p><span id="value12"></span> processingexperience</p>
+		<p><span id="value13"></span> Rexperience</p>
+	<div id="tooltip" class="hidden">
+		<p><strong>Travel time list</strong></p>
+		<p><span id="value">100</span> minutes</p>
+	<body>
+		<script type="text/javascript"> 
+            //The code below builds on the last file and adds a svg tooltip
+            //look for several blocks with NEW CODE HERE comments to see what's different from previous file
+            //school,commute,birthmonth,coffeeTea,commandLine,bikes,git,cats,strangers,htmlcss,javascript,python,r,d3,processing
+            /*TODO:
+          
+            part 2:use the moreInfo div(above in the html) to display the rest of the columns of data in that div for each bar you rollover
+            
+            HINT:
+            1.select the div moreInfo, set its html with the content
+            2.to make the content - you will have to access each column by calling d["the column name you need"] 
+                you may have to make the values into sentences using + sign
+            3. style your css
+            
+            END OF HOMEWORK
+            */
+            d3.csv("inClassSurveyData.csv")
+            .then(function(data){
+                drawChart(data)                
+            })
+            .catch(function(error){ console.log("error")})
+            
+            function drawChart(data){	 
+                var w = 700
+                var h = 300
+                var yScale = d3.scaleLinear().domain([0,90]).range([0,h])
+                var xScale = d3.scaleBand().domain(d3.range(data.length)).range([0,w]).round(true).paddingInner(.1)
+                var cScale = d3.scaleLinear().domain([0,90]).range(["#aaa","#000"])
+                var svg = d3.select("#chart1")
+                            .append("svg")
+                            .attr("width",w)
+                            .attr("height",h)
+				
+                svg.selectAll("rect")
+                    .data(data)
+                    .enter()
+                    .append("rect")
+                    .attr("x",function(d,i){
+                        return xScale(i)
+                    })
+                    .attr("y",function(d){
+                        return h-yScale(d.commute)
+                    })
+                    .attr("width",xScale.bandwidth())
+                    .attr("height",function(d){
+                        return yScale(d.commute)
+                    })
+                    .attr("fill",function(d){
+                        return cScale(d.commute)
+                    })
+                    .attr("opacity",.5)
+                    //START NEW CODE HERE
+	 			   .on("mouseover", function(d) {
+
+	 					//Get this bar's x/y values, then augment for the tooltip
+	 					var xPosition = parseFloat(d3.select(this).attr("x")) + xScale.bandwidth() / 2;
+	 					var yPosition = parseFloat(d3.select(this).attr("y")) / 2 + h / 2;
+
+	 					//Update the tooltip position and value
+	 					d3.select("#tooltip")
+	 						.style("left", xPosition + "px")
+	 						.style("top", yPosition + "px")						
+	 						.select("#value")
+							.text(d.commute);
+						
+	 					d3.select("#tooltip").classed("hidden", false);
+						
+						d3.select("#moreInfo")
+							.style("left", xPosition + "px")
+							.style("top", yPosition + "px")						
+							.select("#value")
+							.text(d.school);
+						
+						d3.select("#moreInfo")
+							.style("left", xPosition + "px")
+							.style("top", yPosition + "px")						
+							.select("#value1")
+							.text(d.birthmonth);
+						
+						d3.select("#moreInfo")
+							.style("left", xPosition + "px")
+							.style("top", yPosition + "px")						
+							.select("#value2")
+							.text(d.coffeeTea);
+						
+						
+						d3.select("#moreInfo")
+							.style("left", xPosition + "px")
+							.style("top", yPosition + "px")						
+							.select("#value3")
+							.text(d.bikes);
+						
+						d3.select("#moreInfo")
+							.style("left", xPosition + "px")
+							.style("top", yPosition + "px")						
+							.select("#value4")
+							.text(d.cats);
+						
+						d3.select("#moreInfo")
+							.style("left", xPosition + "px")
+							.style("top", yPosition + "px")						
+							.select("#value5")
+							.text(d.commandLine);
+							
+						d3.select("#moreInfo")
+							.style("left", xPosition + "px")
+							.style("top", yPosition + "px")						
+							.select("#value6")
+							.text(d.git);
+							
+						d3.select("#moreInfo")
+							.style("left", xPosition + "px")
+							.style("top", yPosition + "px")						
+							.select("#value7")
+							.text(d.strangers);
+						
+						d3.select("#moreInfo")
+							.style("left", xPosition + "px")
+							.style("top", yPosition + "px")						
+							.select("#value8")
+							.text(d.html);
+							
+						d3.select("#moreInfo")
+							.style("left", xPosition + "px")
+							.style("top", yPosition + "px")						
+							.select("#value9")
+							.text(d.javascript);
+						
+						d3.select("#moreInfo")
+							.style("left", xPosition + "px")
+							.style("top", yPosition + "px")						
+							.select("#value10")
+							.text(d.python);
+							
+						d3.select("#moreInfo")
+							.style("left", xPosition + "px")
+							.style("top", yPosition + "px")						
+							.select("#value11")
+							.text(d.d3);
+							
+						d3.select("#moreInfo")
+							.style("left", xPosition + "px")
+							.style("top", yPosition + "px")						
+							.select("#value12")
+							.text(d.processing);
+						
+							
+						d3.select("#moreInfo")
+							.style("left", xPosition + "px")
+							.style("top", yPosition + "px")						
+							.select("#value13")
+							.text(d.r);
+						
+						d3.select("#moreInfo").classed("hidden",false);
+	 			   })
+	 			   .on("mouseout", function() {
+			   
+	 					//Hide the tooltip
+	 					d3.select("#tooltip").classed("hidden", true);
+						d3.select("#moreInfo").classed("hidden",true);
+	 			   })
+	 			   .on("click", function() {
+	 			   		sortBars();
+	 			   });
+                    
+                    var ascending = true
+                    
+                  var button = d3.select("#button1")
+                            .on("click",function(){  
+                                sortBars()
+                                
+                                if(ascending ==true){
+                                    ascending = false
+                                    d3.select("#button1").html("click to sort ascending")
+                                }else{
+                                    ascending = true
+                                    d3.select("#button1").html("click to sort descending")
+                                }
+                            })      
+                
+                    function sortBars(){
+                      d3.selectAll("rect")
+                        .sort(function(a,b){
+                            if(ascending == true){
+                                return d3.descending(parseInt(a.commute),parseInt(b.commute))
+                            }else{
+                                return d3.ascending(parseInt(a.commute),parseInt(b.commute))
+                            }
+                        })
+                        .transition()
+                        .duration(1000)
+                        .delay(function(d,i){
+                            return i*100
+                        })
+                        .attr("x",function(d,i){
+                            return xScale(i)
+                        })
+                    }
+            
+            }
+           
+        </script>
+	</body>
+</html>
