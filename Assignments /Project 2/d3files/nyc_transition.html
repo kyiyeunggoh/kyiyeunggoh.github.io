@@ -22,10 +22,23 @@
 		  border-radius: 8px;           
 		  pointer-events: none;         
 		}
+		#button1{
+				        font-family:helvetica;
+		                font-size:18px;
+		                color:#ffffff;
+		                text-align:center;
+		                padding:15px;
+		                background-color:#ff9a1e;
+		                width:90px;
+		                height:20px;
+		                border-radius:40px;
+		                letter-spacing:2px;
+		                cursor:pointer;
+				    }
     </style>
 </head>
 <body>
-    <div id="button">button</div>
+     <div id="button1">Button 1</div>
     <div id="littleChart"></div>
 	<div id="moreInfo" class="hidden">
 		<p><strong>Borough</strong></p>
@@ -49,7 +62,7 @@
                 drawOutline(geo)
                 drawDots(places,geo)
 
-                d3.select("#button")
+                d3.select("#button1")
                 .on("click",function(){
                     updateDots(places)
                 })
@@ -100,7 +113,7 @@
                     })
             }
             function drawChart(data){
-                console.log(data)
+				console.log(data)
                 d3.selectAll(".littleCircleChart").remove()
                 var w = d3.select("#littleChart").style("width").replace("px","")
                 var h = d3.select("#littleChart").style("height").replace("px","")
@@ -111,6 +124,9 @@
                 .transition()
                 .duration(500)
                 .attr("r",Math.random()*30)
+				.attr("fill",function(d){
+                    return colorPlace[d.Borough]
+                })
                 //svg.select("data")
             }
 
