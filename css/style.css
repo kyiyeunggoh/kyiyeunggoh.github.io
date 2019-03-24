@@ -1,24 +1,28 @@
 body{
     padding:20px;
-	background-image: url("flatiron.jpg");
 }
 
 #title{
-    font-family:Optima;
+    text-align: center;
+	font-family: work-sans, sans-serif;
     font-size:60px;
-    color:#3e4444;
+    color:#fd8d3c;
 }
 #subtitle{
-    font-family:Optima;
+    text-align: center;
+	font-family: work-sans, sans-serif;
     font-size:20px;
-    color:#3e4444;
+    color:#fecc5c;
 }
 li{
     padding-bottom:20px;
 }
 #content{
-    padding:15px;
-    font-family:Geneva;
-    font-size:22px;
-    color:#3e4444;
+	text-align: center;
+	padding: 120px;
+	font-family: work-sans, sans-serif;
+	font-size: 20px;
+	font-weight: 500;
+	color: #c48627;
 }
+
