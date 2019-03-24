@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		Stylesheets
+		<link href='http://fonts.googleapis.com/css?family=Cabin:500' rel='stylesheet' type='text/css'> 
+		Libraries
+		<script type="text/javascript" src="https://d3js.org/d3.v5.min.js"></script> 
+		Scripts
+		<script type="text/javascript" src="rose.js"></script>
+		<style type="text/css">
+	        #chart{position:absolute;top:0px;left:0px;}
+	        #labels{font-size:24px;font-family:helvetica;color:#aaa;position:absolute;top:0px;left:0px;padding:20px;}
+		</style>
+	</head>
+	<body>
+        <div id = "chart"></div>
+    <script>
+        d3.csv("typebymonth.csv")
+        .then(function(data){
+            var w = 800
+            var h = 800
+            var maxTotal = d3.max(data, function(d) { return +d["Total"];} );
+            var svg = d3.select("#chart").append("svg").attr("width",w).attr("height",h)
+
+            var colors = ["#6ab74d","#c655ba","#c3ab44","#7463cd","#6b7f37","#d2467c","#4bb091","#d04d3e","#588ecd","#c17a40","#b07cbf","#ba6575"]
+            for(var i in data){
+                var columns = data["columns"]
+                var monthData = data[i]
+                for(var c in columns){
+                    var column = columns[c]
+                    var color = colors[c]
+                    drawArc(monthData,column,maxTotal,w,h,color)
+                }
+            }
+        })
+
+        function drawArc(data,column,max,w,h,color){
+
+            var rScale = d3.scaleLinear().domain([0,max]).range([0,w/2])
+            var outer = rScale(data[column])
+            var inner = 0
+            var slice = 360/12
+            var month = data["date"].split("/")[0]
+            var startAngle = month*slice
+            var endAngle = month*slice+slice
+
+            var svg = d3.select("#chart svg")
+
+
+            var pie = d3.pie();
+            var arc = d3.arc()
+                    .innerRadius(inner)
+                    .outerRadius(outer)
+                    .startAngle(startAngle* (Math.PI/180))
+                    .endAngle(endAngle* (Math.PI/180))
+            svg.append("path")
+                    .attr("d",arc)
+                     .attr("class",column+"_month")
+                    .attr("transform", "translate("+w/2+","+h/2+")")
+                    .attr("opacity",1)
+                    .attr("fill","none")
+                    .attr("stroke",color)
+
+        }
+
+		</script>
+	</body>
+</html>

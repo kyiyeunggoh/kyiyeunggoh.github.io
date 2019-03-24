@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		Stylesheets
+		<link href='http://fonts.googleapis.com/css?family=Cabin:500' rel='stylesheet' type='text/css'>
+		Libraries
+		<script type="text/javascript" src="https://d3js.org/d3.v5.min.js"></script>
+		Scripts
+		<script type="text/javascript" src="rose.js"></script>
+	<style type="text/css">
+        #chart{position:absolute;top:0px;left:0px;}
+        #labels{font-size:24px;font-family:helvetica;color:#aaa;position:absolute;top:0px;left:0px;padding:20px;}
+	</style>
+	</head>
+	<body>	
+        <div id = "labels"></div>
+        <div id = "chart"></div>
+    <script>
+        d3.csv("typebymonth.csv")
+        .then(function(data){
+            var w = 800
+            var h = 800
+            var maxTotal = d3.max(data, function(d) { return +d["Total"];} );
+            var svg = d3.select("#chart").append("svg").attr("width",w).attr("height",h)
+
+            var colors = ["#ffffe5","#fff7bc","#fee391","#fec44f","#fe9929","#ec7014","#cc4c02","#993404","#662506"]
+            for(var i in data){
+                var columns = data["columns"]
+                var monthData = data[i]
+                var innerRadiusStack = 0//keep track of the stacked value for each month
+
+                for(var c in columns){
+                    var column = columns[c]
+                    if(column!="date" && column!="Total"&&i!="columns"){
+                        var color = colors[c]
+                        drawArc(monthData,column,innerRadiusStack,maxTotal,w,h,color)
+                        innerRadiusStack+=parseInt(monthData[column])//adding to it here
+                    }
+                }
+            }
+        })
+		
+
+        function drawArc(data,column,inner,max,w,h,color){
+            var rScale = d3.scaleLinear().domain([0,max]).range([0,w/2])
+            var outer = rScale(inner+parseInt(data[column]))//the outer value is the stack plus the current value
+            var inner = rScale(inner)
+            var slice = 360/12//each slice is just 1 month, so 1/12 of a circle
+            var month = data["date"].split("/")[0]
+            var startAngle = month*slice
+            var endAngle = month*slice+slice
+
+            var svg = d3.select("#chart svg")
+	
+            var pie = d3.pie();
+            var arc = d3.arc()
+                    .innerRadius(inner)
+                    .outerRadius(outer)
+                    .startAngle(startAngle* (Math.PI/180))//the last part with PI converts degrees to radians.
+                    .endAngle(endAngle* (Math.PI/180))
+			
+            svg.append("path")
+					.attr("d",arc)
+                    .attr("class",column+"_month")
+                    .attr("transform", "translate("+w/2+","+h/2+")")
+                    .attr("opacity",1)
+                    .attr("fill",color)
+                    .attr("stroke","#ffffff")
+                    .attr("stroke-width",1)
+                    .on("mouseover",function(d){
+                        d3.select(this)
+                        .attr("stroke-width",2)
+                        d3.select("#labels").html(column+" "+data["date"])
+                    })
+                    .on("mouseout",function(d){
+                        d3.select(this).attr("stroke-width",1)
+                        d3.select("#labels").html("")
+                    })
+
+        }
+		
+		 // insert labels and include transitions
+		</script>
+	</body>
+</html>

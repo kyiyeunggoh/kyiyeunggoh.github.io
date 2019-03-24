@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>data manipulation</title><!-- make your own with https://www.favicon.cc/-->
+        <link href="../favicon.ico" rel="shortcut icon" type="image/x-icon" />
+		<script type="text/javascript" src="https://d3js.org/d3.v5.min.js"></script>
+		<style type="text/css">
+            body{font-family:helvetica;}
+            #button1{border:2px solid #000; border-radius:5px;padding:5px;width:100px;}
+            #chart1{padding:10px;}
+		</style>
+	</head>
+    <div id="chart1"></div>
+    <div id="chart2"></div>
+	<body>
+		<script type="text/javascript"> 
+            //this code allows us to draw multiple charts using the same function.
+            d3.csv("transform_dataset.csv")
+            .then(function(data){
+                
+                //below we call the chart 5 times, each with a different column, and we will see 5 charts, 1 for each column
+                drawChart(data,"c1",8,"blue","#ffffff")
+            })
+            
+            //below is the code for drawing a basic chart, it takes in the data, and the selection of a column
+            //the only change is that we are passing in 2 variables - the data and the column that we will use
+            //you will see the column variable being used in the drawing part after .append("circle")
+            function drawChart(data,column,radius,startColor,endColor){
+                var w = 300
+                var h = 300
+                var padding = 20
+                
+                //our svg
+                var svg = d3.select("#chart1")
+                            .append("svg")
+                            .attr("width",w+padding*2)
+                            .attr("height",h+padding*2)
+                
+                //all this is the same as previous file
+                var xScale = d3.scaleBand().domain(["brooklyn","manhattan","bronx","queens","staten_island"]).range([0,w])
+                var xAxis = d3.axisBottom()
+                    .scale(xScale)
+               
+               var cScale = d3.scaleLinear().domain([0,90]).range([startColor,endColor])
+               
+                svg.append("g")
+    				.attr("class", "axis")
+                    .attr("transform", "translate("+padding+"," + (h) + ")")
+                    .call(xAxis);
+                var yScale = d3.scaleLinear().domain([0,90]).range([h,0])
+                var yAxis = d3.axisLeft()
+                    .scale(yScale)    
+                svg.append("g")
+                    .attr("class", "axis")
+    				.attr("transform", "translate("+padding+",0)")
+    				.call(yAxis);   
+
+
+                //START PAYING ATTENTION HERE
+                //you have seen most of this before too. 
+                //notice that column is the dynamic variable that we pass in when we call the function
+                svg.selectAll("circle")
+                    .data(data)
+                    .enter()
+                    .append("circle")
+                    .attr("class",function(d){
+                        return d.borough
+                    })
+                    .attr("cy",function(d){
+                        return yScale(d[column])//this line uses the column variable you passed in in line 22 - 26
+                    })
+                    .attr("cx",function(d,i){
+                        return xScale(d.borough)+padding*3
+                    })
+                    .attr("r",radius)
+                    .attr("fill",function(d){
+                       return cScale(parseInt(d[column]))
+                    })
+                    .on("click",function(d){
+                        drawNewBarChart(d)
+                    })
+                
+                //label is the same as before from week 4   
+                svg.selectAll(".label")
+                    .data(data)
+                    .enter()
+                    .append("text")
+                    .attr("class","label")
+                    .text(function(d){
+                        return d[column]})//here is the column used again for text content
+                    .attr("y",function(d){
+                        return yScale(d[column])-10//here is the column used again for placement
+                    })
+                    .attr("x",function(d,i){
+                        return xScale(d.borough)+padding*3
+                    })
+                }
+                
+                function drawNewBarChart(data){
+                    d3.select("#chart2 svg").remove()
+                    Array.prototype.remove = function() {
+                        var what, a = arguments, L = a.length, ax;
+                        while (L && this.length) {
+                            what = a[--L];
+                            while ((ax = this.indexOf(what)) !== -1) {
+                                this.splice(ax, 1);
+                            }
+                        }
+                        return this;
+                    };
+                    
+                    
+                    
+                    console.log(data)
+                    var w = 500
+                    var h = 300
+                    var barWidth = 80
+                    var svg = d3.select("#chart2").append("svg").attr("width",w).attr("height",h)
+                    
+                    var yScale = d3.scaleLinear().domain([0,90]).range([0,h])
+                    
+                    var keys = Object.keys(data).remove("borough")
+                    
+                    svg.selectAll("rect")
+                    .data(keys)
+                    .enter()
+                    .append("rect")
+                    .attr("x",function(d,i){
+                        return i*barWidth
+                    })
+                    .attr("y",function(d,i){
+                        return 0
+                    })
+                    .attr("width",barWidth-3)
+                    .attr("height",function(d,i){
+                        console.log(d);
+                        return yScale(data[d])
+                    })
+                    
+                    
+                }
+		</script>
+	</body>
+</html>
