@@ -37,18 +37,19 @@
 		height: auto;
 		padding: 10px;
 		background-color: white;
-		-webkit-border-radius: 10px;
-		-moz-border-radius: 10px;
-		border-radius: 10px;
-		-webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
-		-moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
-		box-shadow: 4px 4px 10px rgba(0, 100, 100, 0.4);
-		pointer-events: none;
 	}
+	.body{
+							width: 600px;
+							height: 600px;
+							border-radius: 30px;
+							margin: auto;
+							padding: 20px;
+						}
 
   </style>
 
 </head>
+	 
 <h1>Top 10 Countries Visited by Hu Jintao (2003-2013)</h1>
 <body>
 
@@ -78,7 +79,7 @@
 
     var yAxis = d3.axisLeft(y);
 
-    d3.csv("travel/hu_international.csv", type, function(error, data) {
+    d3.csv("hu_international.csv", type, function(error, data) {
       if (error) throw error;
 
       data.sort(function(a, b) {
@@ -89,7 +90,6 @@
 
       y.domain(data.map(function(d) { return d.country; }))
         .paddingInner(0.1);
-
 
       svg.append("g")
           .attr("class", "x axis")
