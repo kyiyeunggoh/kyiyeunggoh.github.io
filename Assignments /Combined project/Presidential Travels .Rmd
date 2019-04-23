@@ -1,0 +1,112 @@
+---
+title: "Travel as Policy: Mapping changing policy trajectories from Hu Jintao to Xi Jinping"
+author: "Kyi Yeung Goh and Luyun Shao (Aurora)"
+date: "23/04/2019"
+output:
+  prettydoc::html_pretty:
+    theme: cayman
+    highlight: github
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, fig.align="center")
+library(prettydoc)
+library(htmltools)
+library(vembedr)
+library(r2d3)
+library(shiny)
+library(rvest)
+library(tidyverse)
+library(kableExtra)
+library(stringr)
+library(xml2)
+library(httr)
+library(dplyr)
+library(data.table)
+library(DT)
+library(rowr)
+library(maps)
+```
+
+```{r fig.align='center'}
+embed_url("https://www.youtube.com/watch?v=T54fUAuGQy4")
+```
+
+### The Context
+Since Xi took the reins of power in 2013, analysts have argued that there has been a marked shift in China's assertiveness. These include [China's launch of the Belt and Road Initiative](https://www.nytimes.com/interactive/2018/11/18/world/asia/world-built-by-china.html), [its involved participation in the United Nations](https://www.theguardian.com/world/2018/sep/24/china-starts-to-assert-its-world-view-at-un-as-influence-grows) and [its willingness to contemplate a trade war with the United States](https://www.scmp.com/economy/china-economy/article/2165860/xi-jinping-says-trade-war-pushes-china-rely-itself-and-thats). This comes against a backdrop of a [domestic economy that has had structural problems](https://asia.nikkei.com/Opinion/Nikkei-Editorial/The-problems-facing-China-s-healthy-economy), [a flurry of new domestic initiatives](https://www.washingtonpost.com/business/chinas-two-child-policy/2018/06/06/05d13f54-69bf-11e8-a335-c4503d041eaf_story.html?utm_term=.7c4c61699238) and an unprecedented battle against [systemic corruption](https://chinapower.csis.org/can-xi-jinpings-anti-corruption-campaign-succeed/).
+
+This contrasts to the term of the previous president, Hu Jintao, which was arguably [more concilliatory and decentralised](https://thediplomat.com/2017/10/speaking-up-for-yesterdays-man-remembering-hu-jintao/). 
+
+**How true is this? How can we go about answering this? **
+
+## Our question: Can travel patterns reveal shifting governance styles of Chinese presidents?
+
+Our initial question, which was arguably too broad to be conducive to a shorter-term project, has been reframed and now explores two types of data with the help of China Vitae's [travel profiles](http://www.chinavitae.com/vip/index.php?mode=events&type=cv&id=19&filter_year=2011): 
+
+1. International travel history of Hu and Xi
+2. Domestic travel history of Hu and Xi
+
+## Biography: Charting their rise to the top
+
+```{r}
+htmltools::includeHTML("index1.html")
+```
+
+[INCLUDE SOME ANALYSIS HERE]
+
+## Foreign policy
+
+### Putting the middle back in the middle kingdom?
+```{r}
+htmltools::includeHTML("./inout/index.html")
+```
+
+From the data, we notice how even though Xi's outbound travels have increased compared to Xi, the inbound officials visiting him are several times larger than that of his predecessor. 
+
+Several other interesting points can also be noted.
+1. There has been a sharp decline in the number of days Xi has spent visiting officials outside China. 
+2. 2017, which was the year of the 19th party congress, also saw the lowest number of publicised contact with foreign officials. 
+3. Xi appears to have hit the ground running, visiting almost as many countries as his predecessor did in 10 years. 
+
+### Datatable for Hu days in China (visited him) hosting guests and him visiting others abroad
+```{r}
+inout_hu=read.csv("inout_hu.csv")
+datatable(inout_hu,extensions="Buttons",options = list(dom = 'Bfrtip',
+                                               buttons = c('copy', 'csv', 'excel', 'pdf', 'print')))
+```
+
+
+### Datatable for Xi days in China (visited him) hosting guests and him visiting others abroad
+```{r}
+inout_xi=read.csv("inout_xi.csv")
+datatable(inout_xi,extensions="Buttons",options = list(dom = 'Bfrtip',
+                                               buttons = c('copy', 'csv', 'excel', 'pdf', 'print')))
+```
+
+## How has the type of countries visited changed from Hu to Xi?
+
+### Number of days spent in country during Hu Jintao's term (Top 10)
+
+```{r}
+includeHTML("https://kyiyeunggoh.github.io/Assignments%20/Final%20Project/travelhu/index.html")
+```
+
+### Number of days spent in country during Xi Jinping's term (Top 10)
+```{r}
+htmltools::includeHTML("https://kyiyeunggoh.github.io/Assignments%20/Final%20Project/travelxi/index.html")
+```
+
+We can note several marked changes with the rise of Xi to the position of President. Whilst key global players such as the United States remain high up in the top 10, other countries that make up the list are more varied. 
+
+1. Ties with Russia appear to be warmer under Xi with it being his top destination 
+2. Under Xi, there has been a greater focus on building ties with developing economies particularly with fellow BRICS members such as Brazil, India and South Africa. 
+3. Under Hu, North American and European countries appeared in the top 10 more frequently than under Xi. 
+4. Xi made no trips to Japan whilst Hu made several. 
+
+### International travel map 
+Want to explore more of the travels of the various presidents? Try out the map below. Simply pull over the days that you wish to investigate to look at the paths taken. 
+
+```{r}
+includeHTML("https://auroraluyunshao.github.io/Final_02_IntTravel/")
+```
+

@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+        /* CSS goes here. */
+        .subunit {
+            fill: none;
+            stroke: #FFF;
+            stroke-width: 1px;
+        }
+
+        text.subunit-label {
+            font-family: helvetica;
+            font-size: 12px;
+            font-weight: 300;
+            text-anchor: middle;
+            fill: #000;
+        }
+
+        .subunit-label {
+            display: none;
+        }
+
+        .graticule {
+            fill: none;
+            stroke: #aaa;
+            stroke-opacity: .5;
+            stroke-width: .5px;
+        }
+
+        .tooltip {
+            font-family: helvetica;
+            font-size: 10px;
+            width: 120px;
+            height: auto;
+            color: #ffffff;
+            position: absolute;
+            text-align: left;
+            border-style: solid;
+            border-width: 1px;
+            background-color: rgba(148,34,29,0.85);
+            border-radius: 10px;
+        }
+
+        .selected {
+            fill: #94221d;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div style="text-align:center;">
+            <svg class="world-map"></svg>
+        </div>
+        <div style="text-align:left; margin:14px; margin-top:-50px;width:950px;">
+            <select class="select-year">
+                <!-- <option value="2019" selected>2019</option> -->
+                <option value="2019_xi" selected>2019 - Xi Jinping</option>
+                <option value="2018_xi">2018 - Xi Jinping</option>
+            </select>
+        </div>
+        <!-- <div style="text-align:center;margin-top:10px;"> -->
+        <div style = "margin-top: 30px">
+            <div class="date-cell-chart">
+            </div>
+        </div>
+    </div>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="//d3js.org/topojson.v1.min.js"></script>
+    <script>
+        var HeatDateChart = function () {
+            var self = this;
+            var weekday = "sunday";
+            var cellSize = 15;
+            var dateCellWidth = 964;
+            var dateCellHeight = 119;
+            var margin = {
+                left: 40, top: cellSize * 1.5
+            };
+            dateCellHeight = cellSize * (weekday === "weekday" ? 7 : 9);
+            var timeWeek = weekday === "sunday" ? d3.utcSunday : d3.utcMonday;
+            var countDay = weekday === "sunday" ? d => d.getUTCDay() : d => (d.getUTCDay() + 6) % 7;
+            var format = d3.format("+.2%");
+            var formatDate = d3.utcFormat("%x");
+            var formatDay = d => "SMTWTFS"[d.getUTCDay()];
+            var formatMonth = d3.utcFormat("%b");
+            var color = d3.scaleSequential(d3.interpolateRdPu);
+
+            defaultExtent = [[0, 0], [dateCellWidth, dateCellHeight]];
+
+            function pathMonth(t) {
+                const n = weekday === "weekday" ? 5 : 7;
+                const d = Math.max(0, Math.min(n, countDay(t)));
+                const w = timeWeek.count(d3.utcYear(t), t);
+                return `${d === 0 ? `M${w * cellSize},0`
+                    : d === n ? `M${(w + 1) * cellSize},0`
+                        : `M${(w + 1) * cellSize},0V${d * cellSize}H${w * cellSize}`}V${n * cellSize}`;
+            }
+
+            function brushed() {
+                var selection = d3.event.selection;
+                d3.selectAll(".date-cell").classed("selected", selection && function (d) {
+                    var thisX = (d.x + margin.left + cellSize / 2);
+                    var thisY = d.yy + cellSize / 2 + 1;
+                    var result = selection[0][0] <= thisX && thisX < selection[1][0]
+                        && selection[0][1] <= thisY && thisY < selection[1][1];
+                    return result && d.sum > 0;
+                });
+                var list = [];
+                d3.selectAll(".selected")
+                    .attr("temp", function (d) {
+                        d.list.forEach(function (subdata) {
+                            list.push(subdata);
+                        });
+                    });
+                if (list.length > 0) {
+                    drawTrajectory(list);
+                }
+            }
+
+            HeatDateChart.prototype.drawChart = function (data) {
+                var cMax = d3.max(data, function (d) { return d.sum; });
+                var cMin = d3.min(data, function (d) { return d.sum; });
+                color.domain([0, 3]);
+
+                const years = d3.nest()
+                    .key(d => d.date.getUTCFullYear())
+                    .entries(data)
+                    .reverse();
+
+                if (d3.select(".date-cell-chart svg").size() <= 0) {
+                    const svg = d3.select(".date-cell-chart")
+                        .append("svg")
+                        .style("font", "10px sans-serif")
+                        .style("width", dateCellWidth)
+                        .style("height", dateCellHeight * years.length);
+                }
+                const svg = d3.select(".date-cell-chart svg");
+
+                svg.selectAll(".date-cell,.month-label").remove();
+
+                var location = {};
+                var year = svg.selectAll(".date-cell")
+                    .data([years[0]])
+                    ;
+
+                var g = year.enter()
+                    .append("g")
+                    .attr("class","date-cell")
+                    .attr("transform", function (d, i) {
+                        location[d.key] = dateCellHeight * i + cellSize * 1.5;
+                        return `translate(40,${dateCellHeight * i + cellSize * 1.5})`
+                    })
+
+                g.append("text")
+                    .attr("x", -5)
+                    .attr("y", -5)
+                    .attr("font-weight", "bold")
+                    .attr("text-anchor", "end")
+                    .text(d => d.key);
+
+                g.append("g")
+                    .attr("text-anchor", "end")
+                    .selectAll("text")
+                    .data((weekday === "weekday" ? d3.range(2, 7) : d3.range(7)).map(i => new Date(1995, 0, i)))
+                    .enter()
+                    .append("text")
+                    .attr("x", -5)
+                    .attr("y", d => (countDay(d) + 0.5) * cellSize)
+                    .attr("dy", "0.31em")
+                    .text(formatDay);
+
+                year.selectAll("rect")
+                    .data(function (d) {
+                        return d.values;
+                    })
+                    .attr("class", "date-cell")
+                    .attr("width", cellSize - 1)
+                    .attr("height", cellSize - 1)
+                    .attr("x", function (d) {
+                        d.x = timeWeek.count(d3.utcYear(d.date), d.date) * cellSize + 0.5;
+                        return d.x;
+                    })
+                    .attr("y", function (d, i) {
+                        d.y = countDay(d.date) * cellSize + 0.5;
+                        d.yy = d.y + location[d.date.getUTCFullYear()];
+                        return d.y;
+                    })
+                    .attr("fill", function (d) {
+                        if (d.sum <= 0) {
+                            return "rgb(240,240,240)";
+                        }
+                        return color(d.sum);
+                    });
+
+                g.append("g")
+                    .selectAll("rect")
+                    .data(function (d) {
+                        return d.values;
+                    })
+                    .enter()
+                    .append("rect")
+                    .attr("class", "date-cell")
+                    .attr("width", cellSize - 1)
+                    .attr("height", cellSize - 1)
+                    .attr("x", function (d) {
+                        d.x = timeWeek.count(d3.utcYear(d.date), d.date) * cellSize + 0.5;
+                        return d.x;
+                    })
+                    .attr("y", function (d, i) {
+                        d.y = countDay(d.date) * cellSize + 0.5;
+                        d.yy = d.y + location[d.date.getUTCFullYear()];
+                        return d.y;
+                    })
+                    .attr("fill", function (d) {
+                        if (d.sum <= 0) {
+                            return "#f5f5f5";
+                        }
+                        return color(d.sum);
+                    })
+                    ;
+
+                const month = g.selectAll(".month-label")
+                    .data(function (d) {
+                        return d3.utcMonths(d3.utcMonth(d.values[0].date), d.values[d.values.length - 1].date);
+                    })
+                    .enter()
+                    .append("g")
+                    .attr("class", "month-label")
+                ;
+
+                month.filter((d, i) => i).append("path")
+                    .attr("fill", "none")
+                    .attr("stroke", "#fff")
+                    .attr("stroke-width", 3)
+                    .attr("d", pathMonth);
+
+                month.append("text")
+                    .attr("x", d => timeWeek.count(d3.utcYear(d), timeWeek.ceil(d)) * cellSize + 2)
+                    .attr("y", -5)
+                    .text(formatMonth);
+
+                var brush = svg.append("g")
+                    .attr("class", "brush")
+                    .call(d3.brush()
+                        .extent([[0, 0], [dateCellWidth, dateCellHeight * years.length]])
+                        .on("start brush end", brushed));
+            }
+        };
+    </script>
+    <script>
+
+        /* JavaScript goes here. */
+        // globals used in graph
+        var mapdata = {}, mappoint = {}, travelData = {}, subunits = {};
+        // var palette = [
+        //     "#7D74FE", "#7DFF26", "#F84F1B", "#28D8D5", "#FB95B6", "#9D9931", "#F12ABF", "#27EA88", "#549AD5", "#FEA526",
+        //     "#7B8D8B", "#BB755F", "#432E16", "#D75CFB", "#44E337", "#51EBE3", "#ED3D24", "#4069AE", "#E1CC72", "#E33E88",
+        //     "#D8A3B3", "#428B50", "#66F3A3", "#E28A2A", "#B2594D", "#609297", "#E8F03F", "#3D2241", "#954EB3", "#6A771C",
+        //     "#58AE2E", "#75C5E9", "#BBEB85", "#A7DAB9", "#6578E6", "#932C5F", "#865A26", "#CC78B9", "#2E5A52", "#8C9D79",
+        //     "#9F6270", "#6D3377", "#551927", "#DE8D5A", "#E3DEA8", "#C3C9DB", "#3A5870", "#CD3B4F", "#E476E3", "#DCAB94",
+        //     "#33386D", "#4DA284", "#817AA5", "#8D8384", "#624F49", "#8E211F", "#9E785B", "#355C22", "#D4ADDE", "#A98229",
+        //     "#E88B87", "#28282D", "#253719", "#BD89E1", "#EB33D8", "#6D311F", "#DF45AA", "#E86723", "#6CE5BC", "#765175",
+        //     "#942C42", "#986CEB", "#8CC488", "#8395E3", "#D96F98", "#9E2F83", "#CFCBB8", "#4AB9B7", "#E7AC2C", "#E96D59",
+        //     "#929752", "#5E54A9", "#CCBA3F", "#BD3CB8", "#408A2C", "#8AE32E", "#5E5621", "#ADD837", "#BE3221", "#8DA12E",
+        //     "#3BC58B", "#6EE259", "#52D170", "#D2A867", "#5C9CCD", "#DB6472", "#B9E8E0", "#CDE067", "#9C5615", "#536C4F",
+        //     "#A74725", "#CBD88A", "#DF3066", "#E9D235", "#EE404C", "#7DB362", "#B1EDA3", "#71D2E1", "#A954DC", "#91DF6E",
+        //     "#CB6429", "#D64ADC", "#DF3066", "#E90205", "#E04F4C", "#7D0360", "#01EDA3", "#716291", "#695DDC", "#919FFE",
+        // ];
+        var palette = ["rgb(220,220,220)"];
+        var width = 920, height = 500;
+        var minDocCount = 0, quantiles = {}, worldData = {};
+
+        var heatmap = new HeatDateChart();
+
+        // projection definitions
+        var projection = d3.geoMercator()
+            .scale(400 / Math.PI)
+            .translate([400,250])
+            .precision(.1);
+        var path = d3.geoPath().projection(projection);
+        var graticule = d3.geoGraticule();
+
+        // SVG related definitions
+        var svgWorld = d3.select('.world-map')
+            .attr("width", width)
+            .attr("height", height)
+            .style("margin-left", "-300px")
+            .append('g')
+            ;
+
+        svgWorld.append("path")
+            .datum(graticule)
+            .attr("class", "graticule")
+            .attr("d", path);
+
+        var tooltip = d3.select("body")
+            .append("div")
+            .attr("class", "tooltip")
+            .style("opacity", 0.0);
+
+        d3.select(".select-year")
+            .on("change", function (d) {
+                var year = d3.select(this).select("option:checked").attr("value");
+                d3.csv("data/02_IntTravel/" + year +".csv").then(function (data) {
+                    travelData = HandleData(data);
+                    drawMapCenter(subunits.features);
+                    heatmap.drawChart(travelData);
+                });
+            });
+
+        var year = d3.select(".select-year").select("option:checked").attr("value");
+        d3.csv("data/02_IntTravel/" + year +".csv").then(function (data) {
+            travelData = HandleData(data);
+            d3.json('data/world.json').then(function (world) {
+                worldData = world;
+                processWorldD(world);
+            });
+        });
+
+        function drawMapCenter(features) {
+            svgWorld.selectAll(".map-center")
+                .data(features)
+                .attr("class", function (d) {
+                    var name = d.properties.name.replace(/[ \.#']+/g, '');
+                    return "map-center map-center-" + name;
+                })
+                .attr("r", 2.5)
+                .style("fill", "rgb(130, 130, 130)")
+                .style("opacity", 0)
+                .attr("transform", function (d) {
+                    var center = path.centroid(d);
+                    var name = d.properties.name.replace(/[ \.#']+/g, '');
+                    mappoint[name] = center;
+                    travelData.forEach(function (d, i) {
+                        d.list.forEach(function (subdata, k) {
+                            if (subdata.From === name) {
+                                travelData[i].list[k]["FromPoint"] = center;
+                            }
+                            if (subdata.To === name) {
+                                travelData[i].list[k]["ToPoint"] = center;
+                            }
+                        });
+
+                    });
+                    return "translate(" + center[0] + "," + center[1] + ")";
+                })
+                ;
+
+            svgWorld.selectAll(".map-center")
+                .data(features)
+                .enter()
+                .append("circle")
+                .attr("class", function (d) {
+                    var name = d.properties.name.replace(/[ \.#']+/g, '');
+                    return "map-center map-center-" + name;
+                })
+                .attr("r", 3)
+                .style("fill", "rgb(130, 130, 130)")
+                .style("opacity", 0)
+                .attr("transform", function (d) {
+                    var center = path.centroid(d);
+                    var name = d.properties.name.replace(/[ \.#']+/g, '');
+                    mappoint[name] = center;
+                    travelData.forEach(function (d, i) {
+                        d.list.forEach(function (subdata, k) {
+                            if (subdata.From === name) {
+                                travelData[i].list[k]["FromPoint"] = center;
+                            }
+                            if (subdata.To === name) {
+                                travelData[i].list[k]["ToPoint"] = center;
+                            }
+                        });
+
+                    });
+                    return "translate(" + center[0] + "," + center[1] + ")";
+                })
+                ;
+        }
+
+        function processWorldD(world) {
+            subunits = topojson.feature(world, world.objects.subunits);
+            subunits.features = subunits.features.filter(function (d) { return d.id !== "ATA"; });
+
+            var countries = svgWorld.selectAll('path.subunit')
+                .data(subunits.features);
+
+            countries
+                .enter()
+                .insert('path', '.graticule')
+                .attr('class', function (d) {
+                    return 'subunit ca' + d.id + " ca-" + d.properties.name.replace(/[ \.#']+/g, '');
+                })
+                .style('fill', function (d, i) {
+                    d.color = palette[i % palette.length];
+                    return d.color;
+                })
+                .attr('d', path)
+                .on('mouseover', function (datum, i) {
+                    var name = datum.properties.name.replace(/[ \.#']+/g, '');
+                    var str = "";
+                    str += "<div style='margin:5px 5px'>Country:" + name + "</div>";
+                    tooltip.html(str)
+                        .style("width", "auto")
+                        .style("height", "auto")
+                        .style("left", (d3.event.pageX - 60) + "px")
+                        .style("top", (d3.event.pageY + 5) + "px")
+                        .style("opacity", 1.0)
+                        ;
+                    mouseoverLegend(name);
+                })
+                .on('mouseout', function (datum) {
+                    var name = datum.properties.name.replace(/[ \.#']+/g, '');
+                    mouseoutLegend(name);
+                    tooltip.style("width", 0)
+                        .style("height", 0)
+                        .style("opacity", 0.0);
+                })
+                ;
+
+            drawMapCenter(subunits.features);
+
+            console.log(travelData);
+            heatmap.drawChart(travelData);
+        }
+
+        function mouseoverLegend(name, str) {
+            d3.selectAll('.subunit.ca-' + name)
+                .style('fill', '#94221d');
+        }
+
+        function mouseoutLegend(name) {
+            d3.selectAll('.subunit.ca-' + name)
+                .style('fill', d => d.color);
+        }
+
+        function drawTrajectory(data) {
+            svgWorld.selectAll(".map-center")
+                .transition()
+                .duration(1000)
+                .style("opacity", 0);
+
+            var lineData = data.filter(function (d) {
+                var flag = d["FromPoint"] !== undefined && d["ToPoint"] !== undefined;
+                if (flag) {
+                    svgWorld.selectAll(".map-center-" + d.From)
+                        .transition()
+                        .duration(1000)
+                        .style("opacity", 1);
+                    svgWorld.selectAll(".map-center-" + d.To)
+                        .transition()
+                        .duration(1000)
+                        .style("opacity", 1);
+                }
+                return flag;
+            });
+
+            svgWorld.selectAll(".line-trajectory")
+                .on("end", function () {
+                    resetDraw();
+                })
+                .remove();
+
+            svgWorld.selectAll(".line-trajectory")
+                .data(lineData)
+                .enter()
+                .append("line")
+                .attr("class", "line-trajectory")
+                .attr("stroke", "#94221d")
+                .attr("stroke-width", 1)
+                .attr("x1", d => d["FromPoint"][0])
+                .attr("y1", d => d["FromPoint"][1])
+                .attr("x2", d => d["FromPoint"][0])
+                .attr("y2", d => d["FromPoint"][1])
+                .transition()
+                .duration(500)
+                .attr("x2", d => d["ToPoint"][0])
+                .attr("y2", d => d["ToPoint"][1])
+                ;
+            showTravelInfo(lineData);
+        }
+
+    </script>
+    <script>
+
+        var tooltipTravel = d3.select("body")
+            .append("div")
+            .attr("class", "tooltip")
+            .style("opacity", 0.0);
+
+        function HandleData(data) {
+            var dataObj = {};
+            var year = new Date(data[0].Date).getFullYear();
+            var startTime = new Date(year + "-01-01");
+            var endTime = new Date((year + 1)+"-01-01");
+            endTime.setDate(endTime.getDate() - 1);
+            while (Date.parse(startTime) < Date.parse(endTime)) {
+                var a = startTime.getFullYear();
+                var b = (startTime.getMonth() + 1) > 9 ? (startTime.getMonth() + 1) : "0" + (startTime.getMonth() + 1);
+                var c = startTime.getDate() > 9 ? startTime.getDate() : "0" + startTime.getDate();
+                var keyName = a + "-" + b + "-" + c;
+                if (dataObj[keyName] === undefined) {
+                    dataObj[keyName] = { list: [], sum: 0 };
+                }
+                dataObj[keyName].date = new Date(keyName);
+                startTime.setDate(startTime.getDate() + 1);
+            }
+            data.forEach(function (d, i) {
+                var keyName = d.Date;
+                if (dataObj[keyName] === undefined) {
+                    dataObj[keyName] = { list: [], sum: 0 };
+                }
+                dataObj[keyName].date = new Date(data[i].Date);
+                dataObj[keyName].list.push(data[i]);
+                dataObj[keyName].sum = d.numVisit * 1;
+            });
+            var list = [];
+            for (var key in dataObj) {
+                list.push(dataObj[key]);
+            }
+            return list;
+        }
+
+        function showTravelInfo(list) {
+            if (list.length <= 0) {
+                tooltipTravel.style("width", 0)
+                    .style("height", 0)
+                    .style("opacity", 0.0);
+                return;
+            }
+
+            var str = "";
+            list.forEach(function (d, i) {
+                var startTime = d.Year + "-" + d.Start_month + "-" + d.Start_day;
+                var endTime = d.Year + "-" + d.End_month + "-" + d.End_day;
+                str += "<div style='margin:5px 5px'>Date:" + d.Date + "</div>";
+                str += "<div style='margin:5px 5px'>From:" + d.From + "</div>";
+                str += "<div style='margin:5px 5px'>To:" + d.To + "</div>";
+                if (i < (list.length - 1)) {
+                    str += "<div style='margin:5px 5px;border-bottom:1px solid #808080;padding-bottom:5px;'>Description:"
+                        + d.Description + "</div>";
+                }
+                else {
+                    str += "<div style='margin:5px 5px;padding-bottom:5px;'>Description:"
+                        + d.Description + "</div>";
+                }
+            });
+            tooltipTravel.html(str)
+            .style("width", 300 + "px")
+            .style("height", "auto")
+            .style("max-height", "485px")
+            .style("overflow-y","auto")
+            .style("background-color", "rgba(220, 220, 220, 0.8)")
+            .style("color", "rgba(50, 50, 50)")
+            .style("left", (width) + "px")
+            .style("top", "20px")
+            .style("opacity", 1.0)
+            .style("border-radius", "0px");
+        }
+    </script>
+
+</body>
+</html>
