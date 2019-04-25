@@ -106,11 +106,6 @@ datatable(inout_xi,extensions="Buttons",options = list(dom = 'Bfrtip',
 htmltools::includeHTML("hu.html")
 ```
 
-### Number of days spent in country during Xi Jinping's term (Top 10)
-```{r}
-htmltools::includeHTML("xi.html")
-```
-
 
 We can note several marked changes with the rise of Xi to the position of President. Whilst key global players such as the United States remain high up in the top 10, other countries that make up the list are more varied. 
 
@@ -118,6 +113,11 @@ We can note several marked changes with the rise of Xi to the position of Presid
 * Under Xi, there has been a greater focus on building ties with developing economies particularly with fellow BRICS members such as Brazil, India and South Africa. 
 * Under Hu, North American and European countries appeared in the top 10 more frequently than under Xi. 
 * Xi made no trips to Japan whilst Hu made several. 
+
+### Number of days spent in country during Xi Jinping's term (Top 10)
+```{r}
+htmltools::includeHTML("xi.html")
+```
 
 ### International travel map: Want to explore more of the travels of the various presidents? Try playing with the map at the [link here](https://auroraluyunshao.github.io/Final_02_IntTravel/). Simply pull over the days that you wish to investigate to look at the paths taken.
 
