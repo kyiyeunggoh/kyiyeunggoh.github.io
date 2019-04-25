@@ -77,7 +77,7 @@ var MakeStackedChart = function(Time1, Time2, UserName, DataUrl){
 							 .attr("font-size", "12px")
 							 .attr("font-family", "sans-serif")
 							 .attr("fill", "white")
-							 .text("Times of Visiting or Being Visited by foreign officials of " + UserName + " (" + Time1 + " - " + Time2 +")")
+							 .text("Times visiting or being visited by foreign officials for " + UserName + " (" + Time1 + " - " + Time2 +")")
 
 						// add data source
 						svg.append("text")
@@ -155,7 +155,7 @@ var MakeStackedChart = function(Time1, Time2, UserName, DataUrl){
 													.attr("opacity", 0.7)
 
 												tooltip
-												.html("Types: " + subgroupName + "<br>" + "Number of Visiting: " + subgroupValue)
+												.html("Types: " + subgroupName + "<br>" + "Persons visiting: " + subgroupValue)
                         .style("width", "150px")
 												.style("opacity", 1)
 												// .style("left", tx + "px")
