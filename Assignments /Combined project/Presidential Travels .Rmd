@@ -103,7 +103,7 @@ datatable(inout_xi,extensions="Buttons",options = list(dom = 'Bfrtip',
 
 ### Number of days spent in country during Hu Jintao's term (Top 10)
 ```{r}
-htmltools::includeHTML("hu.html")
+htmltools::includeHTML("travelhu/hu.html")
 ```
 
 
@@ -116,7 +116,7 @@ We can note several marked changes with the rise of Xi to the position of Presid
 
 ### Number of days spent in country during Xi Jinping's term (Top 10)
 ```{r}
-htmltools::includeHTML("xi.html")
+shiny::includeHTML("xi.html")
 ```
 
 ### International travel map: Want to explore more of the travels of the various presidents? Try playing with the map at the [link here](https://auroraluyunshao.github.io/Final_02_IntTravel/). Simply pull over the days that you wish to investigate to look at the paths taken.
