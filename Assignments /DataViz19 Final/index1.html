@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Career Path of Chinese Top Leaders</title>
+    <style>
+        .main{
+            text-align:center;
+        }
+        .round_icon {
+            display: flex;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .tooltip {
+            font-family: helvetica;
+            font-size: 10px;
+            width: 120px;
+            height: auto;
+            color: #999;
+            position: absolute;
+            text-align: left;
+            border-style: solid;
+            border-width: 1px;
+            background-color: #ffffff;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main"></div>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script>
+
+        var DrawChart = function (DataUrl,UserName,HeadUrl) {
+            var margin = {
+                left: 40, top: 40, right: 40, bottom: 40
+            };
+            var mapData = {};
+
+            var width = 400 - margin.left - margin.right;
+            var height = 400 - margin.top - margin.bottom;
+            var radius = Math.min(width, height);
+
+            var radii = {
+                "sun": radius / 8,
+                "earthOrbit": radius / 2.0,
+                "earth": radius / 60,
+            };
+
+            var chart = d3.select(".main")
+                .append("svg")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom)
+                .append("g")
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+                ;
+
+            var headWidth = 120;
+            var headHeight = 120;
+            chart.append("g")
+                .attr("transform", "translate(" + (width / 2 - headWidth / 2) + "," + (height / 2 - headHeight / 2) + ")")
+                .append("image")
+                .attr("class", "round_icon")
+                .attr("width", headWidth)
+                .attr("height", headHeight)
+                .attr("href", HeadUrl)
+                ;
+
+            chart.append("g")
+                .attr("transform", "translate("
+                + (width / 2 - headWidth / 2 + 35) + ","
+                + (height / 2 - headHeight / 2 + headHeight + 20) + ")")
+                .append("text")
+                .attr("class", "character-name")
+                .text("")
+                ;
+
+            var earthOrbitPosition = d3.arc()
+                .outerRadius(radii.earthOrbit + 1)
+                .innerRadius(radii.earthOrbit - 1)
+                .startAngle(0)
+                .endAngle(360);
+
+           chart.append("g")
+                .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")
+                .append("path")
+                .attr("class", "earthOrbitPosition")
+                .attr("d", earthOrbitPosition)
+                .style("fill", "#ffffff");
+
+            var tooltipWidth = 200;
+            var tooltip = d3.select("body")
+                .append("div")
+                .attr("class", "tooltip")
+                .style("opacity", 0.0);
+
+            d3.csv(DataUrl).then(function (data) {
+                data.forEach(function (d) {
+                    if (mapData[d.Name] === undefined) {
+                        mapData[d.Name] = [];
+                    }
+                    mapData[d.Name].push(d);
+                });
+                draw(mapData[UserName], UserName);
+            });
+
+            function draw(data, name) {
+                chart.select(".character-name")
+                    .text(name);
+                var career = chart.selectAll(".career")
+                    .data(data);
+
+              career.enter()
+                    .append("g")
+                    .attr("class", "career")
+                    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")
+                    .attr("temp", function (d, i) {
+                        var t = (5 / (data.length - 3)) * i;
+                        var point = { x: 0, y: 0 };
+                        point.x = radii.earthOrbit * Math.sin(t - earthOrbitPosition.startAngle()());
+                        point.y = -radii.earthOrbit * Math.cos(t - earthOrbitPosition.startAngle()());
+                        var translate = "translate(" + point.x + "," + point.y + ")";
+
+                        d3.select(this)
+                            .append("circle")
+                            .attr("class", "earth")
+                            .attr("r", radii.earth)
+                            .attr("transform", translate)
+                            .style("fill", "#94221d");
+                    })
+                    .on("mouseover", function (d) {
+                        var str = "";
+                        str += "<div style='margin:5px 5px'>Time:" + d.Time + "</div>";
+                        str += "<div style='margin:5px 5px'>Career:" + d.Career + "</div>";
+                        tooltip.html(str)
+                            .style("width", tooltipWidth + "px")
+                            .style("height", "auto")
+                            .style("left", (d3.event.pageX - 60) + "px")
+                            .style("top", (d3.event.pageY + 20) + "px")
+                            .style("opacity", 1.0)
+
+                            ;
+                    })
+                    .on("mouseout", function (d) {
+                        tooltip.style("width", 0)
+                            .style("height", 0)
+                            .style("opacity", 0.0);
+                    })
+                    ;
+            }
+        }
+        DrawChart("data/01_CareerPath/data_career_hu.csv", "HU Jintao", "img/05_hu.png");
+        DrawChart("data/01_CareerPath/data_career_xi.csv", "XI Jinping", "img/06_xi.png");
+
+    </script>
+</body>
+</html>
