@@ -2,12 +2,12 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Xi Jinping's Top 10 Destinations to date (2013 to Present)'</title>
+		<title>Hu Jintao's Top 10 Destinations to date (2003 - 2013)'</title>
 
 		<script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
 		<style type="text/css">
             body{font-family:helvetica;}
-			#charts{
+			#lines{
 							width: 1100px;
 							height: 600px;
 							border-radius: 30px;
@@ -16,12 +16,12 @@
 							/* background-color: rgb(200, 200, 169); */
 							padding: 20px;
 						}
-				.recta {
-     			   fill: #94221d;
+				.recto {
+     			   fill: #e6372f;
     		   }
 
-   			.recta:hover {
-   			 fill: #e6372f;
+   			.recto:hover {
+   			 fill: #94221d;
    	 	 		}
 	  
     		.label {
@@ -36,7 +36,7 @@
     	  .x path, .x stroke {
       		display: none;
     	}
-		.tooltip1 {
+		.tooltip {
 			position: absolute;
 			width: 200px;
 			height: auto;
@@ -47,14 +47,19 @@
 
   </style>
 	</head>
-	  <div id="charts"></div>
+	  <div id="lines"></div>
 	<body>
 	<script type="text/javascript">
-	var margin = {top: 40, bottom: 60, left: 60, right: 40}
+    var margin = {
+        top: 20,
+        right: 20,
+        bottom: 30,
+        left: 80
+      };
     var width = 1000 - margin.left - margin.right;
     var height = 500 - margin.top - margin.bottom;
-	var tooltip1 = d3.select("#charts").append("div").attr("class", "tooltip1");
-    var svg = d3.select("#charts").append("svg")
+	var tooltip = d3.select("#lines").append("div").attr("class", "tooltip");
+    var svg = d3.select("#lines").append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
 		.append("g")
@@ -67,9 +72,9 @@
         .range([height, 0]);
 
 
-    var YAXIS = d3.axisLeft(y);
+    var yAxis = d3.axisLeft(y);
 
-    d3.csv("data/xiint.csv", type, function(error, data) {
+    d3.csv("data/huint.csv", type, function(error, data) {
       if (error) throw error;
 
       data.sort(function(a, b) {
@@ -88,24 +93,24 @@
 
       svg.append("g")
           .attr("class", "y axis")
-          .call(YAXIS);
+          .call(yAxis);
 
-      svg.selectAll(".recta")
+      svg.selectAll(".recto")
           .data(data)
         .enter().append("rect")
-          .attr("class", "recta")
+          .attr("class", "recto")
           .attr("x", 0)
           .attr("height", y.bandwidth())
           .attr("y", function(d) { return y(d.country); })
           .attr("width", function(d) { return x(d.visits); })
           .on("mousemove", function(d){
-              tooltip1
+              tooltip
                 .style("left", d3.event.pageX - 50 + "px")
                 .style("top", d3.event.pageY - 70 + "px")
                 .style("display", "inline-block")
                 .html((d.country) + "<br>" + "Days:"+(d.visits));
           })
-  		.on("mouseout", function(d){ tooltip1.style("display", "none");});
+  		.on("mouseout", function(d){ tooltip.style("display", "none");});
 
     });
 
