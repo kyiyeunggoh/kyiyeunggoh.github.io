@@ -74,16 +74,16 @@
 
     var yAxis = d3.axisLeft(y);
 
-    d3.csv("data/huint.csv", type, function(error, data) {
+    d3.csv("huint.csv", type, function(error, data) {
       if (error) throw error;
 
       data.sort(function(a, b) {
-        return a.visits - b.visits;
+        return a.times - b.times;
       });
 
-      x.domain([0, d3.max(data, function(d) { return d.visits; })]);
+      x.domain([0, d3.max(data, function(d) { return d.times; })]);
 
-      y.domain(data.map(function(d) { return d.country; }))
+      y.domain(data.map(function(d) { return d.state; }))
         .paddingInner(0.1);
 
       svg.append("g")
@@ -101,21 +101,21 @@
           .attr("class", "recto")
           .attr("x", 0)
           .attr("height", y.bandwidth())
-          .attr("y", function(d) { return y(d.country); })
-          .attr("width", function(d) { return x(d.visits); })
+          .attr("y", function(d) { return y(d.state); })
+          .attr("width", function(d) { return x(d.times); })
           .on("mousemove", function(d){
               tooltip
                 .style("left", d3.event.pageX - 50 + "px")
                 .style("top", d3.event.pageY - 70 + "px")
                 .style("display", "inline-block")
-                .html((d.country) + "<br>" + "Days:"+(d.visits));
+                .html((d.state) + "<br>" + "Days:"+(d.times));
           })
   		.on("mouseout", function(d){ tooltip.style("display", "none");});
 
     });
 
     function type(d) {
-      d.visits = +d.visits;
+      d.times = +d.times;
       return d;
     }
 
