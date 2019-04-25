@@ -100,14 +100,12 @@ datatable(inout_xi,extensions="Buttons",options = list(dom = 'Bfrtip',
 
 ## How has the type of countries visited changed from Hu to Xi?
 
-
 ### Number of days spent in country during Hu Jintao's term (Top 10)
 ```{r}
-shiny::includeHTML("https://kyiyeunggoh.github.io/Assignments%20/Combined%20project/hu.html")
+shiny::includeHTML("data/hu.html")
 ```
 
-
-We can note several marked changes with the rise of Xi to the position of President. Whilst key global players such as the United States remain high up in the top 10, other countries that make up the list are more varied. 
+We noted several marked changes with the rise of Xi to the position of President. Whilst key global players such as the United States remain high up in the top 10, other countries that make up the list are more varied. 
 
 * Ties with Russia appear to be warmer under Xi with it being his top destination 
 
@@ -119,7 +117,7 @@ We can note several marked changes with the rise of Xi to the position of Presid
 
 ### Number of days spent in country during Xi Jinping's term (Top 10)
 ```{r}
-shiny::includeHTML("https://kyiyeunggoh.github.io/Assignments%20/Combined%20project/xi.html")
+htmltools::includeHTML("xi.html")
 ```
 
 ### International travel map: Want to explore more of the travels of the various presidents? Try playing with the map at the [link here](https://auroraluyunshao.github.io/Final_02_IntTravel/). Simply pull over the days that you wish to investigate to look at the paths taken.
