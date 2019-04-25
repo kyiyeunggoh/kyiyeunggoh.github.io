@@ -166,10 +166,9 @@ Some interesting points that the visuals make very apparent:
 
 * Certain regions such as Tibet and Xinjiang have continued to be underepresented where visits by the President is concerned. 
 
-Some interesting points that may shed insights into their policy choices.
 
 
-**A full list of all data and code is attached below via GitHub links, the pages make the data ready downloadable for further analysis via the DT package in R. **
+**A full list of all data and code is attached below via GitHub links, the pages make the data readily downloadable for further analysis via the DT package in R. **
 
 ### Bibliography
 **Articles**: South China Morning Post, The Economist, CSIS, The Diplomat, Washington Post, The New York Times, The Guardian and Nikkei
