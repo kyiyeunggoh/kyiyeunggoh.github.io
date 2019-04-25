@@ -103,7 +103,7 @@ datatable(inout_xi,extensions="Buttons",options = list(dom = 'Bfrtip',
 
 ### Number of days spent in country during Hu Jintao's term (Top 10)
 ```{r}
-htmltools::includeHTML("travelhu/hu.html")
+htmltools::includeHTML("./travelhu/hu.html")
 ```
 
 
