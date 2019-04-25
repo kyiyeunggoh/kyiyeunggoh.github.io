@@ -133,8 +133,7 @@ shiny::includeHTML("xi.html")
 ### Want to explore more of the travels of the various presidents? Try playing with the map at the [link here](https://auroraluyunshao.github.io/Final_02_IntTravel/) or click on the map below to access it. Simply pull over the days that you wish to investigate to look at the paths taken.
 
 
-![Snippet of interactive map](mapimage.png)(https://auroraluyunshao.github.io/Final_02_IntTravel/)
- 
+[![Snippet of interactive map](mapimage.png)](https://auroraluyunshao.github.io/Final_02_IntTravel/)
 
 ## Domestic changes: Has importance really shifted away from coastal provinces?
 
