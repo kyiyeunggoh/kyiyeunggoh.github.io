@@ -1,0 +1,156 @@
+---
+title: "Newtown Creek Water Quality"
+author: "Kyi Yeung Goh"
+date: "26/04/2019"
+output: html_document
+---
+
+```{r include=FALSE, warning=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning=FALSE)
+library(readr)
+library(tidyverse)
+library(DT)
+library(choroplethr)
+library(choroplethrMaps)
+library(tigris)
+library(dplyr)
+library(leaflet)
+library(sp)
+library(ggmap)
+library(maptools)
+library(broom)
+library(httr)
+library(rgdal)
+library(lubridate)
+library(reshape)
+hwq<-read_csv("filterharborwater.csv")
+
+
+#average yearly readings for each site 
+hwq_select<-hwq%>%
+  select("Location"=`Sampling Location`,"Date"=`Sample Date`,"Time"=`Sample Time`,"Bottom Fecal"=`Bottom Fecal Coliform Bacteria (Cells/100mL)`,
+         "Top Fecal"=`Top Fecal Coliform Bacteria (Cells/100mL)`,"Bottom Enterro"=`Bottom Enterococci Bacteria (Cells/100mL)`,
+         "Top Enterro"=`Top Enterococci Bacteria (Cells/100mL)`,
+         "Top Nitrate"=`Top Nitrate/Nitrite (mg/L)`,"Top Ammonium"=`Top Ammonium (mg/L)`,
+         "Top Total Solids"=`Top Total Suspended Solid (mg/L)`,
+         "Bottom total solids"=`Bottom Total Suspended Solid (mg/L)`, 
+         "Top Kjeldhal"=`Top Total Kjeldhal Nitrogen (mg/L)`, "Top Phosphorous"=`Top Ortho-Phosphorus (mg/L)`,"Top Silica"=`Top Silica (mg/L)`,
+         "Top Organic Carbon"= `Top Dissolved Organic Carbon (mg/L)`,Long,Lat)%>%
+  mutate("Year"=Date)%>%
+  mutate("Month"=Date)%>%
+  select(-Month,-Date,-Time,-Lat,-Long)
+```
+
+```{r}
+#choose fecal, enterrococci, Nitrates and ammonium - get month and year 
+hwq_select$Year<-format(as.POSIXct(hwq_select$Year,format="%m/%d/%Y"),"%Y")
+
+hwq_select<-hwq_select%>%
+  arrange(Year)
+
+hwq_select<-na.omit(hwq_select)
+
+datatable(hwq_select,extensions="Buttons",options = list(dom = 'Bfrtip',
+                                                                buttons = c('copy', 'csv', 'excel', 'pdf', 'print')))
+```
+
+```{r}
+hwq_nc0<-hwq_select%>%
+  filter(Location=="NC0")%>%
+  aggregate(.,list(.$Year),mean)%>%
+  select(-Location,-Year)
+
+hwq_nc1<-hwq_select%>%
+  filter(Location=="NC1")%>%
+  aggregate(.,list(.$Year),mean)
+
+hwq_nc2<-hwq_select%>%
+  filter(Location=="NC2")%>%
+  aggregate(.,list(.$Year),mean)
+
+hwq_nc3<-hwq_select%>%
+  filter(Location=="NC3")%>%
+  aggregate(.,list(.$Year),mean)
+
+
+hwq_nc0_2018<-hwq_select%>%
+  filter(Location=="NC0")%>%
+  aggregate(.,list(.$Year),mean)%>%
+  select(-Location,-Year)%>%
+  filter(Group.1=="2018")
+
+hwq_nc1_2018<-hwq_select%>%
+  filter(Location=="NC1")%>%
+  aggregate(.,list(.$Year),mean)%>%
+  filter(Group.1=="2018")
+
+hwq_nc2_2018<-hwq_select%>%
+  filter(Location=="NC2")%>%
+  aggregate(.,list(.$Year),mean)%>%
+  filter(Group.1=="2018")
+
+hwq_nc3_2018<-hwq_select%>%
+  filter(Location=="NC3")%>%
+  aggregate(.,list(.$Year),mean)%>%
+  filter(Group.1=="2018")
+
+combined_hwq_2018<-bind_rows(hwq_nc0_2018,hwq_nc1_2018,hwq_nc2_2018,hwq_nc3_2018)
+
+datatable(combined_hwq_2018,extensions="Buttons",options = list(dom = 'Bfrtip',
+                                                       buttons = c('copy', 'csv', 'excel', 'pdf', 'print')))
+```
+
+
+### Newtown Creek Site 0 readings over time
+```{r}
+colnames(hwq_nc0)
+hwq_nc0melt <- melt(hwq_nc0, measure.vars=c('Bottom Fecal',
+                                                  'Top Fecal','Bottom Enterro', 'Top Enterro',
+                                                  'Top Nitrate',
+                                                  'Top Ammonium', "Top Total Solids","Bottom total solids",
+                                                  'Top Kjeldhal','Top Phosphorous','Top Silica',"Top Organic Carbon"))   
+hwq_nc0melt.ggplot<- ggplot(hwq_nc0melt)
+hwq_nc0melt.ggplot + geom_line(aes(x=Group.1,y=value,group=variable,colour = variable))+
+  xlab("Year")+
+  ylab("Log amount per 100mL")
+```
+
+### Newtown Creek Site 1 readings over time
+```{r}
+hwq_nc1melt <- melt(hwq_nc1, measure.vars=c('Bottom Fecal',
+                                            'Top Fecal','Bottom Enterro', 'Top Enterro',
+                                            'Top Nitrate',
+                                            'Top Ammonium', "Top Total Solids","Bottom total solids",
+                                            'Top Kjeldhal','Top Phosphorous','Top Silica',"Top Organic Carbon"))   
+hwq_nc1melt.ggplot<- ggplot(hwq_nc1melt)
+hwq_nc1melt.ggplot + geom_line(aes(x=Group.1,y=value,group=variable,colour = variable))+
+  xlab("Year")+
+  ylab("Log amount per 100mL")
+```
+
+### Newtown Creek Site 2 readings over time
+```{r}
+hwq_nc2melt <- melt(hwq_nc2, measure.vars=c('Bottom Fecal',
+                                             'Top Fecal','Bottom Enterro', 'Top Enterro',
+                                             'Top Nitrate',
+                                             'Top Ammonium', "Top Total Solids","Bottom total solids",
+                                             'Top Kjeldhal','Top Phosphorous','Top Silica',"Top Organic Carbon"))   
+
+hwq_nc2melt.ggplot<- ggplot(hwq_nc2melt)
+hwq_nc2melt.ggplot + geom_line(aes(x=Group.1,y=value,group=variable,colour = variable))+
+  xlab("Year")+
+  ylab("Log amount per 100mL")
+```
+
+### Newtown Creek Site 3 readings over time
+```{r}
+hwq_nc3melt <- melt(hwq_nc3, measure.vars=c('Bottom Fecal',
+                                             'Top Fecal','Bottom Enterro', 'Top Enterro',
+                                             'Top Nitrate',
+                                             'Top Ammonium', "Top Total Solids","Bottom total solids",
+                                             'Top Kjeldhal','Top Phosphorous','Top Silica',"Top Organic Carbon"))    
+hwq_nc3melt.ggplot<- ggplot(hwq_nc3melt)
+hwq_nc3melt.ggplot + geom_line(aes(x=Group.1,y=value,group=variable,colour = variable))+
+  xlab("Year")+
+  ylab("Log amount per 100mL")
+```

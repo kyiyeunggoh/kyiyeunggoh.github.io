@@ -133,6 +133,9 @@ shiny::includeHTML("xi.html")
 ```
 </center>
 
+### Number of days spent in country during Hu Jintao's term (Top 10)
+Click [here](https://kyiyeunggoh.github.io/Assignments%20/Combined%20project/data/hu.html) to see Hu's top 10. 
+
 ## International travel map: 
 
 ### Want to explore more of the travels of the various presidents? Try playing with the map at the [link here](https://auroraluyunshao.github.io/Final_02_IntTravel/) or click on the map below to access it. Simply pull over the days that you wish to investigate to look at the paths taken.
