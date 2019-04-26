@@ -57,6 +57,8 @@ hwq_select<-hwq_select%>%
 
 hwq_select<-na.omit(hwq_select)
 
+round_df(hwq_select,digits=3)
+
 datatable(hwq_select,extensions="Buttons",options = list(dom = 'Bfrtip',
                                                                 buttons = c('copy', 'csv', 'excel', 'pdf', 'print')))
 ```
@@ -103,7 +105,8 @@ hwq_nc3_2018<-hwq_select%>%
 
 combined_hwq_2018<-bind_rows(hwq_nc0_2018,hwq_nc1_2018,hwq_nc2_2018,hwq_nc3_2018)
 
-round_df(combined_hwq_2018,digits=1)
+
+combined_hwq_2018<-round_df(combined_hwq_2018,digits=2)
 
 datatable(combined_hwq_2018,extensions="Buttons",options = list(dom = 'Bfrtip',
                                                        buttons = c('copy', 'csv', 'excel', 'pdf', 'print')))
