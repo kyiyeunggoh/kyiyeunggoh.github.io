@@ -182,6 +182,6 @@ Some interesting points that the visuals make very apparent:
 
 [International travel data](https://kyiyeunggoh.github.io/Assignments%20/Final%20Project/China_President_International.html)
 
-[Domestic travel data](kyiyeunggoh.github.io/Assignments /Final Project/China_President_Domestic.html)
+[Domestic travel data](https://kyiyeunggoh.github.io/Assignments%20/Final%20Project/China_President_Domestic.html)
 
-[In and Out data & Radius calculations](kyiyeunggoh.github.io/Assignments /Final Project/China_InOut.html)
+[In and Out data & Radius calculations](https://kyiyeunggoh.github.io/Assignments%20/Final%20Project/China_InOut.html)
