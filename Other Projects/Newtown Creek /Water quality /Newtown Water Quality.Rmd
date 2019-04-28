@@ -42,7 +42,7 @@ hwq_select<-hwq%>%
          "Top Total Solids"=`Top Total Suspended Solid (mg/L)`,
          "Bottom total solids"=`Bottom Total Suspended Solid (mg/L)`, 
          "Top Kjeldhal"=`Top Total Kjeldhal Nitrogen (mg/L)`, "Top Phosphorous"=`Top Ortho-Phosphorus (mg/L)`,"Top Silica"=`Top Silica (mg/L)`,
-         "Top Organic Carbon"= `Top Dissolved Organic Carbon (mg/L)`,Long,Lat)%>%
+         "Top Organic Carbon"= `Top Dissolved Organic Carbon (mg/L)`,"Dissolved O2"=`Winkler Method Top Dissolved Oxygen (mg/L)`,Long,Lat)%>%
   mutate("Year"=Date)%>%
   mutate("Month"=Date)%>%
   select(-Month,-Date,-Time,-Lat,-Long)
