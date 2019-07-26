@@ -1,0 +1,171 @@
+---
+title: <center> <h1>Caffeine in Strange Places</h1> </center>
+author: <center> <h1>Kyi Yeung Goh</h1> </center>
+date: <center> <h1>26/07/2019</h1> </center>
+output: html_document
+---
+
+```{r}
+knitr::opts_chunk$set(tidy = TRUE, tidy.opts = list(comment = FALSE))
+```
+
+**With this dataset, the visuals seeks to ask four questions:**
+
+1. How does the category of 'coffee' compare to other categories of items in terms of caffeine content?
+2. What are the theoretical substitutes to coffee?
+3. Is coffee all that strong? (i.e. should you drink coffee to benefit from the stay-awake properties of caffeine)
+4. How much is too much for you? 
+
+```{r include=FALSE}
+library(rvest)
+library(stringr)
+library(stringi)
+library(tidyverse)
+library(DT)
+library(plotly)
+
+
+url<-"http://archive.is/L7RLu#selection-65.0-65.4"
+caffeine<-url %>%
+  read_html()%>%
+  html_nodes(xpath='//*[@id="CONTENT"]/div[1]/div/div/div[2]/div[1]/div[2]/div/div[2]/div/div/div/div/div/div[2]/table') %>%
+  html_table()%>%
+  as.data.frame(.)
+
+colnames(caffeine)[1]="dailyserving"
+colnames(caffeine)[3]="caffeine (mg/serving)"
+caffeine$`caffeine (mg/serving)`<-stri_extract_first_regex(caffeine$`caffeine (mg/serving)`, "[0-9]+")
+caffeine$`caffeine (mg/serving)`<-as.numeric(as.character(caffeine$`caffeine (mg/serving)`))
+
+for (i in 1:nrow(caffeine)){
+if (str_detect(caffeine$dailyserving[i],"per|cup|can")==TRUE){
+  caffeine$servingsize[i] <- str_extract_all(caffeine$dailyserving, "\\([^()]+\\)")[[i]]
+  caffeine$servingsize[i]<- str_replace_all(caffeine$servingsize[i], "[[:punct:]]", "")
+  caffeine$maxdaily[i]<-400/caffeine$`caffeine (mg/serving)`[i]
+}else{
+  caffeine$servingsize[i]<-"none"
+  caffeine$maxdaily[i]<-400/caffeine$`caffeine (mg/serving)`[i]
+}
+}
+
+caffeine$dailyserving<-str_replace(caffeine$dailyserving, " \\(.*\\)", "")
+caffeine$logserving<-log(caffeine$`caffeine (mg/serving)`)
+colnames(caffeine)[1]<-"category"
+## log because of outliers
+```
+
+After bringing in the data, several edits were made to streamline the data analysis process. First, regex string matching and a subsequent as.numeric() transformation was used to ensure that only numbers were left in the caffeine content column. To deal with the wide distribution of caffeine content in the various items, a logarithmic term (of base 10) was used to transform the caffiene content column. Next, a 'serving size' column was created. Here, numbers were extracted out of brackets where available and a 'none' value assigned otherwise. Thereafter, a third new 'maxdaily' column was created using the recommended daily intake of 400mg (Source: [Food and Drug Safety Administration](https://www.fda.gov/consumers/consumer-updates/spilling-beans-how-much-caffeine-too-much)). 
+
+### 1a. How does coffee compare to other groups of items in terms of caffeine content?
+```{r warning=FALSE}
+caf_dist <- ggplot(caffeine, aes(x = category, y =logserving))
+caf_dist + geom_dotplot(aes(color = category, fill = category), 
+                 binaxis = "y", stackdir = "center")
+```
+On first glance, it appears that, on average, coffee doesn't appear to have all that much caffiene at all especially considering the amount observed in the listed medications, soft drinks and energy drinks.
+
+```{r}
+caf_dist + geom_boxplot(aes(fill = category))
+```
+Using a boxplot, we obtain a better visual of the group-by-group comparison. 
+
+However, removing decaffeinated coffee might give us a better sense of caffeine content.
+
+```{r}
+
+caffeine_nodecaf<-caffeine%>%
+  filter(!grepl('decaf', Item))
+caf_dist_nodecaf <- ggplot(caffeine_nodecaf, aes(x = category, y =logserving))
+caf_dist_nodecaf + geom_boxplot(aes(fill = category))
+
+```
+
+In this case, we arrive at the more intuitive conclusion that the item category of coffee has one of the highest amount of caffeine on average. However, this still does not deal with the interesting observation - that energy drinks have noticeably more caffeine than coffee. An inspection of the included items suggests three items- Chameleon Cold Brew Coffee, Starbucks Tall Coffee and Biggby Iced Coffee- are closer to the category of 'Coffee' than they are to 'Energy drinks'. The report which the table stems from provides no clear rationale for the perculiar inclusion of these three drinks into the category of 'Energy drinks' or how they categorised the items more generally.
+
+I then repeat the analysis with those three items moved into the 'Coffee' category with the decaffeinated options removed. 
+
+```{r}
+for (i in 1:nrow(caffeine_nodecaf)){
+if (str_detect(caffeine_nodecaf$Item[i],"Coffee")==TRUE){
+  caffeine_nodecaf$category[i]<-"Coffee"
+}else{
+  caffeine_nodecaf$category[i]<-caffeine_nodecaf$category[i]
+}
+}
+
+## reclassification of some drinks as coffee
+```
+
+### 1b. How does the distribution change?
+```{r}
+caf_dist1 <- ggplot(caffeine_nodecaf, aes(x = category, y =logserving))
+caf_dist1 + geom_dotplot(aes(color = category, fill = category), 
+                 binaxis = "y", stackdir = "center")
+```
+
+### 1c. What about group averages?
+```{r}
+caf_dist1 + geom_boxplot(aes(fill = category))
+```
+
+Coffee now appears to be on par with energy drinks though the variance in energry drinks are still smaller than coffee. 
+
+### 2. Theoretical substitutes to coffee?
+
+Here, we look at items that have amounts of caffeine (4g) close to that of a 180mg cup of coffee. 
+
+```{r}
+like_coffee<-caffeine%>%
+  filter(between(maxdaily,3,5))%>%
+  select(-logserving)%>%
+  filter(category!="Coffee")
+
+datatable(like_coffee)
+```
+
+The bulk of the replacement for coffee appears to be energy drinks. One would be well-advised to watch out for the sugar content though!
+
+### 3. Is coffee all that strong?
+```{r}
+greater_coffee<-caffeine%>%
+  filter(`caffeine (mg/serving)`>100)%>%
+  arrange(desc(`caffeine (mg/serving)`))%>%
+  select(category,Item,`caffeine (mg/serving)`)%>%
+  mutate(how_much_more=`caffeine (mg/serving)`/100)
+
+datatable(greater_coffee)
+
+## create interactive datatable with scatterplot
+```
+
+We normalise caffeine content found in these drinks using a good ol'180mg cup of coffee as the baseline. Apparently, many things are stronger than coffee. 
+
+
+### 4. How much of something can you consume before it starts being bad for you?
+
+### Maximum allowable limits
+
+Hover over to observe the quantity! You just need 0.18 cups of Chameleon Cold Brew to be over the limit (this might be a data entry error)! 
+
+```{r}
+## Maximum allowable limits
+
+max_daily<-caffeine%>%
+  select(category,Item,maxdaily)%>%
+  arrange(desc(maxdaily))
+max_daily$Item<- as.factor(max_daily$Item)
+
+plot_ly(max_daily, 
+        y = ~Item, 
+        x = ~maxdaily,
+        width = 800,
+        height = 600,
+        type = "bar", 
+        orientation = 'h',
+        marker = list(color = max_daily$maxdaily,
+                      showscale=T)
+        )%>%
+layout(
+     title = "Maximum daily quantity based on caffeine content"
+)
+```
