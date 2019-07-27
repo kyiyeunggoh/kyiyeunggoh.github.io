@@ -12,8 +12,11 @@ knitr::opts_chunk$set(tidy = TRUE, tidy.opts = list(comment = FALSE))
 **With this dataset, the visuals seeks to ask four questions:**
 
 1. How does the category of 'coffee' compare to other categories of items in terms of caffeine content?
+
 2. What are the theoretical substitutes to coffee?
+
 3. Is coffee all that strong? (i.e. should you drink coffee to benefit from the stay-awake properties of caffeine)
+
 4. How much is too much for you? 
 
 ```{r include=FALSE}
@@ -58,15 +61,19 @@ After bringing in the data, several edits were made to streamline the data analy
 
 ### 1a. How does coffee compare to other groups of items in terms of caffeine content?
 ```{r warning=FALSE}
-caf_dist <- ggplot(caffeine, aes(x = category, y =logserving))
+caf_dist <- ggplot(caffeine, aes(x = category, y =logserving))+
+  ggtitle("Dotplots of drink categories based on log of caffeine content") +
+  theme(plot.title = element_text(hjust = 0.5))
 caf_dist + geom_dotplot(aes(color = category, fill = category), 
                  binaxis = "y", stackdir = "center")
 ```
+
 On first glance, it appears that, on average, coffee doesn't appear to have all that much caffiene at all especially considering the amount observed in the listed medications, soft drinks and energy drinks.
 
 ```{r}
 caf_dist + geom_boxplot(aes(fill = category))
 ```
+
 Using a boxplot, we obtain a better visual of the group-by-group comparison. 
 
 However, removing decaffeinated coffee might give us a better sense of caffeine content.
@@ -75,7 +82,9 @@ However, removing decaffeinated coffee might give us a better sense of caffeine 
 
 caffeine_nodecaf<-caffeine%>%
   filter(!grepl('decaf', Item))
-caf_dist_nodecaf <- ggplot(caffeine_nodecaf, aes(x = category, y =logserving))
+caf_dist_nodecaf <- ggplot(caffeine_nodecaf, aes(x = category, y =logserving))+
+  ggtitle("Boxplots of drink categories based on log of caffeine content (without decaf)") +
+  theme(plot.title = element_text(hjust = 0.5))
 caf_dist_nodecaf + geom_boxplot(aes(fill = category))
 
 ```
@@ -98,14 +107,18 @@ if (str_detect(caffeine_nodecaf$Item[i],"Coffee")==TRUE){
 
 ### 1b. How does the distribution change?
 ```{r}
-caf_dist1 <- ggplot(caffeine_nodecaf, aes(x = category, y =logserving))
+caf_dist1 <- ggplot(caffeine_nodecaf, aes(x = category, y =logserving))+
+  ggtitle("Dotplots of drink categories-log of caffeine content (without decaf) & recategorised items") +
+  theme(plot.title = element_text(hjust = 0.2))
 caf_dist1 + geom_dotplot(aes(color = category, fill = category), 
                  binaxis = "y", stackdir = "center")
 ```
 
 ### 1c. What about group averages?
 ```{r}
-caf_dist1 + geom_boxplot(aes(fill = category))
+caf_dist1 + geom_boxplot(aes(fill = category))+
+  ggtitle("Boxplots of drink categories-log of caffeine content (without decaf) & recategorised items") +
+  theme(plot.title = element_text(hjust = 0.2))
 ```
 
 Coffee now appears to be on par with energy drinks though the variance in energry drinks are still smaller than coffee. 
@@ -158,14 +171,14 @@ max_daily$Item<- as.factor(max_daily$Item)
 plot_ly(max_daily, 
         y = ~Item, 
         x = ~maxdaily,
-        width = 800,
-        height = 600,
+        width = 900,
+        height = 700,
         type = "bar", 
         orientation = 'h',
         marker = list(color = max_daily$maxdaily,
                       showscale=T)
         )%>%
 layout(
-     title = "Maximum daily quantity based on caffeine content"
+     title = "Maximum daily intake based on caffeine content (mg/serving) with scale (right)"
 )
 ```
