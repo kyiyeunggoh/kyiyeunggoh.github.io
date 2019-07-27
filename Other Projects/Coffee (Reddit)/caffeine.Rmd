@@ -117,8 +117,8 @@ caf_dist1 + geom_dotplot(aes(color = category, fill = category),
 ### 1c. What about group averages?
 ```{r}
 caf_dist1 + geom_boxplot(aes(fill = category))+
-  ggtitle("Boxplots of drink categories-log of caffeine content (without decaf) & recategorised items") +
-  theme(plot.title = element_text(hjust = 0.2))
+  ggtitle("Boxplot of drink categories-log of caffeine content(without decaf) & recategorised items") +
+  theme(plot.title = element_text(hjust = 0.16))
 ```
 
 Coffee now appears to be on par with energy drinks though the variance in energry drinks are still smaller than coffee. 
