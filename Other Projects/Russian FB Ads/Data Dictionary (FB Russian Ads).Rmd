@@ -37,7 +37,9 @@ The code used to produce this .xlsx can be obtained [here](https://github.com/ky
 
 9. **adLocation_cleaned**: Cities and states targeted by the advertisement
 
-10. **adDate**: Date (in proper lubridate format) that the advert was posted
+10. **adStates**: States targeted
+
+11. **adDate**: Date (in proper lubridate format) that the advert was posted
 
 ### Limitations
 
