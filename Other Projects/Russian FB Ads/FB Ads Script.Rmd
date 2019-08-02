@@ -1,0 +1,449 @@
+---
+title: "FB Ads Script (Thesis)"
+author: "Kyi Yeung Goh"
+date: "11/06/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(zoo)
+library(stringi)
+library(dplyr)
+library(tidyverse)
+library(readxl)
+library(DT)
+library(stringr)
+library(pdftools)
+library(qdapRegex)
+library(maps)
+library(SnowballC)
+library(tm)
+library(openxlsx)
+
+### Code adapted from https://www.r-bloggers.com/how-to-extract-data-from-a-pdf-file-with-r/
+
+fb_ads_df<-read_csv("fbads_congress.csv")
+
+file_vector <- list.files(path = "/Volumes/KYI\'S\ HDD/PYEUNGYEUNG/Thesis/FB\ Ads/FBAds")
+
+pdf_list <- file_vector[grepl(".pdf",file_vector)]
+
+### get 1 pdf first 
+
+ad_scanner<-function(x){
+  
+advert<-pdf_text(x)
+## Ad ID
+if (str_detect(advert,"Ad ID")==TRUE){
+ID<-pdf_text(x)%>% 
+  strsplit(split = "\n")%>%
+  unlist(., recursive = FALSE)%>%
+  as.data.frame(.)%>%
+  filter(str_detect(.,"Ad ID")==TRUE)%>%
+  unlist(.)%>%
+  as.character(.)%>%
+  str_extract_all(., "\\d+")%>%
+  unlist(.)%>%
+  as.data.frame(.)
+}else{
+  ID<-"NA"
+  ID<-as.data.frame(ID)
+}
+  
+## Ad Spend
+
+adspend<-pdf_text(x)%>% 
+  strsplit(split = "\n")%>%
+  unlist(text, recursive = FALSE)%>%
+  as.data.frame(.)%>%
+  filter(str_detect(.,"Ad Spend")==TRUE)%>%
+  unlist%>%
+  as.character(.)
+
+if (str_detect(adspend,"None")==TRUE){
+  adspend="0"
+  adspend=as.data.frame(as.numeric(adspend))
+  colnames(adspend)[1]<-"adspend"
+}else{
+  adspend<-adspend%>%
+  str_remove(.,",")%>%
+  str_extract_all(., "\\d+\\.*\\d*")%>%
+  as.data.frame(.)
+  colnames(adspend)[1]<-"adspend"
+}
+
+## Ad Text
+if (str_detect(advert,"Ad Text")==TRUE){
+adtext<-pdf_text(x)%>%
+  .[1]%>%
+  as.character(.)%>%
+  sub(".*Ad Text *(.*?) *Ad.*", "\\1", .)%>%
+  strsplit(split = "\n")%>%
+  sapply(., paste, collapse = " ")%>%
+  as.data.frame(.)
+  }else{
+adtext<-"please check manually"
+adtext<-as.data.frame(adtext)
+}
+
+
+## Ad Landing Page
+if (str_detect(advert,"Ad Landing")==TRUE){
+adLP<-pdf_text(x)%>% 
+  strsplit(split = "\n")%>%
+  unlist(text, recursive = FALSE)%>%
+  as.data.frame(.)%>%
+  filter(str_detect(.,"Ad Landing")==TRUE)%>%
+  unlist(.)%>%
+  str_remove(.,"Ad Landing Page")%>%
+  as.data.frame(.)
+}else{
+  adLP<-"NA"
+  adLP<-as.data.frame(adLP)
+}
+## Ad Targets
+if (str_detect(advert,"Targeting")==TRUE){
+adTarget<-pdf_text(x)%>% 
+  sub(".*Ad Targeting *(.*?) *Age.*", "\\1", .)%>%
+  .[1]%>%
+  as.data.frame(.)
+}else{
+  adTarget<-"NA"
+  adTarget<-as.data.frame(adTarget)
+}
+
+## Ad Impressions
+if (str_detect(advert,"Impressions")==TRUE){
+adImpress<-pdf_text(x)%>% 
+  strsplit(split = "\n")%>%
+  unlist(., recursive = FALSE)%>%
+  as.data.frame(.)%>%
+  filter(str_detect(.,"Ad Impressions")==TRUE)%>%
+  unlist(.)%>%
+  as.character(.)%>%
+  str_remove("Ad Impressions")%>%
+  as.data.frame(.)}
+else{
+  adImpress<-"NA"
+  adImpress<-as.data.frame(adImpress)
+}
+
+## AdClicks
+adClicks<-pdf_text(x)%>% 
+  strsplit(split = "\n")%>%
+  unlist(., recursive = FALSE)%>%
+  as.data.frame(.)%>%
+  filter(str_detect(.,"Ad Clicks")==TRUE)%>%
+  unlist(.)%>%
+  as.character(.)%>%
+  str_remove("Ad Clicks")%>%
+  as.data.frame(.)
+
+## Ad Creation 
+adCreation<-pdf_text(x)%>% 
+  strsplit(split = "\n")%>%
+  unlist(., recursive = FALSE)%>%
+  as.data.frame(.)%>%
+  filter(str_detect(.,"Ad Creation")==TRUE)%>%
+  unlist(.)%>%
+  as.character(.)%>%
+  str_remove(.,"Ad Creation Date")%>%
+  as.data.frame(.)
+
+
+## If present: Ad End Date
+
+if (str_detect(advert,"Ad End")==TRUE){
+  adEnd<-advert%>%
+  strsplit(split = "\n")%>%
+  unlist(., recursive = FALSE)%>%
+  as.data.frame(.)%>%
+  filter(str_detect(.,"Ad End")==TRUE)%>%
+  unlist(.)%>%
+  as.character(.)%>%
+  str_remove(.,"Ad End Date")%>%
+  as.data.frame(.)
+} else{
+  adEnd<-"NA"
+  adEnd<-as.data.frame(adEnd)
+}
+
+## If present: Excluded Connections
+
+if (str_detect(advert,"Excluded Connections")==TRUE){
+adexclude<-pdf_text(x)%>%
+  as.character(.)%>%
+  sub(".*Excluded Connections: *(.*?) *Age.*", "\\1", .)%>%
+  strsplit(split = "\n")%>%
+  .[1]%>%
+  sapply(., paste, collapse = " ")%>%
+  as.data.frame(.)
+}else{
+  adexclude<-"NA"
+  adexclude<-as.data.frame(adexclude)
+}
+
+
+
+## If present: People who match
+if (str_detect(advert,"People Who Match")==TRUE){
+admatch<-pdf_text(x)%>%
+  as.character(.)%>%
+  sub(".*People Who Match: *(.*?) *Ad.*", "\\1", .)%>%
+  strsplit(split = "\n")%>%
+  .[1]%>%
+  sapply(., paste, collapse = " ")%>%
+  as.data.frame(.)
+}else{
+  admatch<-"NA"
+  admatch<-as.data.frame(admatch)
+}
+
+## If present: Interests 
+if (str_detect(advert,"Interests")==TRUE){
+adInterests<-pdf_text(x)%>%
+  as.character(.)%>%
+  .[1]%>%
+  sub(".*Interests: *(.*?) *Age.*", "\\1", .)%>%
+  strsplit(split = "\n")%>%
+  sapply(., paste, collapse = " ")%>%
+  as.data.frame(.)
+}else{
+  adInterests<-"NA"
+  adInterests<-as.data.frame(adInterests)
+}
+
+
+ad1<-cbind(ID,adspend,adtext,adLP,adTarget,adImpress,adClicks,adCreation,adEnd,adexclude,admatch,adInterests)
+
+ad1<-ad1[1,]
+}
+
+## ad_scanner for all in folder then rbind the whole damn thing
+
+datalist_all = list()
+
+for (i in 1:length(pdf_list)){
+  print(i)
+  datalist_all[[i]]<-ad_scanner(paste("/Volumes/KYI\'S\ HDD/PYEUNGYEUNG/Thesis/FB\ Ads/FBAds/", pdf_list[i],sep = ""))
+}
+
+test<-ad_scanner("/Volumes/KYI\'S\ HDD/PYEUNGYEUNG/Thesis/FB\ Ads/FBAds/P(1)0000001.pdf")
+
+fb_ads_df <- plyr::ldply(datalist_all, data.frame)
+
+write.csv(fb_ads_df,"fbads_congress.csv")
+
+```
+
+### Seperate "please check manually" and filled + clean
+```{r}
+fb_ads_extract<-fb_ads_df[,1:15]
+
+colnames(fb_ads_extract)[1]="adID"
+colnames(fb_ads_extract)[2]="adSpend"
+colnames(fb_ads_extract)[3]="adText"
+colnames(fb_ads_extract)[4]="adLP"
+colnames(fb_ads_extract)[5]="adTarget"
+colnames(fb_ads_extract)[6]="adImpress"
+colnames(fb_ads_extract)[7]="adClicks"
+colnames(fb_ads_extract)[8]="adCreation"
+colnames(fb_ads_extract)[9]="adEnd"
+colnames(fb_ads_extract)[10]="adExclude"
+colnames(fb_ads_extract)[11]="adMatch"
+colnames(fb_ads_extract)[12]="adInterests"
+colnames(fb_ads_extract)[13]="drop1"
+colnames(fb_ads_extract)[14]="drop2"
+colnames(fb_ads_extract)[15]="adtext_missing"
+
+### Manual checking 
+manual_check<-fb_ads_extract%>%
+  subset(., select=-c(drop1,drop2))%>%
+  filter(str_detect(adtext_missing,"manually")==TRUE)
+
+full_ads<-fb_ads_extract%>%
+  subset(., select=-c(drop1,drop2))%>%
+  filter(is.na(adtext_missing)==TRUE)%>%
+  subset(., select=-c(adtext_missing))
+
+
+full_ads$groups<-paste(full_ads$adMatch,full_ads$adInterests)
+full_ads$groups<-trimws(full_ads$groups,which="both")
+
+### remove all NA 
+full_ads$groups<-full_ads$groups%>%
+  str_remove(.,"NA|PM|AM|PST|PDT")%>%
+  str_remove(.,"PDT")%>%
+  str_remove(.,"PST")%>%
+  gsub("([^A-Za-z ])+", "",.)%>%
+  gsub("Ad|Interests|Behaviors|Job title|Friends of connection|Friends of people who are connected to|And Must Also Match|People who like|Exclude", " ", .)%>%
+  trimws(.,"both")
+
+for (i in 1:nrow(full_ads)){
+if (str_detect(full_ads$groups[i],"ID")==TRUE){
+  full_ads$groups[i]<-str_extract(full_ads$groups[i], ".+?(?=ID)")
+  }else{
+  full_ads$groups[i]<-as.character(full_ads$groups[i])
+  }
+}
+
+
+full_ads_cleaned<-full_ads%>%
+  select(-c(adEnd,adExclude,adMatch,adInterests))
+
+full_ads_cleaned$adImpress<-as.character(full_ads_cleaned$adImpress)%>%
+  trimws(.,"both")%>%
+  as.character(.)%>%
+  gsub('[.|,]', '', .)%>%
+  as.numeric(.)
+
+full_ads_cleaned$adClicks<-as.character(full_ads_cleaned$adClicks)%>%
+  trimws(.,"both")%>%
+  as.character(.)%>%
+  gsub('[.|,]', '', .)%>%
+  as.numeric(.)
+
+
+full_ads_cleaned$adSpend<-as.character(full_ads_cleaned$adSpend)%>%
+  as.numeric(.)
+
+full_ads_test<-as.data.frame(full_ads_cleaned$adTarget)
+
+colnames(full_ads_test)[1]<-"clean"
+full_ads_test$cleaned<- full_ads_test$clean%>%
+  gsub("location - living in:|location:|united states", "", .)%>%
+  gsub("interests: |excluded|connections|custom.*","",.)%>%
+  gsub("friends|friends of people:|friends of.*","",.)%>%
+  trimws(.,"both")
+
+
+for (i in 1:nrow(full_ads_test)){
+  if (str_detect(full_ads_test$cleaned[i],":")==TRUE){
+    full_ads_test$cleaner[i]<-str_remove(full_ads_test$cleaned[i],":")
+  }else{
+    full_ads_test$cleaner[i]<-"NA"
+  }
+}
+
+
+data(us.cities)
+uscities<-as.data.frame(us.cities$name)
+uscities<-gsub('\\b\\w{1,2}\\b','',uscities$`us.cities$name`)%>%
+  trimws(.,"both")
+us.states<-state.name
+usall<-append(uscities,us.states)
+
+tofind <- paste(usall, collapse="|")
+
+full_ads_test$cleanest<-sapply(stri_extract_all_regex(full_ads_test$cleaner, tofind), paste, collapse=' ')
+
+full_ads_test$cleanest2<- full_ads_test$cleanest%>%
+  gsub("Independence.*","",.)%>%
+  trimws(.,"both")
+
+
+full_ads_test$cleanest3<-sapply(strsplit(as.character(full_ads_test$cleanest2), " "), function(x) paste(unique(x), collapse=" "))
+
+full_ads_cleaned<-cbind(full_ads_cleaned,full_ads_test$cleanest3)
+colnames(full_ads_cleaned)[11]="adLocation_cleaned"
+
+
+full_ads_cleaned<-full_ads_cleaned%>%
+  dplyr::select(-c(adTarget,X1))
+```
+
+### Address manual inputs + clean
+```{r}
+names(ad_manual)[names(ad_manual) == 'adMatch'] <- 'groups'
+ad_manual$groups<-trimws(ad_manual$groups,which="both")
+
+names(ad_manual)[names(ad_manual) == 'adMatch'] <- 'groups'
+ad_manual$groups<-trimws(ad_manual$groups,which="both")
+ad_manual<-ad_manual%>%
+  dplyr::select(-c(adEnd,adExclude))
+
+### remove all NA 
+ad_manual$groups<-ad_manual$groups%>%
+  str_remove(.,"NA|PM|AM|PST|PDT")%>%
+  str_remove(.,"PDT")%>%
+  str_remove(.,"PST")%>%
+  gsub("([^A-Za-z ])+", "",.)%>%
+  gsub("Ad|Interests|Behaviors|Job title|Friends of connection|Friends of people who are connected to|And Must Also Match|People who like|Exclude", " ", .)%>%
+  trimws(.,"both")
+
+
+ad_manual$adImpress<-as.character(ad_manual$adImpress)%>%
+  trimws(.,"both")%>%
+  as.character(.)%>%
+  gsub('[.|,]', '', .)%>%
+  as.numeric(.)
+
+ad_manual$adClicks<-as.character(ad_manual$adClicks)%>%
+  trimws(.,"both")%>%
+  as.character(.)%>%
+  gsub('[.|,]', '', .)%>%
+  as.numeric(.)
+
+
+ad_manual$adSpend<-as.character(ad_manual$adSpend)%>%
+  as.numeric(.)
+
+ad_manual_test<-as.data.frame(ad_manual$adTarget)
+
+colnames(ad_manual_test)[1]<-"clean"
+ad_manual_test$cleaned<- ad_manual_test$clean%>%
+  gsub("location - living in:|location:|united states", "", .)%>%
+  gsub("interests: |excluded|connections|custom.*","",.)%>%
+  gsub("friends|friends of people:|friends of.*","",.)%>%
+  trimws(.,"both")
+
+
+for (i in 1:nrow(ad_manual_test)){
+  if (str_detect(ad_manual_test$cleaned[i],":")==TRUE){
+    ad_manual_test$cleaner[i]<-str_remove(ad_manual_test$cleaned[i],":")
+  }else{
+    ad_manual_test$cleaner[i]<-"NA"
+  }
+}
+
+
+data(us.cities)
+uscities<-as.data.frame(us.cities$name)
+uscities<-gsub('\\b\\w{1,2}\\b','',uscities$`us.cities$name`)%>%
+  trimws(.,"both")
+us.states<-state.name
+usall<-append(uscities,us.states)
+
+tofind <- paste(usall, collapse="|")
+
+ad_manual_test$cleanest<-sapply(stri_extract_all_regex(ad_manual_test$cleaner, tofind), paste, collapse=' ')
+
+ad_manual_test$cleanest2<- ad_manual_test$cleanest%>%
+  gsub("Independence.*","",.)%>%
+  trimws(.,"both")
+
+ad_manual_test$cleanest3<-sapply(strsplit(as.character(ad_manual_test$cleanest2), " "), function(x) paste(unique(x), collapse=" "))
+
+ad_manual_cleaned<-cbind(ad_manual,ad_manual_test$cleanest3)
+
+ad_manual_cleaned<-ad_manual_cleaned%>%
+  dplyr::select(-adTarget)
+
+colnames(ad_manual_cleaned)[9]<-"adLocation_cleaned"
+```
+
+```{r}
+all_fb_ads<-rbind(ad_manual_cleaned,full_ads_cleaned)
+write.xlsx(all_fb_ads,"all_fb_ads.xlsx")
+```
+
+```{r}
+full_ads_cleaned<-read_xlsx("all_fb_ads.xlsx")
+# cleaning dates 
+full_ads_cleaned$adDate<-str_extract(full_ads_cleaned$adCreation, "[0-9][0-9]/[0-9][0-9]/[0-9][0-9]?")
+full_ads_cleaned$adDate<-as.Date(full_ads_cleaned$adDate, "%m/%d/%y")
+full_ads_cleaned$adSpend<-as.numeric(as.character(full_ads_cleaned$adSpend))
+full_ads_cleaned$adImpress<-as.numeric(as.character(full_ads_cleaned$adImpress))
+full_ads_cleaned$adClicks<-as.numeric(as.character(full_ads_cleaned$adClicks))
+```
+

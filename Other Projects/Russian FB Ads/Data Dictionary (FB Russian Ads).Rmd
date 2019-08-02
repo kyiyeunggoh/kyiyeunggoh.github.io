@@ -1,0 +1,85 @@
+---
+title: <center> <h1> Dictionary for Russian-run Facebook Ads Released by the United States House of Representative's Permanent Select Committee on Intelligence  </center> </h1>
+author: <center> <h1> Kyi Yeung Goh </center> </h1>
+date:  <center> <h1> 01/08/2019  </center> </h1>
+output: html_document
+---
+
+### Background
+
+Social media companies such as Facebook and Twitter handed over information detailing those activities to Congress as part of the broader Congressional investigation into the role of Russian intervention in the 2016 elections. The United States House of Representative's Permanent Select Committee on Intelligence released some 3517 advertisements that Facebook had ex-post flagged as being run by state-linked entities.  
+
+### Rationale 
+
+These [documents](https://intelligence.house.gov/social-media-content/social-media-advertisements.htm) were released in redacted .PDF format making their analysis rather inaccessible. To remove this barrier to entry and allow for more research on this topic, the relevant text data has been cleaned into a [downloadable .xlsx file](). 
+
+There exists inconsistencies in some entries due to the redacted nature of the files but an attempt has been made to retain as much information as possible. 
+
+The code used to produce this .xlsx can be obtained [here]().
+
+### Information contained in the .xlsx
+
+1. **adID**: The ad identification number provided in the original PDF
+
+2. **adText**: The text contained in the advert in the original PDF (In a small number of cases, they had to be manually imputed due to detection issues)
+
+3. **adSpend**: The amount spent (in Roubles) to boost the reach of the advertisement
+
+4. **adLP**: Landing pages associated with the ad
+
+5. **adImpress**: Number of impressions made by the ad
+
+6. **adClicks**: Number of clicks received 
+
+7. **adCreation**: Date and time that the advertisement was originally posted
+
+8. **groups**: Targetted groups based on identity, likes as well as other biodata
+
+9. **adLocation_cleaned**: Cities and states targeted by the advertisement
+
+10. **adDate**: Date (in proper lubridate format) that the advert was posted
+
+### Limitations
+
+A small number of entries in certain columns will spillover and it is an issue that is still currently being resolved. 
+
+### Endgoal
+
+This project is part of my thesis looking at the application of *active measures* to influence public policy. Will eventually upload some visualisations using the data here as well! 
+
+### Some very preliminary visuals: 
+The adverts were categorised into 5 types of adverts using LDA (created from .xlsx i a separate process, script to be made available). These 5 distinct classes were posts targeted at:
+
+1. Right-wing themes
+
+2. African-American history
+
+3. Generic marketing adverts
+
+4. Institutional discrimination
+
+5. Latin-American themes
+
+**_Geographic distributions of advertisement to target groups_**
+**Geographic breakdown of posts **
+```{r, echo=FALSE,out.width="50%", out.height="35%",fig.cap="Geographic distribution of states targeted by ads. All ads (Left) and Cluster 1: Right-Wing (Right)",fig.show='hold',fig.align='center'}
+knitr::include_graphics(c("choroplethr_ad_all.png","choroplethr_ads_g1.png"))
+```
+
+```{r, echo=FALSE,out.width="50%", out.height="35%",fig.cap="Geographic distribution of states targeted by ads. Cluster 2: African-American heritage and pride (Left) and Cluster 3: Marketing (Right)",fig.show='hold',fig.align='center'}
+knitr::include_graphics(c("choroplethr_ads_g2.png","choroplethr_ads_g3.png"))
+```
+
+```{r, echo=FALSE,out.width="50%", out.height="35%",fig.cap="Geographic distribution of states targeted by ads. Cluster 4: African-American institutional discrimination (Left) and Cluster 5: Latin-American (Right)",fig.show='hold',fig.align='center'}
+knitr::include_graphics(c("choroplethr_ads_g4.png","choroplethr_ads_g5.png"))
+```
+
+**_Post frequency for each group_**
+```{r, echo=FALSE,out.width="50%", out.height="35%",fig.cap="˜Posts over time (2015-2017) by group",fig.show='hold',fig.align='center'}
+knitr::include_graphics(c("FBpost_freq.png"))
+```
+
+
+The lines are as follows: Group 1 (Red), Group 2 (Blue), Group 3 (Green), Group 4 (Purple) and Group 5 (Pink).
+
+More importantly, I hope the data is helpful in producing more insights into the topic. 
