@@ -1,6 +1,5 @@
 ---
 title: "Who's on the same page? An analysis of Singapore's political Facebook scene"
-author: "Kyi Yeung Goh"
 date: "04/07/2020"
 output: html_document
 ---
