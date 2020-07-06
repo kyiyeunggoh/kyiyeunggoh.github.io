@@ -1,5 +1,5 @@
 ---
-title: "Political Facebook"
+title: "Who's on the same page? An analysis of Singapore's political Facebook scene"
 author: "Kyi Yeung Goh"
 date: "04/07/2020"
 output: html_document
@@ -58,6 +58,7 @@ fbposts$adDate<-str_extract(as.character(fbposts$time), "[0-9][0-9][0-9][0-9]-[0
 fbposts$adDate<-as.Date(fbposts$adDate)
 fbposts$adYear<-year(fbposts$adDate)
 table1<-read_xlsx("Table_Page Intro.xlsx")
+table1$`Found date`<-as.Date(table1$`Found date`, format="%Y-%m-%d")
 table2<-read_xlsx("table 2_Matrix.xlsx")
 table3<-read_xlsx("table3_cluster1.xlsx")
 table4<-read_xlsx("table4_cluster2.xlsx")
@@ -66,8 +67,9 @@ tablebigsmallsites<-read_xlsx("table_comparebigsmall.xlsx")
 ```
 
 ## Introduction
-In 2019, 62% of Singaporeans surveyed by the Reuters Institute consumed news via social media. [Almost half (48%) specified that they did so on Facebook](http://www.digitalnewsreport.org/survey/2019/singapore-2019/). Aside from the traditional players, such as the mainstream media, Facebook has enabled even small set-ups to propagate news and views with ease. This article collates, cleans, and analyses around 34,000 Facebook posts posted from 12 such pages before 11 June 2020 that provide active commentary of current affairs to better understand:
+In 2019, 62% of Singaporeans surveyed by the Reuters Institute consumed news via social media. [Almost half (48%) specified that they did so on Facebook](http://www.digitalnewsreport.org/survey/2019/singapore-2019/). Aside from the traditional players, such as the mainstream media, Facebook has enabled even small set-ups to propagate news and views with ease. Who runs these pages? How do they behave, and how are they different from the mainstream media? What impact do they have on our public discourse?
 
+Some of these questions can be answered with reference to the facts. This article collates, cleans, and analyses around 34,000 Facebook posts posted from 12 such pages before 11 June 2020 that provide active commentary of current affairs to better understand:
 
 (i) how such pages tend to be operated
 (ii) the nature of the discourse by such pages across different policy settings
@@ -95,12 +97,12 @@ The 12 pages differ on several metrics - number of likes, the date which they fi
 datatable(table1,class = 'cell-border stripe')
 ```
 
-## 1. NOT ALL PAGES ARE RUN THE SAME 
+## 1. NOT ALL PAGES ARE RUN THE SAME  
 
 We can analyse the timing of each page’s posts over a day and within each hour. This reveals four distinct modes of operations. 
 
 
-```{r, fig.width=25, fig.height=10}
+```{r, fig.width=25, fig.height=15}
 fbposts$spectime <- as.POSIXct(fbposts$time, 
                                format="%Y-%m-%d %H:%M:%S", 
                                tz="UTC")
@@ -129,7 +131,7 @@ activity_hour_ppap %>%
 
 *In the chart above, post frequencies have been normalised (peak activity = 1) to provide a better visual comparison.*
 
-```{r, fig.width=25, fig.height=10}
+```{r, fig.width=25, fig.height=15}
 activity_hour_ppap %>%
   ggplot(aes(x=hour,y=post_volume,group=source)) +
   geom_line(aes(color=source))+
@@ -140,8 +142,7 @@ activity_hour_ppap %>%
   theme_economist()
 ```
 
-```{r, fig.width=25, fig.height=10}
-
+```{r, fig.width=25, fig.height=15}
 activity_min_ppap <- fbposts %>%
   group_by(source,mins)%>%
   summarise(post_volume=length(mins))%>%
@@ -179,9 +180,7 @@ activity_hour_ppap %>%
 
 A sharp dip in post frequency during lunch hour - between 11am and 1pm - is also observed across sites in this category. 
 
-```{r}
-datatable(table2,class = 'cell-border stripe')
-```
+![2 key dimensions of difference amongst pages](2by2.png){#id .class width=500% height=300%}
 
 At the same time, these pages post at specific minutes in each hour. The regularity of posts on these pages suggests that these pages may be  manned by personnel dedicated to running the page. This is because the timing posts is an added activity that page administrators have to factor in in order to structure their pipeline of posts. In the case of SG Matters, the persistent presence of posts beyond the start, mid and end-point of the hour may indicate the presence of spare capacity that monitors and responds to ad-hoc policy issues that emerge.  
 
@@ -446,7 +445,8 @@ pheatmap(emo_sum_terrex, treeheight_row = 0, treeheight_col = 0, main="Heatmap o
 
 ```
 
-### 3. ECHO CHAMBERS OR SPARRING GROUNDS?
+## 3. ECHO CHAMBERS OR SPARRING GROUNDS? 
+
 ```{r}
 post_numbers<-fbposts%>%
   group_by(source) %>%
@@ -482,4 +482,4 @@ Does this relationship exist when we analyse the interaction between pages with 
 datatable(tablebigsmallsites,class = 'cell-border stripe')
 ```
 
-This is an ever-evolving study. Any updated analysis would include the general election period in its entirety. Should you identify any pages that you think should be included, do leave a comment below, and findings will be updated accordingly (when the author has some free time!). The compiled data (in xlsx, sorry people who may not have Excel) as well as code used to scrape and analyse the posts can be found in this GitHub repository. 
+This is an ever-evolving study. Any updated analysis would include the general election period in its entirety. Should you identify any pages that you think should be included, do leave a comment below, and findings will be updated accordingly (when the author has some free time!). The [compiled data](kyiyeunggoh.github.io/Other Projects/Facebook Opinion Pages/combined_fb_posts.xlsx) - in xlsx, sorry people who may not have Excel - as well as code used to scrape and analyse the posts can be found in this GitHub repository. 
