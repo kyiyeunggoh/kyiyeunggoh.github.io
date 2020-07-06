@@ -65,7 +65,10 @@ tablebigsites<-read_xlsx("table_comparebig.xlsx")
 tablebigsmallsites<-read_xlsx("table_comparebigsmall.xlsx")
 ```
 
+![](isayyousay.png){#id .class width=700% height=500%}
+
 ## Introduction
+
 In 2019, 62% of Singaporeans surveyed by the Reuters Institute consumed news via social media. [Almost half (48%) specified that they did so on Facebook](http://www.digitalnewsreport.org/survey/2019/singapore-2019/). Aside from the traditional players, such as the mainstream media, Facebook has enabled even small set-ups to propagate news and views with ease. Who runs these pages? How do they behave, and how are they different from the mainstream media? What impact do they have on our public discourse?
 
 Some of these questions can be answered with reference to the facts. This article collates, cleans, and analyses around 34,000 Facebook posts posted from 12 such pages before 11 June 2020 that provide active commentary of current affairs to better understand:
@@ -77,7 +80,7 @@ Some of these questions can be answered with reference to the facts. This articl
 The 12 pages were selected as they can be considered non-mainstream outlets who reach their audiences primarily through social media. Some of these sites - The Independent Singapore and The Online Citizen - do have standalone sites but nonetheless interact with many of the sites studied on Facebook. These 12 pages are non-exhaustive and findings will be updated in line with studies of other pages. 
  
 
-Note: Fabrications About the PAP [has since been taken down by Facebook on June 28](https://www.channelnewsasia.com/news/singapore/facebook-removes-fabrications-about-the-pap-accounts-12878360). Facebook cited page behaviour in determining that the site had violated its community standards.
+*Note: Fabrications About the PAP [has since been taken down by Facebook on June 28](https://www.channelnewsasia.com/news/singapore/facebook-removes-fabrications-about-the-pap-accounts-12878360). Facebook cited page behaviour in determining that the site had violated its community standards.*
 
 The main findings are:
 
