@@ -1,6 +1,6 @@
 ---
 title: "Who's on the same page? An analysis of Singapore's political Facebook scene"
-date: "04/07/2020"
+date: "07/07/2020"
 output: html_document
 ---
 
@@ -68,7 +68,7 @@ tablebigsmallsites<-read_xlsx("table_comparebigsmall.xlsx")
 ![](isayyousay.png){#id .class width=700% height=500%}
 
 ## Introduction
-Scrutiny by tech giants such as Twitter and Facebook on pages that exhibit inauthentic social media behaviour has increased ever since the 2014 United States Presidential Elections. On July 6 2020, [Facebook stated that it had yet again taken down a pro-PAP page that violated its policies](taken action on accounts in Singapore for violating our policies). 
+Scrutiny by tech giants such as Twitter and Facebook on pages that exhibit inauthentic social media behaviour has increased ever since the 2014 United States presidential elections. On July 6 2020, [Facebook stated that it had yet again taken down a pro-PAP page that violated its policies](taken action on accounts in Singapore for violating our policies). 
 
 Why is this a concern? Since 2019, 62% of Singaporeans surveyed by the Reuters Institute consumed news via social media. [Almost half (48%) specified that they did so on Facebook](http://www.digitalnewsreport.org/survey/2019/singapore-2019/). Aside from the traditional players, such as the mainstream media, Facebook has enabled even small set-ups to propagate news and views with ease. Who runs these pages? How do they behave, and how are they different from the mainstream media? What impact do they have on our public discourse?
 
