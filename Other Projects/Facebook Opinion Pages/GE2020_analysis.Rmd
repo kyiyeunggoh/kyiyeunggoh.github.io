@@ -84,32 +84,35 @@ fbposts$adYear<-year(fbposts$adDate)
 
 ![](articlebanner.jpg){#id .class width=700% height=500%}
 
-Since my previous post, several sites I analysed have been taken down, including Factually Singapore, Fabrications Against the PAP as well as State News Singapore. (Please hold your applause - I deserve no credit given how little people read my previous post.) The removal of these pages is of course, not without its fair share of drama. 
+Since my previous post, several sites I analysed have been taken down, including Factually Singapore, Fabrications Against the PAP, as well as State News Singapore. (Please hold your applause - I deserve no credit given how few people read my previous post.) The removal of these pages is of course, not without its fair share of drama. 
 
 A [petition](https://www.change.org/p/ministry-for-communications-and-information-appeal-to-government-to-investigate-facebook-singapore-team-for-interfering-with-politics?recruiter=1130367112&utm_source=share_petition&utm_medium=facebook&utm_campaign=psf_combo_share_initial&recruited_by_id=643db570-c3c9-11ea-844d-8fad74a85b13&utm_content=fht-23391614-en-gb%3A0) calling for the Ministry of Communications and Information to investigate Facebook for foreign interference in the elections garnered slightly over 500 supporters before being suspended. Petitioners argued that there was political bias in the removal process. Curiously, there was broad consensus that those removed were pro-PAP pages. I can only hope that my analysis is as perceptive as user A Ayu A.
 
 
 ![Things that work-for-home frees up time for - petitions. Screengrab: Change.org](aayua.png){#id .class width=700% height=500%}
 
+Was our friend Ayu right? How did the behaviour of political Facebook pages change in the heat of election season? How did political Facebook’s 12 pages and 2,014 posts capture the trends — from warm cockles to cooling day — that appeared between the writ of election and election day?
+
+
 Here’s what I found:
 
 1. Although Cooling Off Day was cool, the day before was not. Many pages "chut pattern" (i.e. pulled stunts) hours before Cooling Off Day, presumably to fix a narrative in time for the election. 
 
-2. Serious people and not-so-srs ppl didn’t seem to interact - meme Facebook and political Facebook barely overlapped.
+2. Why do some events that lead to a wellspring of memes end up being referenced on political Facebook and others don't? Short answer: Utilitarianism. But there is a Jamus exception.
 
 3. Jamus warms the cockles of everyone's hearts (yes, even Ayu's "pro-PAP" pages could not resist him).
 
 4. There was a clear "Sengkang pivot": Sengkang GRC became the new big thing on political Facebook at the expense of East Coast GRC. But this doesn’t appear to be because of Jamus! *gasp*
 
-### Point 1: Before Cooling-Off Day pages began to chut pattern…
+### Point 1: Hours before Cooling-Off Day pages began to chut pattern…
 
-**The message from the previous article that not all pages are run the same remains.** The timing of posts continues to differ on two key metrics - (1) activity outside of office hours and (2) extent to which posts are scheduled. Our new entrants, Gong Simi, Shut Down TRS and All Singapore Stuff, fit within the framework that was introduced in the previous article. 
+**An important message bears repeating: not all pages are run the same.** The timing of posts continues to differ on two key metrics: (1) activity outside of office hours and (2) extent to which posts are scheduled. Our new entrants, Gong Simi, Shut Down TRS and All Singapore Stuff, fit within the framework that was introduced in the previous article.
 
-*Gong Simi* appears to operate primarily within office hours with noticeable drops during lunch hours. Within each hour, there are predictable spikes at the start, middle and end of an hour. As previously discussed, the regularity of posts on these pages suggests that these pages may be manned by personnel dedicated to running the page. This is because timing posts is an added activity that page administrators have to factor in in order to structure their pipeline of posts. 
+*Gong Simi* appears to operate primarily within office hours with noticeable drops during lunch hours. Within each hour, there are predictable spikes at the start, middle and end of an hour. As previously discussed, the regularity of posts on these pages suggests that these pages may be manned by personnel dedicated to running the page. This is because timing posts is an added activity for page administrators who may seek to structure their pipeline of posts. 
 
-*Shut Down TRS* exhibits behaviour that is rather regular spikes despite having over 4000 Facebook posts. The posts appear to be scheduled at a regular pace every two hours and are almost exclusively posted at the start of each hour. This suggests that the page has a specific purpose given the predictability and volume of the posts. It also suggests that there is very intense and active management of the page by administrators. 
+*Shut Down TRS* exhibits behaviour that is rather regular spikes (*something is rotten in the state of Denmark?*) despite having over 4000 Facebook posts. The posts appear to be scheduled at a regular pace every two hours and are almost exclusively posted at the start of each hour. This suggests that there is very intense, deliberate, and active management of the page by administrators. 
 
-*All Singapore Stuff*, on the other hand, is defined by posts outside office hours and irregular posting times across the hour. The goal of such pages, while still focussed on gaining traction for their posts, have different strategies to do so. These pages exhibit greater evidence of community-run operations. Posters may not be available during office hours, and there may not be a “manager” who deliberately prioritises posts.
+*All Singapore Stuff*, on the other hand, is defined by posts outside office hours and irregular posting times across the hour. The goal of such pages, while still focussed on gaining traction for their posts, have different strategies to do so. ASS is probably community run. Posters may not be available during office hours, and there may not be a “manager” who deliberately prioritises posts.
 
 *In the two charts below, post frequencies have been normalised (peak activity = 1) to provide a better visual comparison.*
 
@@ -147,6 +150,7 @@ activity_hour_ppap %>%
 
 
 *Frequency of all historical posts within an hour*
+
 ```{r, fig.width=25, fig.height=15}
 activity_min_ppap <- fbposts %>%
   group_by(source,mins)%>%
@@ -269,16 +273,17 @@ activity_hour_cod %>%
 
 ![Gong Simi questioned the SDP's ability to manage finances and in so doing, question if they were fit for elected office ](GSSDP.png){#id .class width=700% height=500%}
 
+Broadly speaking, there appears to be a similar focus on several topics across all 12 pages. For pages that tend to be more supportive of the ruling party, emphasis was placed on job security, proven track records and scrutiny of the Opposition's record particularly a candidate's conduct or past performance. Conversely, pages that tend to be more Opposition-friendly focused on the possibility of an Opposition wipeout and the need to have check and balances in Parliament. 
 
-### Point 2: Meme Facebook and Political Facebook barely overlapped unless a saga occurred (not so serious people and serious people don't seem to interact that much)
 
-The 2020 General Election rose up to the Tall Order (read: book reference) of delivering quality meme content in a shorter 9-day campaign period. So to that…*thumbs up, man!*
+### Point 2: Why do some events that lead to a wellspring of memes end up being referenced on political Facebook and others don't? Short answer: Utilitarianism. 
 
+The 2020 General Election rose up to the Tall Order of delivering quality meme content in a shorter 9-day campaign period. So to that… *thumbs up, man!*
 
 ![Look! 2015 General Election material can still be somewhat relevant in GE2020 analysis. Photo Credit: Mothership](thumbsupman.jpg){#id .class width=700% height=800%}
 
 
-We revisit four golden moments (the East Coast Plan, the Charles Yeo hard carry, Jamus's cockles as well as Marymount SMC's impeding stand-by-universe) and 2 incidents (#IStandWithRaeesah and Ivan Lim) to understand how memes and political Facebook interacted. 
+We revisit four golden moments (the East Coast Plan, the Charles Yeo hard carry, Jamus's cockles as well as Marymount SMC's impeding stand-by-universe) and two incidents (#IStandWithRaeesah and Ivan Lim) to understand why certain "memeable" events end up on Facebook and why others don't. These events are chosen as they appear to have caught the attention of most Singaporeans on social media. 
 
 
 ![Meme 1: Reminder to tidy up cue cards before your presentation!! Meme credits: AsiaOne](eastcoastplan.jpg){#id .class width=400% height=900%}
@@ -381,13 +386,17 @@ ggplot(compare_memes_compare , aes(x=adDate,y=value))+
   theme_economist() 
 ```
 
-What is clear from the graphs that capture the mention rates of specific events or persons over the GE period is that there is greater synchrony between the meme cycle and posts on political Facebook if it involves an unfolding saga. Otherwise, Meme Facebook and Political Facebook do not really overlap as they clearly have two distinct agendas. The former utilises everyday subject matter - which can happen to be politics - to reach an end goal of generating 'LOLs' while the latter invokes discussion of political subject matter to support a particular political narrative. Memeable content does not really gain traction on political Facebook as it is generally speaking, an abstraction of an instance rather than a solid foundation for policy critique. No posts - save the East Coast Plan - was referred to by political Facebook during the course of the General Election period.  As such, the various Charles Yeo (spawned as a result of his constituency political broadcast) and East Coast Plan memes failed to gain traction on political Facebook. Mentions of both remained relatively constant (and low) throughout the GE period. 
+What is clear from the graphs that capture the mention rates of specific events or persons over the GE period is that events only matter to political Facebook if they involve an unfolding saga or a clear political phenomenon. Generally speaking, most content that ends up being made into memes do not really gain traction on political Facebook as it is generally speaking, an abstraction of an instance aimed at receiving LOLs rather than a solid foundation for policy critique. No post was referred to much by political Facebook during the course of the General Election period.  As such, the various Charles Yeo (spawned as a result of his constituency political broadcast) and East Coast Plan memes failed to gain traction on political Facebook. Mentions of both remained relatively constant (and low) throughout the GE period. 
 
-What both meme and political Facebook latch onto are unfolding political sagas. Meme Facebook can utilise the many instances associated with a personality to generate more content while sagas can be used by political Facebook to draw attention to broader political issues such as elitism, racism and religion. 
+Events (that produce memes on social media) only find their way onto political Facebook when the subject matter being discussed can be used in support of a particular political narrative; indeed, the reason why the two political sagas I look at appear to be mentioned on political Facebook far more frequently that the 4 moments is because they were used by the pages to draw attention to broader political issues such as elitism, racism and religion. 
 
+Well…all events except Jamus. 
+
+Jamus is a unique case as memes stemming from his televised debate appearance on 1 July focused on his conduct while political Facebook zoomed in on the content of his speeches. This was not the case in the Marymount SMC, East Coast Plan and Charles Yeo memes. In this case, the "Jamus exception" is a result of the different subject matter focus of meme content and political Facebook. More exceptions about Jamus will be covered in point 3 below. 
 
 ![Saga 1: Ivan Lim. Yes, that spike you see in the political Facebook mention count at the end of the graph was indeed due to the special guest appearance of Ivan on results day. Meme credit: YEOLO](ivanmeme.png){#id .class width=700% height=700%}
 
+![Again, working from home has freed up time for us to pursue our hobbies such as digging up people's pasts...skeletons in the closet, anyone? Meme credit: SGAG](sgagarchi.jpg){#id .class width=700% height=700%}
 
 ```{r, fig.width=25, fig.height=15}
 ### Ivan Lim
@@ -402,20 +411,9 @@ sites<-unique(ivan_posts$source)
 ### Mentions over time during election period
 activity_date_ivan <- ivan_posts %>%
   group_by(adDate) %>% 
-  count()
+  count()%>%
+  dplyr::rename(ivan= n)
 
-ggplot(activity_date_ivan, aes(x=adDate,y=n))+
-  geom_line()+
-  geom_point()+
-  ggtitle("Discussion about Ivan Lim over GE period")+
-  theme_economist() +
-  labs(x = "Date", y = "Number of posts") 
-```
-
-
-![Again, working from home has freed up time for us to pursue our hobbies such as digging up people's pasts...skeletons in the closet, anyone? Meme credit: SGAG](sgagarchi.jpg){#id .class width=700% height=700%}
-
-```{r, fig.width=25, fig.height=15}
 ### Raeesah Khan
 find<-c("raeesah","khan") #find words
 raeesah_list = list()
@@ -428,14 +426,26 @@ sites<-unique(raeesah_posts$source)
 ### Mentions over time during election period
 activity_date_raeesah <- raeesah_posts %>%
   group_by(adDate) %>% 
-  count()
+  count()%>%
+  dplyr::rename(raeesah= n)
 
-ggplot(activity_date_raeesah, aes(x=adDate,y=n))+
-  geom_line()+
-  geom_point()+
-  ggtitle("Discussion about Raeesah Khan over GE period")+
-  theme_economist() +
-  labs(x = "Date", y = "Number of posts") 
+### Raeesah and Ivan information
+## Combine sengkang and East Coast
+compare_saga<-merge(activity_date_ivan,activity_date_raeesah,by="adDate")
+compare_saga<-pad(compare_saga)
+compare_saga[is.na(compare_saga)] <- 0
+compare_saga <- melt(compare_saga, id.vars='adDate')
+
+compare_saga <- compare_saga%>%
+  dplyr::rename(saga = variable)
+
+ggplot(compare_saga, aes(x=adDate,y=value))+
+  geom_line(aes(color=saga))+
+  ggtitle("Discussion about Ivan Lim and Raeesah sagas over GE period")+
+  scale_x_date(date_breaks = 'day', 
+               date_labels = '%b %d\n%a')+
+  labs(x = "Date", y = "Number of posts")+
+  theme_economist() 
 
 ```
 
@@ -465,7 +475,7 @@ ggplot(activity_date_jamus, aes(x=adDate,y=n))+
   labs(x = "Date", y = "Number of posts") 
 ```
 
-Interest in Jamus peaked on July 1 and 2 after the broadcast of the party debates on national television where his performance received rave reviews from political pundits, [debate coaches](https://mothership.sg/2020/07/debate-coach-rank-political-debate/) and [random social media commentators](https://www.asiaone.com/digital/wps-jamus-lim-and-paps-vivian-balakrishnan-wins-over-internet-after-their-ge2020-debate) alike. He received overwhelmingly positive coverage across all six sites in which his name was mentioned. 
+However, this Jamus exception extends further into the coverage he received on political Facebook. Interest in Jamus peaked on July 1 and 2 after the broadcast of the party debates on national television where his performance received rave reviews from political pundits, [debate coaches](https://mothership.sg/2020/07/debate-coach-rank-political-debate/) and [random social media commentators](https://www.asiaone.com/digital/wps-jamus-lim-and-paps-vivian-balakrishnan-wins-over-internet-after-their-ge2020-debate) alike. He received overwhelmingly positive coverage across all six sites in which his name was mentioned. 
 
 ```{r, fig.width=25, fig.height=15}
 ### Sentiment
@@ -489,7 +499,7 @@ emo_sum_jamus<-scale(jamus_data[,-c(2)])
 pheatmap(emo_sum_jamus, treeheight_row = 0, treeheight_col = 0, main="Heatmap of sentiments when discussing Jamus Lim")
 ```
 
-In the previous article, I [mentioned that there was a clear political divide when it came to the discussion of domestic issues by political Facebook pages](https://kyiyeunggoh.github.io/Other%20Projects/Facebook%20Opinion%20Pages/Political-FB-Article.html). There is evidence that pages are removed regardless of their affiliations. The three pages that are removed - 2 can be defined as having more positive coverage of the ruling party while the other is clearly more critical. What is startling then is that Jamus manages to breach this divide to attain some form of positive sentiment from both "pro-PAP" and "anti-PAP" pages. 
+In the previous article, I [mentioned that there was a clear political divide when it came to the discussion of domestic issues by political Facebook pages](https://kyiyeunggoh.github.io/Other%20Projects/Facebook%20Opinion%20Pages/Political-FB-Article.html). There is evidence that pages are removed regardless of their affiliations. Of the three pages that are removed - two can be classified as having more positive coverage of the ruling party while the other is clearly more critical. What is startling then is that Jamus manages to breach this divide on political Facebook to receive positive sentiment from both "pro-PAP" and "anti-PAP" pages. 
 
 ### Point 4: There was a clear "Sengkang pivot": Sengkang GRC became the new big thing on political Facebook at the expense of East Coast GRC. But this doesn’t appear to be because of Jamus! *gasp*
 
