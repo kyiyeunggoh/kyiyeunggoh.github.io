@@ -1,0 +1,73 @@
+# Metadata for Singapore Residents by Subzone and Type of Dwelling, 2011 - 2019
+---
+Identifier: '82a36184-e2ef-4c99-805e-88d073df6361'
+Name: 'singapore-residents-by-subzone-and-type-of-dwelling-2011-2019'
+Title: 'Singapore Residents by Subzone and Type of Dwelling, 2011 - 2019'
+Description: 'Distribution of the resident population by planning area/subzone based
+  on URA MP14 and type of dwelling, Jun 2018'
+Topics:
+  - 'Society'
+Keywords:
+  - 'Singapore Residents by Planning Area'
+  - 'Subzone'
+  - 'Type of Dwelling'
+Publisher:
+  Name: 'Ministry of Trade and Industry - Department of Statistics'
+  Admin 1:
+    Name: 'Chow Miew Sum'
+    Department: 'DEPARTMENT OF STATISTICS'
+    Email: 'chow_miew_sum@singstat.gov.sg'
+Sources:
+  - 'Ministry of Trade and Industry - Department of Statistics'
+License: 'https://data.gov.sg/open-data-licence'
+Frequency: 'Ad-hoc'
+Coverage: '2011-01-01 to 2019-12-31'
+Last Updated: '2020-03-06T03:39:51.505578'
+Resources:
+  -
+    Identifier: '6d799e1c-ab06-4fad-bee3-2f28606bc971'
+    Title: 'Planning Area, Subzone, Age Group, Sex and Type of Dwelling, June 2011-2019'
+    Url: 'https://storage.data.gov.sg/singapore-residents-by-subzone-and-type-of-dwelling-jun-2018/resources/planning-area-subzone-age-group-sex-and-type-of-dwelling-june-2011-2019-2020-03-06T03-39-39Z.csv'
+    Format: 'CSV'
+    Coverage: '2011-01-01 to 2019-12-31'
+    Description: 'Singapore Residents by Planning Area, Subzone, Age Group, Sex and
+      Type of Dwelling, June 2011-2019'
+    Last Updated: '2020-03-06T03:39:39.601755'
+    Schema:
+      -
+        Name: 'planning_area'
+        Title: 'Planning Area'
+        Type: 'text'
+        Sub Type: 'general'
+      -
+        Name: 'subzone'
+        Title: 'Subzone'
+        Type: 'text'
+        Sub Type: 'general'
+      -
+        Name: 'age_group'
+        Title: 'Age group'
+        Type: 'text'
+        Sub Type: 'general'
+      -
+        Name: 'sex'
+        Title: 'Sex'
+        Type: 'text'
+        Sub Type: 'general'
+      -
+        Name: 'type_of_dwelling'
+        Title: 'Type of dwelling'
+        Type: 'text'
+        Sub Type: 'general'
+      -
+        Name: 'resident_count'
+        Title: 'Resident count'
+        Type: 'numeric'
+        Sub Type: 'general'
+        Unit Of Measure: 'No. of Residents'
+      -
+        Name: 'year'
+        Title: 'Year'
+        Type: 'datetime'
+        Sub Type: 'year'
+        Format: 'YYYY'
