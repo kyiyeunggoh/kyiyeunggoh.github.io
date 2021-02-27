@@ -283,7 +283,7 @@ While the government continued to clamp down on illegal hawking, it also worked 
 
 ## The transformation of hawking into an artform - a tale of adaptation, survivalism and practicality
 
-Inadvertently, the move to house street hawkers in a centralised locale surrounded by an entirely new estate town, birthed a novel subset of the evolving Singaporean cultural identity. The hawker centre now served as a literal cultural melting pot. It brought a new multi-ethnic dimension to our food, ending the hitherto ethnic-based locations, clientele and cuisine of street hawking. Once again, practicality incentivised innovation. As Lai Ah Eng notes in her paper *The Kopitiam in Singapore: An Evolving Story about Migration and Cultural Diversity*, the intensified competition of the hawker centre incentivised innovation, resulting in the creation of hybridised and multicultural menu items that we see today. 
+Inadvertently, the move to house street hawkers in a centralised locale surrounded by entirely new estates, birthed a novel subset of the evolving Singaporean cultural identity. The hawker centre now served as a literal cultural melting pot. It brought a new multi-ethnic dimension to our food, ending the hitherto ethnic-based locations, clientele and cuisine of street hawking. Once again, practicality incentivised innovation. As Lai Ah Eng notes in her paper *The Kopitiam in Singapore: An Evolving Story about Migration and Cultural Diversity*, the intensified competition of the hawker centre incentivised innovation, resulting in the creation of hybridised and multicultural menu items that we see today. 
 
 ### The tale of the mysterious *Rochor mee*
 
@@ -311,13 +311,15 @@ While hawking was clearly labour-intensive, competitive and in some cases, downr
 
 Towards the end of the tape, he notes that he eventually moves out of the hawking business and into a managerial role at a local theatre.  
 
-It is thus unsurprising that in the early years, stalls in newly-built hawker centres were hot-ticket items. In fact, balloting for a stall - like a HDB flat - was a rather big event. There were around 31 000 hawkers in Singapore back in 1973. [This booming hawker population was a cause for concern as it was seen as depriving other sectors of the economy from much-needed manpower. To discourage hawking as a means of employment, the government announced that licenses were to be prioritised for the disabled and those above 40.](https://eresources.nlb.gov.sg/newspapers/Digitised/Article/straitstimes19730427-1.2.8?ST=1&AT=search&SortBy=Oldest&k=build+new+hawker+centres&P=1&Display=0&filterS=0&QT=build,new,hawker,centres&oref=article)
+It is thus unsurprising that in the early years, stalls in newly-built hawker centres were hot-ticket items. In fact, balloting for a stall - much like a prized HDB flat back then - was a rather big event. Balloting ceremonies would often be attended by throngs of crowds and officiated by a member of government. 
 
 <center>
 
 ![Balloting of market stalls at Old Kallang Airport Estate - Parliamentary Secretary to Ministry of Health and Ministry of Law, Buang Bin Omar Junid conducting the ballot. Source: National Archives of Singapore](photos/ballot_scene_hawker.jpg)
 
 </center>
+
+There were just over 31 000 hawkers in Singapore back in 1973. [This booming hawker population was a cause for concern as it was seen as depriving other sectors of the economy from much-needed manpower. To discourage hawking as a means of employment, the government announced that licenses were to be prioritised for the disabled and those above 40.](https://eresources.nlb.gov.sg/newspapers/Digitised/Article/straitstimes19730427-1.2.8?ST=1&AT=search&SortBy=Oldest&k=build+new+hawker+centres&P=1&Display=0&filterS=0&QT=build,new,hawker,centres&oref=article)
 
 ## Upturn the downturn: the revival of hawker centres in the early 2000s 
 
@@ -394,16 +396,22 @@ As noted earlier, the creation of hawker centres had, by that point in time, exh
 
 </center>
 
-But by early 2001, there was a shift in government thinking on this issue. The then-acting Minister for the Environment Lim Swee Say recognised the role of the institution in Singapore social fabric. Indeed, it has become a must-visit pit stop for any wannabe parliamentarian in every election cycle. Subsequently, a $420 million Hawker Centre Upgrading Programme (HUP) was launched. By 2011, the government announced that it will build 10 new hawker centres. [A commitment was made to build another 10 in 2015’s budget.](https://www.todayonline.com/singapore/10-more-hawker-centres-be-built-within-12-years-grace-fu)  
+But by early 2001, there was a shift in government thinking on this issue. The then-acting Minister for the Environment Lim Swee Say recognised the role of the institution in Singapore social fabric. Indeed, it has become a must-visit pit stop for any wannabe parliamentarian in every election cycle. Safe to say, you would probably have chanced upon a picture of a stallholder with the constituency Member of Parliament emblazoned on his or her stallfront at some point. 
+
+Consequently, a $420 million Hawker Centre Upgrading Programme (HUP) was launched. By 2011, the government announced that it will build 10 new hawker centres. [A commitment was made to build another 10 in 2015’s budget.](https://www.todayonline.com/singapore/10-more-hawker-centres-be-built-within-12-years-grace-fu)  
 
 <center>
 
-![Then Minister for Environment and Communications Ong Pang Boon visiting Amoy Street Food Centre during its official opening in 1983. Source: National Archives of Singapore](photos/ong pang boon_mci.jpg)
+![Then: Minister for Environment and Communications Ong Pang Boon visiting Amoy Street Food Centre during its official opening in 1983. Source: National Archives of Singapore](photos/ong pang boon_mci.jpg)
 
 </center>
 
+<center>
 
-These two developments played out in my neighbourhood with Mei Ling Market undergoing major renovation works and Commonwealth Market, located a stone’s throw from the Queenstown Library and Margaret Drive NTUC, being demolished. While the stalls that I frequented found new homes at Maxwell, Mei Ling and Redhill markets, it was nonetheless a sad to bid farewell to the physical manifestation of many fond childhood memories spent in the area. 
+![Now: Then United States Vice-President Joe Biden visitng Adam Road Hawker Centre in 2013 and sipping on what appears to be fruit juice. Source: Screengrab from the Straits Times video](photos/hawker_biden.jpg){width=50%}
+</center>
+
+These two developments played out in my neighbourhood with Mei Ling Market undergoing major renovation works and Commonwealth Market, located a stone’s throw from the Queenstown Library and the Margaret Drive NTUC, being demolished. While the stalls that I frequented found new homes at Maxwell, Mei Ling and Redhill markets, it was nonetheless a sad to bid farewell to the physical manifestation of many fond childhood memories spent in the area. 
 
 <center>
 
@@ -438,7 +446,7 @@ age_rating
 
 ```
 
-Hawker centres are really quite popular institutions. No hawker centre or wet market received a rating of lesser than 3.7 on Google while the average was 4.07. The list of hawker centres ranked by their rating on Google maps can be found here: 
+Hawker centres are really quite popular institutions. No hawker centre or wet market received a rating of lesser than 3.70 on Google while the average was 4.07. The list of hawker centres ranked by their rating on Google maps can be found here: 
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 a<-hawker_db%>%
@@ -508,15 +516,20 @@ lf
 
 ### What lies ahead for hawker centres and the future of hawking in Singapore?
 
-[As Associate Professor Joan Henderson writes in her op-ed on Channel News Asia, striking a fine balance between the practicality and tradition has been and will continue to be a formidable challenge](https://www.channelnewsasia.com/news/commentary/singapore-hawker-culture-unesco-listing-national-day-rally-10659748). The median age of a hawker in Singapore is currently 60. Although there are encouraging signs of more young hawkers joining the fold, there remains hurdles for new entrants. These include higher rents, long working hours as well as stiff price competition from existing stalls. The government has embarked on a social enterprise scheme - letting newer hawker centres be run independent of the National Environment Agency (NEA) - in an attempt to ensure the continued viability of hawker centres in Singapore. Only time will tell whether these initiatives will bear fruit. 
+[As Associate Professor Joan Henderson writes in her op-ed on Channel News Asia, striking a fine balance between the practicality and tradition has been and will continue to be a formidable challenge](https://www.channelnewsasia.com/news/commentary/singapore-hawker-culture-unesco-listing-national-day-rally-10659748). 
 
-Hawking has been inextricably linked with Singapore's developmental story. 
-Its transformation from a profession whose existence was regarded as part of an uneasy social compromise into a provider of a key component of our national identity - food - was neither inevitable nor natural. The UNESCO nod does justice to the incredibly journey of hawkers in Singapore - a journey characterised by remarkable grit, unusual innovation and skillful adaptation. 
+>> The median age of a hawker in Singapore is currently 59. 
+
+A new breed of "hipster hawkers" have entered the hawker industry - they are either continuing the business of their parents with some modern twists or are starting afresh with new offerings that appeal to younger crowds. These include offerings like tacos, donburis and specialty coffee. Others have brought hawker food into more refined setting such as the Coconut Club along Ann Siang Road. Although these are encouraging signs of more young hawkers joining the fold, there remains hurdles for new entrants. These include higher rents, long working hours as well as stiff price competition from existing stalls. The government has embarked on a social enterprise scheme - letting newer hawker centres be run independent of the National Environment Agency (NEA) - in an attempt to ensure the continued viability of hawker centres in Singapore. Only time will tell whether these initiatives will bear fruit. 
 
 <center>
 
 ![Nasi Lemak from the Coconut Club restaurant located near Maxwell Food Centre](photos/cococlub.JPG){width=60%}
 
 </center>
+
+Hawking has been inextricably linked with Singapore's developmental story. 
+Its transformation from a profession whose existence was regarded as part of an uneasy social compromise into a provider of a key component of our national identity - food - was neither inevitable nor natural. The UNESCO nod does justice to the incredibly journey of hawkers in Singapore - a journey characterised by remarkable grit, unusual innovation and skillful adaptation. 
+
 
 
