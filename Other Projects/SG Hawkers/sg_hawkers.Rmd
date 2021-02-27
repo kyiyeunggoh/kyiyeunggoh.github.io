@@ -1,5 +1,5 @@
 ---
-title: "From side streets to hawker centre: Visualising the evolution of hawking in Singapore"
+title: "From side streets to town centres: Visualising the evolution of hawking in Singapore"
 author: "Kyi Yeung Goh"
 date: "23/02/2021"
 output: html_document
@@ -91,7 +91,7 @@ meta() %>%
   ) %>% 
   meta_viewport() %>% 
   meta_social(
-    title = "From side streets to hawker centre: Visualising the evolution of hawking in Singapore",
+    title = "From side streets to town centres: Visualising the evolution of hawking in Singapore",
     url = "https://kyiyeunggoh.github.io/Other%20Projects/SG%20Hawkers/sg_hawkers.html",
     image = "photos/kopitoast.JPG",
     image_alt = "The cover of the R4DS book",
@@ -537,7 +537,7 @@ lf
 
 [As Associate Professor Joan Henderson writes in her op-ed on Channel News Asia, striking a fine balance between the practicality and tradition has been and will continue to be a formidable challenge](https://www.channelnewsasia.com/news/commentary/singapore-hawker-culture-unesco-listing-national-day-rally-10659748). 
 
->> The median age of a hawker in Singapore is currently 59. 
+>> The median age of hawkers in Singapore is currently 59. 
 
 A new breed of "hipster hawkers" have entered the hawker industry - they are either continuing the business of their parents with some modern twists or are starting afresh with new offerings that appeal to younger crowds. These include offerings like tacos, donburis and specialty coffee. Others have brought hawker food into more refined setting such as the Coconut Club along Ann Siang Road. Although these are encouraging signs of more young hawkers joining the fold, there remains hurdles for new entrants. These include higher rents, long working hours as well as stiff price competition from existing stalls. The government has embarked on a social enterprise scheme - letting newer hawker centres be run independent of the National Environment Agency (NEA) - in an attempt to ensure the continued viability of hawker centres in Singapore. Only time will tell whether these initiatives will bear fruit. 
 
