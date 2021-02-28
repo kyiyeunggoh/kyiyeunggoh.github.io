@@ -1,5 +1,5 @@
 ---
-title: "From side streets to town centres: Visualising the evolution of hawking in Singapore"
+title: "From side streets to UNESCO hawker centres: Visualising the evolution of hawking in Singapore"
 author: "Kyi Yeung Goh"
 date: "23/02/2021"
 output: html_document
@@ -106,7 +106,7 @@ meta() %>%
   ) %>% 
   meta_viewport() %>% 
   meta_social(
-    title = "From side streets to town centres: Visualising the evolution of hawking in Singapore",
+    title = "From side streets to UNESCO hawker centres: Visualising the evolution of hawking in Singapore",
     url = "https://kyiyeunggoh.github.io/Other%20Projects/SG%20Hawkers/sg_hawkers.html",
     image = "https://kyiyeunggoh.github.io/Other%20Projects/SG%20Hawkers/photos/hawker_ets_1970.jpg",
     image_alt = "A hawker centre at Eu Tong Sen in 1970. Source: National Archives of Singapore",
