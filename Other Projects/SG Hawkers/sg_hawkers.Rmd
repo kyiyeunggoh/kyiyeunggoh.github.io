@@ -102,14 +102,14 @@ mpsz_pa_sf <- st_make_valid(mpsz_pa_sf)
 ```{r, echo=FALSE}
 meta() %>%
   meta_description(
-    "Surprisingly enough, the hawker culture we know today came about through a series of accidents and experimentation than a coherent, concerted campaign"
+    "What began as an attempt at regulating and disciplining the unruliness of urban life engendered the right conditions for the  emergence and evolution of hawker food into an integral part of our national identity. So how did this happen?"
   ) %>% 
   meta_viewport() %>% 
   meta_social(
     title = "From side streets to town centres: Visualising the evolution of hawking in Singapore",
     url = "https://kyiyeunggoh.github.io/Other%20Projects/SG%20Hawkers/sg_hawkers.html",
-    image = "photos/kopitoast.JPG",
-    image_alt = "The cover of the R4DS book",
+    image = "photos/hawker_ets_1970.JPG",
+    image_alt = "A hawker centre at Eu Tong Sen in 1970. Source: National Archives of Singapore",
     og_author = c("Kyi Yeung Goh"),
     twitter_card_type = "summary",
     twitter_creator = "@kyigoh"
@@ -282,9 +282,11 @@ It was evident that any resolution to the issue of street hawking would require 
 
 ## Construction and clean-up
 
-With alternative sources of employment and strong economic growth by the early 1970s, the government decided to go full steam ahead to relocate hawkers and clamp down on illegal hawking. In 1974, the Hawker Department’s Special Squad was established and tasked by the Permanent Secretary (Environment) to clear all illegal hawkers within 18 months. This was achieved in 6 months.
+With alternative sources of employment and strong economic growth by the early 1970s, the government decided to go full steam ahead to relocate hawkers and clamp down on illegal hawking. In 1974, the Hawker Department’s Special Squad was established and tasked by the Permanent Secretary (Environment) to clear all illegal hawkers within 18 months. This was achieved in 6 months. While the government continued to clamp down on illegal hawking, it also worked to minimise the frictions associated with mass relocation. They recognised the need to build hawker centers, fast. 
 
-```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.cap="Circular barchart of number of hawker centres and wet markets constructed by decades",fig.align="center"}
+Some 54 hawker centres were built between 1974 and 1979 or about 11 hawker centres a year. Indeed, as seen in the diagram below, most if not all of the hawker centres we know today were built in the 1970s. Construction slowed in the 1980s and virtually halted till the turn of the century. **(More on why later on!)**
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.cap="Circular barchart of number of hawker centres and wet markets constructed by decades",fig.align="center",out.width="150%"}
 
 for (i in 1:107){
   distinct<-floor(hawker_db$year_constructed[i] / 10) * 10
@@ -322,11 +324,7 @@ p+transition_reveal(decade)
 
 knitr::include_graphics(c("photos/coconuts_tbpestate_market.jpg","photos/myqueenstown_tanglinhalt.jpg","photos/geylangbahrumarket.jpeg","photos/maxwell_last.jpg"))
 
-``` 
-
-
-
-While the government continued to clamp down on illegal hawking, it also worked to minimise the frictions associated with mass relocation. They recognised the need to build hawker centers, fast. Some 54 hawker centres were built between 1974 and 1979 or about 11 hawker centres a year. Indeed, as seen in the diagram above, most if not all of the hawker centres we know today were built in the 1970s. Construction slowed in the 1980s and virtually halted till the turn of the century. **(More on why later on!)**
+```
 
 <center>
 
@@ -335,8 +333,6 @@ While the government continued to clamp down on illegal hawking, it also worked 
 </center>
 
 ## Adaptation, survivalism and practicality
-
-Practicality, survivalism and adaptation - a characteristically Singaporean chapalang of ingredients - have been the driving forces of change throughout the history of hawking culture in Singapore.
 
 Inadvertently, the move to centralise street hawkers within entirely new towns, and in the lives of each town’s inhabitants, cemented the hawker centre’s prime position in the evolving Singaporean cultural identity. The hawker centre now served as a literal cultural melting pot. It brought a new multi-ethnic dimension to our food, ending the hitherto ethnic-based locations, clientele and cuisine of street hawking. Once again, practicality incentivised innovation. As Lai Ah Eng notes in her paper *The Kopitiam in Singapore: An Evolving Story about Migration and Cultural Diversity*, the intensified competition of the hawker centre incentivised innovation, resulting in the creation of hybridised and multicultural menu items that we see today.
 
