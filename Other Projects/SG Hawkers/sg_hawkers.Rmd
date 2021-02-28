@@ -211,9 +211,9 @@ hawker_db<-cbind(hawker_db,hawker_noratings1)
 
 </center>
 
-Hawker culture has undergone a remarkable transformation from [“a public nuisance to be removed from the streets”](https://www.roots.gov.sg/stories-landing/stories/Serving-Up-a-Legacy) into an entry on the UNESCO Representative List of the Intangible Cultural Heritage of Humanity. Its reformation and subsequent co-optation into our nation's broader developmental narrative is a tale as complex and saucy as the broth of a bowl of *Mee Rebus*. 
+Hawker culture has undergone a remarkable transformation from [“a public nuisance to be removed from the streets”](https://www.roots.gov.sg/stories-landing/stories/Serving-Up-a-Legacy) to an entry on the UNESCO Representative List of the Intangible Cultural Heritage of Humanity. Its reformation and subsequent co-optation into our nation's broader developmental narrative is a tale as complex and saucy as the broth of a bowl of *Mee Rebus*. 
 
-What began as an attempt at regulating and disciplining the unruliness of urban life engendered the right conditions for the  emergence and evolution of hawker food into an integral part of our national identity. So how did this happen? We need to begin by understanding that the hawker centres we know of today were not the logical nor natural successors to the street hawkers of yesteryears. 
+What began as an attempt at regulating and disciplining the unruliness of urban life engendered the right conditions for the  emergence and evolution of hawker food as an integral part of our national identity. So how did this happen? We need to begin by understanding that the hawker centres we know of today were neither the logical nor natural successors to the street hawkers of yesteryears. 
 
 <center>
 
@@ -221,9 +221,9 @@ What began as an attempt at regulating and disciplining the unruliness of urban 
 
 </center>
 
-Everyone's hawker centre experience is simultaneously personal and communal. You know your favourite stalls, the various stall owners and in my case, the favourite corner where both sunlight and the flow of wind enters the market. Chances are that if you have resided in the same neighbourhood for most of your life, you would have seen through at least one stall from your childhood to your adulthood. It is also a semi-formal environment where a smile to the auntie serving you might garner you an additional portion of sweet and sour pork. 
+Everyone’s hawker centre experience is simultaneously personal and communal. You know your favourite stalls and their various stall owners. In my case, I have a favourite corner where both sunlight and the flow of wind enter the market. Chances are that if you have resided in the same neighbourhood for most of your life, you would have seen at least one stall through from your childhood to your adulthood. It is also a semi-formal environment where a smile at the auntie serving you might garner you an additional portion of sweet and sour pork.
 
-The idea of hawker centres and wet markets has a longer history than we might expect. The concept was first conceived of as a practical solution to improve public hygiene and health in the early 1900s. The then-Chief health officer for British India, Sir William John Ritchie Simpson, proposed for the creation of shelters for hawkers in 1907. While the idea was subsequently shelved due to cost considerations, it re-emerged in the 1920s and led to the building of [Singapore’s first few ‘hawker centres’ at Kreta Ayer (1921), People’s Park (1923), Carnie Street (1929), Queen Street (1929), Balestier Road (1929) and Lim Tua Tow Road (1935).](https://johorkaki.blogspot.com/2020/06/history-of-singapore-hawker-centre.html)
+The idea of hawker centres and wet markets has a longer history than we might expect. The concept was first conceived of as a practical solution to improve public hygiene and health in the early 1900s. The then-Chief health officer for British India, Sir William John Ritchie Simpson, proposed the creation of shelters for hawkers in 1907. While the idea was subsequently shelved due to cost considerations, it re-emerged in the 1920s and led to the building of [Singapore’s first few ‘hawker centres’ at Kreta Ayer (1921), People’s Park (1923), Carnie Street (1929), Queen Street (1929), Balestier Road (1929) and Lim Tua Tow Road (1935).](https://johorkaki.blogspot.com/2020/06/history-of-singapore-hawker-centre.html)
 
 <center>
 
@@ -248,7 +248,7 @@ embed_url("https://www.youtube.com/watch?v=-VosvrTlw7c&ab_channel=PrimeMinister%
 
 ## The unfortunate consumer dilemma: hygiene or hunger? 
 
-As more new towns developed, hawker centers and wet markets provided the government with an opportunity to solve two problems - first, it offered a politically viable relocation plan for street hawkers; and second, it made it easier to enforce hygiene standards of hawkers. The hygiene issues associated with street hawking go back decades and are extensively documented. A Hawkers Inquiry Commission was set up by Governor F. Gimson in 1950 to address social, economic and health issues related to hawking in Singapore.
+As more new towns developed, hawker centres and wet markets provided the government with an opportunity to solve two problems - first, they offered a politically viable relocation plan for street hawkers; and second, they made it easier to enforce hygiene standards on hawkers. The hygiene issues associated with street hawking go back decades and are extensively documented. A Hawkers Inquiry Commission was set up by Governor F. Gimson in 1950 to address the social, economic, and health issues related to hawking in Singapore.
 
 >The report itself acknowledged the extent of the problems caused by hawking, stating that *“[t]here is undeniably a disposition among officials [...] to regard the hawkers as primarily a public nuisance to be removed from the streets”*. 
 
@@ -264,13 +264,13 @@ In fact, he acknowledges the public health threat posed by street hawking. He no
 
 </center>
 
-What then was the appeal of a hawker meal? Simple. 
+What then was the appeal of a hawker meal to Vincent? Simple. 
 
->"The idea was to just give you alot of food, and the prices were quite low." 
+>"The idea was to just give you alot of food, and the prices were quite low."  
 
 Sounds familiar? 
 
-This tale of spoilt coconut milk does, however, emblematise the spirit of those times - every family unit was, in their own ways, improvising to make ends meet and simply did not have time to entertain unnecessary drama in their lives. Indeed, Vincent notes how hawker food was a compromise as people had to work long hours and simply did not have the luxury of time to enjoy a home-cooked meal. The story also points to the rapid industrialisation of 1970s which greatly altered the economic roles of women in Singapore. [Between 1957 and 1975, the female labour force participation rate almost doubled from 21.6 to 35.2 percent.](https://www.jstor.org/stable/29769892) *Eating out was therefore viewed as a compromise to home-cooked meals.* 
+This tale of spoilt coconut milk does, however, emblematise the spirit of those times – every family unit was, in their own ways, improvising to make ends meet and simply did not have time to entertain unnecessary drama. Indeed, Vincent notes how hawker food was a compromise as people had to work long hours and simply did not have the luxury of time to prepare and enjoy a home-cooked meal. The story also points to the rapid industrialisation of 1970s which greatly altered the economic roles of women in Singapore.  [Between 1957 and 1975, the female labour force participation rate almost doubled from 21.6 to 35.2 percent.](https://www.jstor.org/stable/29769892) **Eating out was therefore viewed as a compromise to home-cooked meals.**
 
 It was evident that any resolution to the issue of street hawking would require a potentially large investment of political capital as it not only provided employment to many but also offered low-cost food options to large swathes of the electorate.
 
@@ -282,9 +282,11 @@ It was evident that any resolution to the issue of street hawking would require 
 
 ## Construction and clean-up
 
-With alternative sources of employment and strong economic growth by the early 1970s, the government decided to go full steam ahead to relocate hawkers and clamp down on illegal hawking. In 1974, the Hawker Department’s Special Squad was established and tasked by the Permanent Secretary (Environment) to clear all illegal hawkers within 18 months. This was achieved in 6 months. While the government continued to clamp down on illegal hawking, it also worked to minimise the frictions associated with mass relocation. They recognised the need to build hawker centers, fast. 
+With alternative sources of employment and strong economic growth by the early 1970s, the government decided to go full steam ahead to relocate hawkers and clamp down on illegal hawking. In 1974, the Hawker Department’s Special Squad was established and tasked by the Permanent Secretary (Environment) to clear all illegal hawkers within 18 months. This was achieved in 6. 
 
-Some 54 hawker centres were built between 1974 and 1979 or about 11 hawker centres a year. Indeed, as seen in the diagram below, most if not all of the hawker centres we know today were built in the 1970s. Construction slowed in the 1980s and virtually halted till the turn of the century. **(More on why later on!)**
+While the government continued to clamp down on illegal hawking, it also worked to minimise the frictions associated with mass relocation.  They recognised the need to build hawker centres, fast. 
+
+Some 54 hawker centres were built between 1974 and 1979, or about 11 hawker centres a year. Indeed, as seen in the diagram below, most if not all of the hawker centres we know today were built in the 1970s. Construction slowed in the 1980s and virtually halted till the turn of the century. **(More on why later on!)**
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.cap="Circular barchart of number of hawker centres and wet markets constructed by decades",fig.align="center",out.width="150%"}
 
@@ -334,7 +336,7 @@ knitr::include_graphics(c("photos/coconuts_tbpestate_market.jpg","photos/myqueen
 
 ## Adaptation, survivalism and practicality
 
-Inadvertently, the move to centralise street hawkers within entirely new towns, and in the lives of each town’s inhabitants, cemented the hawker centre’s prime position in the evolving Singaporean cultural identity. The hawker centre now served as a literal cultural melting pot. It brought a new multi-ethnic dimension to our food, ending the hitherto ethnic-based locations, clientele and cuisine of street hawking. Once again, practicality incentivised innovation. As Lai Ah Eng notes in her paper *The Kopitiam in Singapore: An Evolving Story about Migration and Cultural Diversity*, the intensified competition of the hawker centre incentivised innovation, resulting in the creation of hybridised and multicultural menu items that we see today.
+Inadvertently, the move to centralise street hawkers within entirely new towns and in the lives of each town’s inhabitants cemented the hawker centre’s prime position in the evolving Singaporean cultural identity. The hawker centre now served as a literal cultural melting pot. It brought a new multi-ethnic dimension to our food, ending the hitherto ethnically-based locations, clientele, and cuisine of street hawking. Once again, practicality incentivised innovation. As Lai Ah Eng notes in her paper *The Kopitiam in Singapore: An Evolving Story about Migration and Cultural Diversity*, the intensified competition of the hawker centre incentivised innovation, resulting in the creation of hybridised and multicultural menu items that we see today.
 
 <div class="alert alert-info">
   <strong>The tale of the mysterious *Rochor mee* and humble *Bak Kut Teh*:</strong> An aside into the emergence of beloved national dishes
@@ -348,10 +350,8 @@ Inadvertently, the move to centralise street hawkers within entirely new towns, 
 </center>
 
 
-<p class="comment"> In some sense hawking's evolution into an artform found its roots in particularly harsh and tumultuous soil. In a later part of the interview, Vincent recalls the creation of a mysterious yet famous *Rochor mee*. I was confused. Was I missing something? *Simi lai eh?* Last I checked, hawker centres across Singapore were not selling a dish called *Rochor mee*. He describes this noodle dish as being a by-product of entrepreneurial hawkers that wanted to make use of leftovers to make more money. Back in the 1960s, Rochor Market was known for its pork products. Not wanting to let the leftovers - pork belly, spare parts and lard - go to waste, hawkers would purchase them and stir-fry it with noodles in a broth made out of leftover prawn shells. This cacophony of flavours generated from leftovers turned out to be a hit. Over time, the name *Rochor mee* gave way to the *Hokkien mee* we know today. Now, this partially explains why our Hokkien mee is so different from the Malaysian variant.
+<p class="comment"> In some sense hawking’s evolution as an artform found its roots in particularly harsh and tumultuous soil. In a later part of the interview mentioned earlier as part of the spoilt coconut milk story, Vincent recalls the creation of a mysterious yet famous *Rochor mee*. I was confused. Was I missing something? *Simi lai eh?* Last I checked, hawker centres across Singapore were not selling a dish called *Rochor mee*. He describes this noodle dish as being a by-product of entrepreneurial hawkers that wanted to make use of leftovers to make more money. Back in the 1960s, Rochor Market was known for its pork products. Not wanting to let the leftovers - pork belly, spare parts and lard - go to waste, hawkers would purchase them and stir-fry it with noodles in a broth made out of leftover prawn shells. This cacophony of flavours generated from leftovers turned out to be a hit. Over time, the name *Rochor mee* gave way to the *Hokkien mee* we know today. Now, this partially explains why our Hokkien mee is so different from the Malaysian variant.
 In his interview, Vincent also alludes to the intensified competition that Lai notes in her paper. He remarks how rehousing in markets meant that consumers could now simply hop from one stall to another, often selecting the stall that had better quality food at a slight premium. This competition meant that cheap fish used to make fish cakes was soon replaced with others such as *ang ko li* (red snapper). Some went out of business due to competition while others with better products flourished.</p>
-
-<p class="comment"> Another accidental creation was that of Bak Kut Teh. [The ever-amazing *Johorkaki* blog (in a story that primarily focuses on Pulau Saigon at Boat Quay) notes how poor coolies would make use of the discarded meat and bones from the Pulau Saigon Abattoir to make a soup conconction.](https://johorkaki.blogspot.com/2020/07/history-pulau-saigon-singapore-river-bak-kut-teh.html#:~:text=The%20concoction%20was%20probably%20devised,opening%20of%20Pulau%20Saigon%20Abattoir.) To the meat parts and bones, they would add Chinese herbs and dark soy sauce. Hence, it is said that this now-ubiquitous dish was created around the 1880s with the opening of an abattoir near Boat Quay.</p>
 
 <center>
 
@@ -359,13 +359,15 @@ In his interview, Vincent also alludes to the intensified competition that Lai n
 
 </center>
 
-While hawking was clearly labour-intensive, competitive and in some cases, downright dangerous due to harrassment from gangs, it nonetheless offered a low barrier-to-entry means to eke out a living and work up the social ladder. The lax enforcement of public health standards and supervision of hawking meant that most hawkers were often operating without a license. Stands would pop up and even disappear overnight. In an [interview with the National Archives](https://www.nas.gov.sg/archivesonline/oral_history_interviews/record-details/705687a4-115f-11e3-83d5-0050568939ad?keywords=life%20as%20hawker&keywords-type=all), a rojak hawker by the name of Mr. Lim recalls having to start preparation for his cuttlefish the evening before in order to have it ready by the following afternoon. 
+<p class="comment"> Another accidental creation was that of Bak Kut Teh. [The ever-amazing *Johorkaki* blog (in a story that primarily focuses on the now-disappeared Pulau Saigon at Boat Quay) notes how poor coolies would make use of the discarded meat and bones from the Pulau Saigon Abattoir to make a soup conconction.](https://johorkaki.blogspot.com/2020/07/history-pulau-saigon-singapore-river-bak-kut-teh.html#:~:text=The%20concoction%20was%20probably%20devised,opening%20of%20Pulau%20Saigon%20Abattoir.) To the meat parts and bones, they would add Chinese herbs and dark soy sauce. Hence, it is said that this now-ubiquitous dish was created around the 1880s with the opening of an abattoir near Boat Quay.</p>
+
+While hawking was clearly labour-intensive, competitive and in some cases, downright dangerous due to harrassment from gangs, it nonetheless offered a low barrier-to-entry means to eke out a living and work up the social ladder. The lax enforcement of public health standards and minimal supervision of hawking meant that most hawkers were often operating without a license. Stands would pop up and even disappear overnight. In an [interview with the National Archives](https://www.nas.gov.sg/archivesonline/oral_history_interviews/record-details/705687a4-115f-11e3-83d5-0050568939ad?keywords=life%20as%20hawker&keywords-type=all), a rojak hawker by the name of Mr. Lim recalls having to start preparation for his cuttlefish the evening before in order to have it ready by the following afternoon. 
 
 >> An uncharacteristically candid moment is recorded on the tape when the interviewer audibly gasps at Mr. Lim's remarks that he did this backbreaking work 7 days a week without rest. 
 
-Towards the end of the tape, he notes that he eventually moves out of the hawking business and into a managerial role at a local theatre.  
+Towards the end of the tape, he notes that he eventually moved out of the hawking business into a managerial role at a local theatre.
 
-It is thus unsurprising that in the early years, stalls in newly-built hawker centres were hot-ticket items. In fact, balloting for a stall - much like a prized HDB flat back then - was a rather big event. Balloting ceremonies would often be attended by throngs of crowds and officiated by a member of government. 
+It is thus unsurprising that in earlier years, stalls in newly-built hawker centres were hot-ticket items. In fact, balloting for a stall - much like a prized HDB flat back then - was a rather big event. Balloting ceremonies would often be attended by throngs of crowds and officiated by a member of government.
 
 <center>
 
@@ -377,19 +379,19 @@ There were just over 31,000 hawkers in Singapore back in 1973. [This booming haw
 
 ## Upturn the downturn
 
-The construction of hawker centres and other market-related facilities ground to a sharp halt by the 1980s. Returning to the earlier circular barchart, we note a significant decline in the height of the bar after the 1970s. By 1983, concerns had been raised about the oversupply of stalls in hawker centres - [a Hawker's Department official stated that there was no need to build more hawker centres as the ones slated for construction more than met the needs of rehousing the street vendors](https://eresources.nlb.gov.sg/newspapers/Digitised/Article/singmonitor19830429-1.2.10.1?ST=1&AT=search&k=build%20new%20hawker%20centres&QT=build,new,hawker,centres&oref=article). Indeed, between 1986 and 2011, no new hawker centres were built while several were torn down without replacement. 
+The construction of hawker centres and other market-related facilities ground to a sharp halt by the 1980s. Returning to the earlier circular barchart, we note a significant decline in the height of the bar after the 1970s. By 1983, concerns had been raised regarding the oversupply of stalls in hawker centres – [a Hawker’s Department official stated that there was no need to build more hawker centres as the ones slated for construction more than met the need for rehousing street vendors](https://eresources.nlb.gov.sg/newspapers/Digitised/Article/singmonitor19830429-1.2.10.1?ST=1&AT=search&k=build%20new%20hawker%20centres&QT=build,new,hawker,centres&oref=article). Indeed, between 1986 and 2011, no new hawker centres were built while several were torn down without replacement.
 
-**As seen below, this 25-year building hiatus meant that the hawker centre no longer featured as the nucleus of activity in new townships**. Bukit Batok, Choa Chu Kang, Sengkang and Punggol did not have hawker centres. Newer townships such as Woodlands, Hougang and Punggol appear to have high population densities and low provision of hawker centres.
+**As seen below, this 25-year building hiatus meant that the hawker centre no longer featured as the nucleus of activity in new townships.** Bukit Batok, Choa Chu Kang, Sengkang, and Punggol did not have hawker centres. Newer townships such as Woodlands, Hougang, and Punggol appear to have high population densities and a low provision of hawker centres.
 
-In a [Straits Times piece](https://www.straitstimes.com/singapore/less-kampung-spirit-and-vibrancy-in-newer-towns) about the lack of the *kampung spirit* in new towns, experts point to the lack of hawker centres and street-level shops in these neighbourhoods as the cause of this malaise. The planning of yesteryears had featured hawker centres and wetmarkets as the heart of communal interaction. The routine of marketing and eating at hawker centre provides a key ingredient in the formation of personal relationships. A quote from the article highlights this very point. 
+In a [Straits Times piece](https://www.straitstimes.com/singapore/less-kampung-spirit-and-vibrancy-in-newer-towns) about the lack of the *kampung spirit* in new towns, experts point to the lack of hawker centres and street-level shops in these neighbourhoods as the cause of this malaise. The planning of yesteryears had featured hawker centres and wetmarkets as the heart of communal interaction. The routine of marketing and eating at hawker centre provided a key ingredient in the formation of personal relationships. A quote from the article highlights this very point. 
 
 > "When you eat at a hawker centre, you watch your neighbours go by and say hello or nod your head. You make friends with your favourite hawker," said lifelong Bukit Merah resident and business development manager Desiree Teoh, 34.
 
 > "These little actions add up and, over time, you feel grounded to a place," she added.
 
-As noted by the same article, one reason for this discrepency could have been the occupanct rates of new estates. Staggered provision of such markets - two new markets are slated to be built in Punggol by 2027 - could be timed to keep pace with the size of the estates. 
+As noted by the same article, one reason for this discrepancy could have been the occupancy rates of new estates. Staggered provision of such markets – two new markets are slated to be built in Punggol by 2027 – could be timed to keep pace with the size of the estates.
 
-### Interactive graphic plotting location of hawker centers and wet markets as of 2016 across Singapore with colour gradient for subzone population in 2019
+### Interactive graphic plotting location of hawker centres and wet markets as of 2016 across Singapore with colour gradient for subzone population in 2019
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.align="center", fig.cap="Location of hawker centers and wet markets as of 2016 across Singapore with colour gradient for subzone population in 2019"}
 # Map with density
@@ -450,7 +452,7 @@ lf
 
 ```
 
-As noted earlier, the creation of hawker centres had, by that point in time, exhausted its then-purpose of rehousing street hawkers who were affected by urban redevelopment plans to more sanitary environments. Although there were calls for the building of new hawker centres and the upgrading of existing ones, the provision of this service was to be slowly transferred to private players. 
+The creation of hawker centres had by 1986 exhausted its then purpose of rehousing street hawkers affected by urban redevelopment plans in more sanitary environments. Although there were calls for the building of new hawker centres and the upgrading of existing ones, the provision of this service was to be slowly transferred to private players.
 
 <center>
 
@@ -458,13 +460,12 @@ As noted earlier, the creation of hawker centres had, by that point in time, exh
 
 </center>
 
-But by early 2001, there was a subtle shift in government thinking on this issue. The then-acting Minister for the Environment Lim Swee Say recognised the role of the institution in Singapore's social fabric. Indeed, it has become a must-visit pit stop for any wannabe parliamentarian in every election cycle. Safe to say, you would probably have chanced upon a picture of a stallholder with the constituency Member of Parliament emblazoned on his or her stallfront at some point. Consequently, a $420 million Hawker Centre Upgrading Programme (HUP) was launched. 
+However, by early 2001 there was a subtle shift in government thinking on this issue. Then acting Minister for the Environment Lim Swee Say recognised the role of the institution in Singapore’s social fabric. Indeed, it has become a must-visit pit stop for any wannabe parliamentarian in every election cycle. Safe to say, you would probably have chanced upon a picture of a stallholder with the constituency’s Member of Parliament emblazoned on his or her stall front at some point. Consequently, a $420 million Hawker Centre Upgrading Programme (HUP) was launched.
 
-Yet, the end to the two-decade long paucity in the building of new hawker centres would have to wait until 2011. In October 2011, after the general election, the government announced that it would build 10 new hawker centres citing social trends and public feedback. 
+Yet, the end to the two-decade long paucity in the building of new hawker centres would have to wait until 2011. In October 2011, after the general election, the government announced that it would build 10 new hawker centres citing social trends and public feedback. [A commitment was made to build another 10 in 2015’s budget.](https://www.todayonline.com/singapore/10-more-hawker-centres-be-built-within-12-years-grace-fu)  
 
-> Then-Minister for Environment and Water Resources Vivian Balakrishnan noted that the government had "realised, increasingly more Singaporeans are eating out rather than cooking at home". 
 
-[A commitment was made to build another 10 in 2015’s budget.](https://www.todayonline.com/singapore/10-more-hawker-centres-be-built-within-12-years-grace-fu)  
+> Then Minister for Environment and Water Resources Vivian Balakrishnan noted that the government had "realised, increasingly more Singaporeans are eating out rather than cooking at home". 
 
 <center>
 
@@ -477,7 +478,7 @@ Yet, the end to the two-decade long paucity in the building of new hawker centre
 ![Now: Then United States Vice-President Joe Biden visitng Adam Road Hawker Centre in 2013 and sipping on what appears to be fruit juice. Source: Screengrab from the Straits Times video](photos/hawker_biden.jpg){width=50%}
 </center>
 
-These two developments played out in my neighbourhood with Mei Ling Market undergoing major renovation works and Commonwealth Market, located a stone’s throw from the Queenstown Library and the Margaret Drive NTUC, being demolished. While the stalls that I frequented found new homes at Maxwell, Mei Ling and Redhill markets, it was nonetheless a sad to bid farewell to the physical manifestation of many fond childhood memories spent in the area. 
+These two developments played out in my neighbourhood with Mei Ling Market undergoing major renovation works and Commonwealth Market, located a stone’s throw from the Queenstown Library and the Margaret Drive NTUC, being demolished. While the stalls that I frequented found new homes at Maxwell, Mei Ling and Redhill markets, it was nonetheless sad to bid farewell to the physical manifestation of many fond childhood memories spent in the area. 
 
 <center>
 
@@ -486,7 +487,7 @@ These two developments played out in my neighbourhood with Mei Ling Market under
 </center>
 
 <div class="alert alert-info">
-  <strong>Another aside:</strong> Does heritage have anything to do with how popular hawker centres are? A look at Google ratings of places.* 
+  <strong>Another aside:</strong> *Does heritage have anything to do with how popular hawker centres are? A look at Google ratings of places.* 
 </div>
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
@@ -527,10 +528,10 @@ datatable(a,
 )
 ```
 
-<p class="comment"> Interestingly, there appears to be no strong association between the year a market was first established and its popularity. This is likely due to the fact that famous stalls are probablyevenly distributed due to relocation efforts and that more famous stalls have opened branches across the island. Additionally, given the HUP, there is likely to be equal standards of amenities across the various hawker centres. More details of each hawker centre and wet market can be found in the map below:</p>
+<p class="comment"> Interestingly, there appears to be no strong association between the year a market was first established and its popularity. This is likely due to the fact that famous stalls are probably evenly distributed due to relocation efforts and that more famous stalls have opened branches across the island. Franchising of famous hawker stalls have also occured, allowing residents on other parts of the island to eat something from Tiong Bahru. Additionally, given the HUP, there is likely to be equal standards of amenities across the various hawker centres. More details of each hawker centre and wet market can be found in the map below:</p>
 
 
-```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.align="center", fig.cap="Location of hawker centers and wet markets (with additional market metadata) as of 2016 across Singapore"}
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.align="center", fig.cap="Location of hawker centres and wet markets (with additional market metadata) as of 2016 across Singapore"}
 # Map with density
 popdata2019 <- pop  %>%
   dplyr::filter(year == 2019) %>%
@@ -585,11 +586,11 @@ lf
 
 ## From hawk to gawk?
 
-[As Associate Professor Joan Henderson writes in her op-ed on Channel News Asia, striking a fine balance between the practicality and tradition has been and will continue to be a formidable challenge](https://www.channelnewsasia.com/news/commentary/singapore-hawker-culture-unesco-listing-national-day-rally-10659748). 
+[As Associate Professor Joan Henderson writes in her op-ed on Channel News Asia, striking a fine balance between the practicality and tradition has been and will continue to be a formidable challenge for hawking culture in Singapore.](https://www.channelnewsasia.com/news/commentary/singapore-hawker-culture-unesco-listing-national-day-rally-10659748). 
 
 > Perhaps as a result of better education and opportunities for the younger generation, the median age of hawkers in Singapore is currently 59 years old. 
 
-A new breed of "hipster hawkers" have entered the hawker industry - they are either continuing the business of their parents with some modern twists or are starting afresh with new offerings that appeal to younger crowds. These include offerings like tacos, donburis and specialty coffee. Others have brought hawker food into more refined setting such as the Coconut Club along Ann Siang Road. Although these are encouraging signs of more young hawkers joining the fold, there remain hurdles for new entrants. These include higher rents, long working hours as well as stiff price competition from existing stalls. The government has embarked on a social enterprise scheme - letting newer hawker centres be run independent of the National Environment Agency (NEA) - in an attempt to ensure the continued viability of hawker centres in Singapore. Only time will tell whether these initiatives will bear fruit. 
+A new breed of “hipster hawkers” has entered the hawker industry – they are either continuing the business of their parents with some modern twists or are starting afresh with new offerings that appeal to younger crowds. These include offerings like tacos, donburis, and specialty coffee. Others have brought hawker food into more upscale settings such as the Coconut Club along Ann Siang Road. Although these are encouraging signs of more young hawkers joining the fold, there remain hurdles for new entrants. These include higher rents, long working hours, as well as stiff price competition from existing stalls. The government has embarked on a social enterprise scheme – letting newer hawker centres run independently of the National Environment Agency (NEA) – in an attempt to ensure the continued viability of hawker centres in Singapore. Only time will tell whether these initiatives will bear fruit.
 
 <center>
 
@@ -597,6 +598,13 @@ A new breed of "hipster hawkers" have entered the hawker industry - they are eit
 
 </center>
 
-Hawking has been inextricably linked with Singapore's developmental story. 
-Its transformation from a profession whose existence was regarded as part of an uneasy social compromise into a provider of a key component of our national identity - food - was neither inevitable nor natural. The UNESCO nod does justice to the incredible journey of hawkers in Singapore - a journey characterised by remarkable grit, unusual innovation and skillful adaptation. 
+Hawking has been inextricably linked with Singapore’s developmental story. Its transformation from a profession whose existence was regarded as part of an uneasy social compromise into a provider of a key component of our national identity – food – was neither inevitable nor natural. The UNESCO nod does justice to the incredible journey of hawkers in Singapore - a journey characterised by remarkable grit, unusual innovation, and skilful adaptation. 
 
+
+**Data Sources:**
+
+* For the database of hawker information, data from NEA's [*List of Government Markets*](https://data.gov.sg/dataset/list-of-government-markets-hawker-centres) and Google's on-demand Places and Geolocation API were combined. This combined database for hawker centres and wet markets used to generate the above piece can be found here downloaded off my [Github](https://github.com/kyiyeunggoh/kyiyeunggoh.github.io/blob/master/Other%20Projects/SG%20Hawkers/hawker_db.csv).
+
+* For the population information and interactive map, a database was created using [the Ministry of Trade and Industry's Department of Statistics' Singapore Residents by Subzone and Type of Dwelling, 2011 - 2019 data]( ghttps://data.gov.sg/dataset/singapore-residents-by-subzone-and-type-of-dwelling-2011-2019) along with the [Urban Redevelopment Authority's (URA) geoJSON shape files](https://data.gov.sg/dataset/master-plan-2014-subzone-boundary-web).
+
+* Interviews were sourced from the National Archive's online repository.
