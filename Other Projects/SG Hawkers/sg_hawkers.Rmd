@@ -108,7 +108,7 @@ meta() %>%
   meta_social(
     title = "From side streets to town centres: Visualising the evolution of hawking in Singapore",
     url = "https://kyiyeunggoh.github.io/Other%20Projects/SG%20Hawkers/sg_hawkers.html",
-    image = "kyiyeunggoh.github.io/Other%20Projects/SG%20Hawkers/photos/hawker_ets_1970.jpg",
+    image = "https://kyiyeunggoh.github.io/Other%20Projects/SG%20Hawkers/photos/hawker_ets_1970.jpg",
     image_alt = "A hawker centre at Eu Tong Sen in 1970. Source: National Archives of Singapore",
     og_author = c("Kyi Yeung Goh"),
     twitter_card_type = "summary",
