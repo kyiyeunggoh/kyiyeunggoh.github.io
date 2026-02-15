@@ -1,117 +1,140 @@
-/*
-	Strata by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-*/
+// ===================================
+// SCROLL REVEAL ANIMATION
+// ===================================
 
-(function($) {
+const reveals = document.querySelectorAll('.reveal');
 
-	var $window = $(window),
-		$body = $('body'),
-		$header = $('#header'),
-		$footer = $('#footer'),
-		$main = $('#main'),
-		settings = {
+function checkReveal() {
+    reveals.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        
+        if (elementTop < windowHeight - 100) {
+            element.classList.add('active');
+        }
+    });
+}
 
-			// Parallax background effect?
-				parallax: true,
+window.addEventListener('scroll', checkReveal);
+checkReveal(); // Check on load
 
-			// Parallax factor (lower = more intense, higher = less intense).
-				parallaxFactor: 20
+// ===================================
+// SMOOTH SCROLL FOR ANCHOR LINKS
+// ===================================
 
-		};
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+});
 
-	// Breakpoints.
-		breakpoints({
-			xlarge:  [ '1281px',  '1800px' ],
-			large:   [ '981px',   '1280px' ],
-			medium:  [ '737px',   '980px'  ],
-			small:   [ '481px',   '736px'  ],
-			xsmall:  [ null,      '480px'  ],
-		});
+// ===================================
+// ANIMATED CAT THAT REACTS TO SCROLLING
+// ===================================
 
-	// Play initial animations on page load.
-		$window.on('load', function() {
-			window.setTimeout(function() {
-				$body.removeClass('is-preload');
-			}, 100);
-		});
+const pixelCat = document.querySelector('.pixel-cat');
+let lastScrollY = window.scrollY;
+let scrollTimeout;
 
-	// Touch?
-		if (browser.mobile) {
+window.addEventListener('scroll', () => {
+    const currentScrollY = window.scrollY;
+    
+    // Add scrolling class for animation
+    pixelCat.classList.add('scrolling');
+    
+    // Clear previous timeout
+    clearTimeout(scrollTimeout);
+    
+    // Remove scrolling class after animation
+    scrollTimeout = setTimeout(() => {
+        pixelCat.classList.remove('scrolling');
+    }, 500);
+    
+    // Move cat based on scroll position (but keep it in view)
+    const scrollPercent = currentScrollY / (document.documentElement.scrollHeight - window.innerHeight);
+    const maxMove = window.innerHeight - 200; // Keep cat in viewport
+    const newBottom = 32 + (scrollPercent * maxMove * 0.3); // Subtle movement
+    
+    pixelCat.style.bottom = `${Math.min(newBottom, window.innerHeight - 100)}px`;
+    
+    lastScrollY = currentScrollY;
+});
 
-			// Turn on touch mode.
-				$body.addClass('is-touch');
+// ===================================
+// CAT WAVES WHEN CLICKED
+// ===================================
 
-			// Height fix (mostly for iOS).
-				window.setTimeout(function() {
-					$window.scrollTop($window.scrollTop() + 1);
-				}, 0);
+pixelCat.style.cursor = 'pointer';
+pixelCat.style.pointerEvents = 'all';
+pixelCat.addEventListener('click', () => {
+    pixelCat.style.transform = 'rotate(15deg)';
+    setTimeout(() => {
+        pixelCat.style.transform = 'rotate(-15deg)';
+        setTimeout(() => {
+            pixelCat.style.transform = 'rotate(0deg)';
+        }, 150);
+    }, 150);
+});
 
-		}
+// ===================================
+// EXTERNAL LINKS - ADD SECURITY ATTRIBUTES
+// ===================================
 
-	// Footer.
-		breakpoints.on('<=medium', function() {
-			$footer.insertAfter($main);
-		});
+const externalLinks = document.querySelectorAll('a[target="_blank"]');
+externalLinks.forEach(link => {
+    link.setAttribute('rel', 'noopener noreferrer');
+});
 
-		breakpoints.on('>medium', function() {
-			$footer.appendTo($header);
-		});
+// ===================================
+// PERFORMANCE - LOG PAGE LOAD TIME (DEV ONLY)
+// ===================================
 
-	// Header.
+if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+    window.addEventListener('load', function() {
+        if (performance.timing) {
+            const perfData = performance.timing;
+            const pageLoadTime = perfData.loadEventEnd - perfData.navigationStart;
+            console.log(`Page load time: ${pageLoadTime}ms`);
+        }
+    });
+}
 
-		// Parallax background.
+// ===================================
+// ACCESSIBILITY - SKIP TO MAIN CONTENT
+// ===================================
 
-			// Disable parallax on IE (smooth scrolling is jerky), and on mobile platforms (= better performance).
-				if (browser.name == 'ie'
-				||	browser.mobile)
-					settings.parallax = false;
+const skipLink = document.createElement('a');
+skipLink.href = '#main';
+skipLink.textContent = 'Skip to main content';
+skipLink.className = 'skip-link';
+skipLink.style.cssText = `
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: #00ff88;
+    color: #0a0a0a;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    z-index: 100;
+    font-family: 'Space Mono', monospace;
+`;
 
-			if (settings.parallax) {
+skipLink.addEventListener('focus', function() {
+    this.style.top = '0';
+});
 
-				breakpoints.on('<=medium', function() {
+skipLink.addEventListener('blur', function() {
+    this.style.top = '-40px';
+});
 
-					$window.off('scroll.strata_parallax');
-					$header.css('background-position', '');
+document.body.insertBefore(skipLink, document.body.firstChild);
 
-				});
-
-				breakpoints.on('>medium', function() {
-
-					$header.css('background-position', 'left 0px');
-
-					$window.on('scroll.strata_parallax', function() {
-						$header.css('background-position', 'left ' + (-1 * (parseInt($window.scrollTop()) / settings.parallaxFactor)) + 'px');
-					});
-
-				});
-
-				$window.on('load', function() {
-					$window.triggerHandler('scroll');
-				});
-
-			}
-
-	// Main Sections: Two.
-
-		// Lightbox gallery.
-			$window.on('load', function() {
-
-				$('#two').poptrox({
-					caption: function($a) { return $a.next('h3').text(); },
-					overlayColor: '#2c2c2c',
-					overlayOpacity: 0.85,
-					popupCloserText: '',
-					popupLoaderText: '',
-					selector: '.work-item a.image',
-					usePopupCaption: true,
-					usePopupDefaultStyling: false,
-					usePopupEasyClose: false,
-					usePopupNav: true,
-					windowMargin: (breakpoints.active('<=small') ? 0 : 50)
-				});
-
-			});
-
-})(jQuery);
+// Add id to main for skip link
+const mainElement = document.querySelector('main');
+if (mainElement && !mainElement.id) {
+    mainElement.id = 'main';
+}
