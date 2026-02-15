@@ -1,0 +1,26 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background -->
+    <rect width="64" height="64" fill="#0a0a0a"/>
+    
+    <!-- Ears -->
+    <rect x="12" y="8" width="8" height="8" fill="#00ff88"/>
+    <rect x="44" y="8" width="8" height="8" fill="#00ff88"/>
+    
+    <!-- Head -->
+    <rect x="16" y="16" width="32" height="24" fill="#00ff88"/>
+    
+    <!-- Inner ears (dark) -->
+    <rect x="16" y="12" width="4" height="4" fill="#0a0a0a"/>
+    <rect x="44" y="12" width="4" height="4" fill="#0a0a0a"/>
+    
+    <!-- Eyes -->
+    <rect x="24" y="24" width="4" height="4" fill="#0a0a0a"/>
+    <rect x="36" y="24" width="4" height="4" fill="#0a0a0a"/>
+    
+    <!-- Nose -->
+    <rect x="30" y="32" width="4" height="4" fill="#0a0a0a"/>
+    
+    <!-- Mouth/whiskers suggestion -->
+    <rect x="28" y="36" width="2" height="2" fill="#0a0a0a"/>
+    <rect x="34" y="36" width="2" height="2" fill="#0a0a0a"/>
+</svg>
