@@ -155,6 +155,91 @@ svg{max-width:100%;}
 .contact-section{padding-top:88px;padding-bottom:88px}.contact-panel{display:flex;align-items:center;justify-content:space-between;gap:56px;padding:42px;border:1px solid var(--line);border-radius:24px;background:#fff}.contact-copy{max-width:720px}.contact-copy h2{margin-bottom:14px}.contact-copy p:last-child{color:var(--muted);font-size:17px;margin-bottom:0}.contact-actions{display:flex;flex-direction:column;align-items:stretch;gap:10px;min-width:220px}.contact-email{text-align:center;text-decoration:none;color:var(--muted);font-size:12px;padding-top:5px}.contact-email:hover{color:var(--ink)}@media(max-width:820px){.contact-panel{flex-direction:column;align-items:flex-start;padding:28px}.contact-actions{width:100%;min-width:0}}
 
 .contact-interests{margin:18px 0 0;font:500 11px/1.6 monospace;letter-spacing:.03em;color:#475569}.contact-interests strong{color:var(--ink);font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:0}.career-narrative{max-width:760px}.career-narrative h2{margin-top:44px;font-size:clamp(30px,3.6vw,44px)}.career-narrative p{color:#475569;font-size:17px}.career-direction{margin-top:38px;padding:28px;border:1px solid var(--line);border-radius:20px;background:var(--soft)}.career-direction h3{font-size:24px;margin-bottom:12px}.career-direction p{margin-bottom:18px}.interest-list{display:flex;flex-wrap:wrap;gap:8px}.interest-list span{padding:7px 10px;border:1px solid var(--line);border-radius:999px;background:#fff;font:500 10px/1.2 monospace;color:#475569}
+
+/* Mobile-first adaptive layout */
+@media (max-width: 700px) {
+  .shell { width: min(calc(100% - 32px), var(--max)); }
+  .nav-wrap { min-height: 62px; gap: 10px; }
+  .brand { flex: 0 0 auto; }
+  .brand-name { display: none; }
+  .brand-mark { width: 34px; height: 34px; font-size: 10px; }
+  .nav { gap: 12px; flex-wrap: nowrap; margin-left: auto; }
+  .nav a { font-size: 12px; white-space: nowrap; }
+  .hero { grid-template-columns: 1fr; min-height: 0; padding: 58px 0 50px; gap: 0; }
+  .hero-copy { max-width: none; }
+  .hero-visual { display: none; }
+  .eyebrow { font-size: 10px; margin-bottom: 13px; line-height: 1.5; }
+  h1 { font-size: clamp(38px, 11vw, 48px); line-height: 1.02; margin-bottom: 22px; }
+  h2 { font-size: clamp(30px, 8.5vw, 38px); line-height: 1.06; }
+  h3 { font-size: 22px; line-height: 1.12; }
+  .hero-lede { font-size: 18px; line-height: 1.55; }
+  .hero-sub { font-size: 15px; line-height: 1.55; margin-bottom: 26px; }
+  .button { min-height: 43px; padding: 0 15px; font-size: 13px; }
+  .signals { grid-template-columns: 1fr 1fr; }
+  .signals > div { padding: 20px 14px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .signals > div:nth-child(2n) { border-right: 0; }
+  .signals > div:nth-last-child(-n+2) { border-bottom: 0; }
+  .signals > div:first-child, .signals > div:nth-child(3) { padding-left: 0; }
+  .signals strong { font-size: 17px; }
+  .signals span { font-size: 10.5px; line-height: 1.4; }
+  .section { padding: 72px 0; }
+  .section-intro { margin-bottom: 30px; }
+  .section-intro > p:last-child { font-size: 15px; line-height: 1.6; }
+  .feature-grid, .feature-grid-revised { grid-template-columns: 1fr; gap: 14px; }
+  .feature-card, .feature-card-large, .anti-scam-card, .datastory-card, .idg-card, .ogp-card { grid-column: auto !important; min-height: 0 !important; padding: 22px !important; border-radius: 18px; }
+  .feature-card-large h3 { font-size: clamp(34px, 9vw, 44px); line-height: 1.03; }
+  .feature-card p { font-size: 15px; line-height: 1.6; }
+  .card-topline { font-size: 9.5px; align-items: flex-start; }
+  .card-topline span:last-child { white-space: nowrap; }
+  .card-kicker { font-size: 9.5px !important; margin-bottom: 10px; }
+  .anti-scam-content > p:not(.card-kicker) { max-width: none; }
+  .anti-scam-card .metric-row, .datastory-card .metric-row, .idg-card .metric-row { margin-top: 20px; }
+  .metric-row { grid-template-columns: 1fr; gap: 8px; }
+  .metric-row > div { padding: 14px; }
+  .metric-row strong { font-size: 20px; }
+  .metric-row span { font-size: 10.5px; }
+  .card-footer { margin-top: 22px !important; padding-top: 2px !important; gap: 7px 14px; font-size: 9.5px; line-height: 1.45; }
+  .card-footer a { font-size: 13px; }
+  .project-in-card { grid-template-columns: 40px 1fr; gap: 12px; padding: 18px 0; }
+  .project-icon { width: 38px; height: 38px; border-radius: 10px; }
+  .project-in-card h4 { font-size: 16px; }
+  .project-in-card p { font-size: 13.5px; line-height: 1.55; }
+  .project-in-card a, .source-link { font-size: 12px; }
+  .build-grid { grid-template-columns: 1fr; }
+  .build-card, .build-card:nth-child(odd), .build-card:nth-child(even) { grid-template-columns: 28px 1fr auto; min-height: 0; padding: 23px 0; gap: 12px; border-right: 0; }
+  .build-card h3 { margin-bottom: 8px; }
+  .build-card p { font-size: 13.5px; line-height: 1.5; }
+  .build-num { font-size: 10px; }
+  .arrow { font-size: 17px; }
+  .tech-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .tech-card { min-height: 104px; padding: 14px; gap: 10px; border-radius: 15px; }
+  .logo { flex-basis: 36px; width: 36px; height: 36px; }
+  .tech-card strong { font-size: 13px; }
+  .tech-card small { font-size: 10px; }
+  .experience-row { grid-template-columns: 1fr; gap: 13px; padding: 28px 0; }
+  .experience-meta > span { margin-bottom: 7px; }
+  .experience-impact h3 { font-size: 21px; }
+  .experience-impact > p { font-size: 14.5px; line-height: 1.55; }
+  .impact-pills { gap: 6px; margin-top: 13px; }
+  .impact-pills span { font-size: 9px; padding: 6px 8px; }
+  .contact-section { padding-top: 64px; padding-bottom: 64px; }
+  .contact-panel { padding: 24px; gap: 28px; border-radius: 18px; }
+  .contact-copy p:last-child { font-size: 15px; }
+  .contact-interests { font-size: 10px; }
+  .about-teaser-inner { gap: 24px; }
+  .about-teaser-inner p:last-child { font-size: 15px; }
+  .footer-inner { flex-direction: column; align-items: flex-start; gap: 4px; }
+}
+@media (max-width: 390px) {
+  .shell { width: min(calc(100% - 24px), var(--max)); }
+  .nav { gap: 9px; }
+  .nav a { font-size: 11px; }
+  .brand-mark { width: 32px; height: 32px; }
+  h1 { font-size: 37px; }
+  .feature-card, .feature-card-large, .anti-scam-card, .datastory-card, .idg-card, .ogp-card { padding: 19px !important; }
+  .tech-grid { grid-template-columns: 1fr; }
+}
+
 </style><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Kyi Yeung Goh", "jobTitle": "Senior Product Manager", "url": "https://kygoh.xyz", "email": "mailto:gohkyeung@gmail.com", "sameAs": ["https://www.linkedin.com/in/kyiyeunggoh/", "https://github.com/kyiyeunggoh"], "knowsAbout": ["Product Management", "AI Products", "AI/ML", "Trust & Safety", "Fraud & Risk", "AI Safety", "AI Policy", "AI Governance", "Responsible AI", "Public-Interest Technology", "LLMs", "Product Analytics", "0→1 Product Development"]}</script></head>
 <body>
 <header class="site-header">
